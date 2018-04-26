@@ -1,0 +1,66 @@
+﻿@model KiDSisMvcWebUI.Models.User
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>User</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.InstitutionCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InstitutionCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InstitutionName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InstitutionName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EPosta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EPosta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Role)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Role)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

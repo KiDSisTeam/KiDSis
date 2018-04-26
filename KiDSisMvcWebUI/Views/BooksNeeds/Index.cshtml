@@ -1,0 +1,60 @@
+﻿@model IEnumerable<KiDSisMvcWebUI.Models.ShoolBooksNeedsViewModel>
+@*  @model KiDSisMvcWebUI.Models.ShoolBooksNeedsViewModel*@
+
+@{
+    ViewBag.Title = "Index";
+
+    //Layout = "~/Views/_Layout-User.cshtml";
+
+    Layout = "~/Views/Shared/_Layout-User.cshtml";
+
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Kitap ismi
+        </th>
+        <th>
+            Sınıf
+        </th>
+        <th>
+            Kitap Sayısı
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.Name
+               
+               
+
+                @*@Html.DisplayFor(modelItem => item.BookCount)*@
+            </td>
+            <td>
+                @item.Class
+            </td>
+            <td>
+                @item.BookCount
+            </td>
+
+
+
+
+
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+            </td>
+        </tr>
+    }
+
+</table>
