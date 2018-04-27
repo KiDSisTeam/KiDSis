@@ -1,6 +1,8 @@
 ﻿@{
-//ViewBag.Title = "Index";
-//Layout = null;
+    //ViewBag.Title = "Index";
+    //Layout = null;
+    // Layout = "~/Views/Shared/_Layout - login.cshtml";
+    Layout = "/Views/Shared/_Layout-Login.cshtml";
 }
 
 @* <h2>Index</h2>*@
@@ -20,118 +22,72 @@
     @*<link rel="stylesheet" href="css/bootstrap.min.css">*@
     <link rel="stylesheet" type="text/css" href="~/Css/Ozel.css">
 </head>
-<body class="bg-light">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-info">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <!-- Logo -->
-                    <a href="index.html" class="navbar-brannd"><img width="60" src="~/Images/logo.png"></a>
-                </div>
-            </div>
-            <!-- Sağ Giriş -->
-            <form name="giris" action="#" method="post" class="form-inline">
-                <label for="kurumLabel" style="color: white;" class="mr-2">Kurum Kodu</label>
-                <input id="kurumLabel" type="text" maxlength="6" name="kurumkodu" required placeholder="Kurum Kodunuzu Girin" class="form-control mr-4 form-control-sm">
-                <label for="sifreLabel" style="color: white;" class="mr-2">Şifre</label>
-                <input id="sifreLabel" type="password" name="sifre" required placeholder="Şifrenizi Girin" class="form-control mr-2 form-control-sm">
-                <button name="girisYap" class="button btn btn-light btn-sm mr-2">Giriş Yap </button>
-            </form>
-        </div>
-    </nav>
+
+<body>
+
 
     <div class="container">
-        <!--Site Açıklama Kısmı-->
-        <div class="col-md-12">
-            <div class="jumbotron">
-                <h1>KİDSİS - Kitap Dağıtım Sistemine Hoş Geldiniz</h1>
-                <p>Kitap Dağıtım Sistemi ile eksik olan kitaplarınız için talep oluşturabilir, oluşturduğunuz talepleri sistem üzerinden takip edebilirsiniz.  <br></p>
-                <hr>
-                <p>Soru görüş ve önerileriniz için lütfen <strong>0 (262) 528 9394 - 126</strong> numaralı telefondan <strong>Şef İsim SOYİSİM</strong> ile iletişime geçin.</p>
+        <div class="row">
+            <div class="col-md-6 mt-4">
+                <!--Sık Sorulan Sorular-->
+                <div><h3> <i class="far fa-question-circle"></i> Sık Sorulan Sorular</h3></div><hr>
+                <div class="alert alert-success">
+                    <strong>KİDSİS Nedir?</strong><br> Açıklama
+                </div>
+
+                <div class="alert alert-info">
+                    <strong>Talep Nasıl Oluşturulur?</strong><br> Açıklama
+                </div>
+
+                <div class="alert alert-warning">
+                    <strong>Talep Nasıl Takip Edilir?</strong><br> Açıklama
+                </div>
+
+                <div class="alert alert-danger">
+                    <strong>Depo Stok Takibi Nedir?</strong><br>Açıklama
+                </div>
+                <div class="alert alert-danger">
+                    <strong>Depo Stok Takibi Nedir?</strong><br>Açıklama
+                </div>
+                <div class="alert alert-danger">
+                    <strong>Depo Stok Takibi Nedir?</strong><br>Açıklama
+                </div>
+                <div class="alert alert-danger">
+                    <strong>Depo Stok Takibi Nedir?</strong><br>Açıklama
+                </div>
+
+
+                <!--DUYURULAR-->
             </div>
-
-
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 mt-4">
-                        <!--Sık Sorulan Sorular-->
-                        <div><h3> <i class="far fa-question-circle"></i> Sık Sorulan Sorular</h3></div><hr>
-                        <div class="alert alert-success">
-                            <strong>KİDSİS Nedir?</strong><br> Açıklama
-                        </div>
-
-                        <div class="alert alert-info">
-                            <strong>Talep Nasıl Oluşturulur?</strong><br> Açıklama
-                        </div>
-
-                        <div class="alert alert-warning">
-                            <strong>Talep Nasıl Takip Edilir?</strong><br> Açıklama
-                        </div>
-
-                        <div class="alert alert-danger">
-                            <strong>Depo Stok Takibi Nedir?</strong><br>Açıklama
-                        </div>
-                        <div class="alert alert-danger">
-                            <strong>Depo Stok Takibi Nedir?</strong><br>Açıklama
-                        </div>
-                        <div class="alert alert-danger">
-                            <strong>Depo Stok Takibi Nedir?</strong><br>Açıklama
-                        </div>
-                        <div class="alert alert-danger">
-                            <strong>Depo Stok Takibi Nedir?</strong><br>Açıklama
-                        </div>
-
-
-                        <!--DUYURULAR-->
-                    </div>
-                    <div class="col-md-6 mt-4">
-                        <div><h3><i class="far fa-edit"></i> Güncellemeler</h3></div><hr>
-                        <div class="alert alert-success">
-                            <strong>08/04/2018 </strong>8. sınıf Türkçe kitabı geldi.
-                        </div>
-                        <div class="alert alert-success">
-                            <strong>08/04/2018 </strong>8. sınıf Türkçe kitabı geldi.
-                        </div>
-                        <div class="alert alert-success">
-                            <strong>08/04/2018 </strong>8. sınıf Türkçe kitabı geldi.
-                        </div>
-                        <div class="alert alert-success">
-                            <strong>08/04/2018 </strong>8. sınıf Türkçe kitabı geldi.
-                        </div>
-                        <div class="alert alert-success">
-                            <strong>08/04/2018 </strong>8. sınıf Türkçe kitabı geldi.
-                        </div>
-                        <div class="alert alert-success">
-                            <strong>08/04/2018 </strong>8. sınıf Türkçe kitabı geldi.
-                        </div>
-                    </div>
+            <div class="col-md-6 mt-4">
+                <div><h3><i class="far fa-edit"></i> Güncellemeler</h3></div><hr>
+                <div class="alert alert-success">
+                    <strong>08/04/2018 </strong>8. sınıf Türkçe kitabı geldi.
+                </div>
+                <div class="alert alert-success">
+                    <strong>08/04/2018 </strong>8. sınıf Türkçe kitabı geldi.
+                </div>
+                <div class="alert alert-success">
+                    <strong>08/04/2018 </strong>8. sınıf Türkçe kitabı geldi.
+                </div>
+                <div class="alert alert-success">
+                    <strong>08/04/2018 </strong>8. sınıf Türkçe kitabı geldi.
+                </div>
+                <div class="alert alert-success">
+                    <strong>08/04/2018 </strong>8. sınıf Türkçe kitabı geldi.
+                </div>
+                <div class="alert alert-success">
+                    <strong>08/04/2018 </strong>8. sınıf Türkçe kitabı geldi.
                 </div>
             </div>
         </div>
     </div>
+    </div>
+    </div>
 
 
-    <!--Alt Kısım-->
-    <footer>
-        <nav class="bg-info sticky-bottom">
-            <div class="container">
-                <div class="row">
-                    <div align="center" class="col-md-12">
-                        <strong>Hacıosman Mah. Hızır Reis Cad. Bişkek Sok. No132/A Kat3 KÖRFEZ/KOCAELİ - 0 (262) 528 9394</strong><br>
-                        MEB © - Tüm Hakları Saklıdır. Gizlilik, Kullanım ve Telif Hakları bildiriminde belirtilen kurallar çerçevesinde hizmet sunulmaktadır.
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </footer>
 
-    <!-- JS Dosyaları-->
-    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    @*<script src="js/jquery-3.2.1.slim.min.js"></script>*@
-    <script src="js/popper.min.js"></script>
-    <script src="~/Scripts/popper.js"></script>
-    @*<script src="js/bootstrap.js"></script>*@
+
 </body>
 </html>
 

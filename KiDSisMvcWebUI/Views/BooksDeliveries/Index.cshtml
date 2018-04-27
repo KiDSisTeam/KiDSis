@@ -4,30 +4,46 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<ul class="list-group ">
+    <li class="list-group-item bg-info" style="text-align:center">
+
+        <h2 style="color:white">Teslim Edilen Kitaplar</h2>
+
+    </li>
+
+
+
+
+
+</ul>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Yeni Kayıt", "Create", null, new { @class = "btn btn-success   btn-sm mt-2" })
 </p>
-<table class="table">
-    <tr>
+<table class="table table-bordered">
+    <tr class="bg-info" style="color:white">
         <th>
-            @Html.DisplayNameFor(model => model.BookCount)
+            Kitap Sayısı
+
+            @*@Html.DisplayNameFor(model => model.Code)*@
         </th>
-        <th></th>
+
+        <th>İşlemler</th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.BookCount)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookCount)
+            </td>
+            <td>
+                @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-primary   btn-sm" })
+                @Html.ActionLink("Detay", "Details", new { id = item.Id }, new { @class = "btn btn-success   btn-sm" })
+                @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger   btn-sm" })
+            </td>
+        </tr>
+    }
 
 </table>

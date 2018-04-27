@@ -4,14 +4,17 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
-
+<ul class="list-group ">
+    <li class="list-group-item bg-info" style="text-align:center">
+        <h2 style="color:white">Detay</h2>
+    </li>
+</ul>
 <div>
-    <h4>Authority</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            Yetki Adı
+            @*@Html.DisplayNameFor(model => model.Name)*@
         </dt>
 
         <dd>
@@ -19,7 +22,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Type)
+            Yetki Türü
+            @*@Html.DisplayNameFor(model => model.Type)*@
         </dt>
 
         <dd>
@@ -29,6 +33,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Düzenle", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Geri Dön", "Index")
 </p>

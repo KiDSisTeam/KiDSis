@@ -23,5 +23,6 @@ namespace KiDSisMvcWebUI.Entity
         public DbSet<SchoolsCategory> SchoolsCategorys { get; set; }
         public DbSet<User> Users { get; set; }
 
+        public System.Data.Entity.DbSet<KiDSisMvcWebUI.Models.ShoolBooksNeedsViewModel> ShoolBooksNeedsViewModels { get; set; }
     }
 }

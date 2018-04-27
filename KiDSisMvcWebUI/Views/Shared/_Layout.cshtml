@@ -12,12 +12,12 @@
     <link rel="stylesheet" type="text/css" href="~/Css/Ozel.css">
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
 
+
+
 </head>
 <body style="background-image:url(/Images/arkaplan.png)">
-
     <div class="container mb-3">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-info" style="border-top-right-radius:5px;border-top-left-radius:5px">
-
+        <nav style="border-top-right-radius:5px; border-top-left-radius:5px;" class="navbar navbar-expand-lg navbar-dark bg-info mt-2">
             <div class="row">
                 <div class="col-md-12">
                     <!-- Logo -->
@@ -53,26 +53,21 @@
                     </li>
                 </ul>
             </div>
-
-
         </nav>
 
 
 
-                <nav style="padding:0px; border-bottom-right-radius:5px;border-bottom-left-radius:5px" class="navbar navbar-expand-lg navbar-dark bg-dark">
-                    @*<div class="container"> </div>*@
-                    <div class="row">
-                        <div class="col-md-12">
-                            <!-- Yönetici Giriş Yapılmış Hali -->
-                            <label style="color: white;" class="ml-2 mt-1 mr-2"><strong><i class="fas fa-user-circle"></i> Yönetici Şef İsim SOYİSİM</strong></label>
-                            <a href="#">Çıkış Yap</a>
-                        </div>
-                    </div>
-           
-       
 
+        <nav style="padding: 0px;border-bottom-right-radius:5px; border-bottom-left-radius:5px;" class="navbar navbar-expand-lg navbar-dark bg-dark">
+            @*<div class="container"> </div>*@
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Yönetici Giriş Yapılmış Hali -->
+                    <label style="color: white;" class="ml-2 mt-1 mr-2"><strong><i class="fas fa-user-circle"></i> Yönetici Şef İsim SOYİSİM</strong></label>
+                    <a href="#">Çıkış Yap</a>
+                </div>
+            </div>
         </nav>
-
     </div>
 
 
@@ -101,17 +96,18 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer style="bottom:10px;@*position:absolute;width:90%*@">
-            <nav class="bg-info"style="border-radius:5px">
+        <footer style="color:white;">
+            <nav class="bg-info" style="border-radius: 5px;">
                 <div class="container">
                     <div class="row">
-                        <div align="center" class="col-md-12" style="color:white">
-                            <strong>Hacıosman Mah. Hızır Reis Cad. Bişkek Sok. No132/A Kat:3 KÖRFEZ/KOCAELİ - 0 (262) 528 9394</strong><br>
+                        <div align="center" class="col-md-12">
+                            <strong>Hacıosman Mah. Hızır Reis Cad. Bişkek Sok. No132/A Kat3 KÖRFEZ/KOCAELİ - 0 (262) 528 9394</strong><br>
                             MEB © - Tüm Hakları Saklıdır. Gizlilik, Kullanım ve Telif Hakları bildiriminde belirtilen kurallar çerçevesinde hizmet sunulmaktadır.
                         </div>
                     </div>
                 </div>
             </nav>
+
 
 
             @*<p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>*@
