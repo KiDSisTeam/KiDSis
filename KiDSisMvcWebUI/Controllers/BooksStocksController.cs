@@ -18,6 +18,8 @@ namespace KiDSisMvcWebUI.Controllers
         // GET: BooksStocks
         public ActionResult Index()
         {
+
+
             return View(db.BooksStocks.ToList());
         }
 

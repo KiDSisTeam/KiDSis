@@ -14,10 +14,10 @@ namespace KiDSisMvcWebUI.Models
         //count:adet sayı
         public string BookCount { get; set; }
         //Kitap kategorileri kitap tablosuna eklenmiş oldu.
-        public BooksCategory BooksCategoryId { get; set; }
+     
         public BooksCategory BooksCategorys { get; set; }
         //Kullanıcı Bilgileri tabloya eklendi
-        public User UsersId { get; set; }        
+           
         public User Users { get; set; }
 
 

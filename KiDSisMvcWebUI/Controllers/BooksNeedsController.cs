@@ -62,11 +62,21 @@ namespace KiDSisMvcWebUI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,BookCount")] BooksNeed booksNeed)
+        public ActionResult Create(ShoolBooksNeedsViewModel booksNeed)
         {
+            BooksNeed bkcn = new BooksNeed();
+            bkcn.BookCount = booksNeed.BookCount;
+
+            Book Bk = new Book();
+           
+            Bk.Name = booksNeed.Name;
+            Bk.Class = booksNeed.Class;
+
+
             if (ModelState.IsValid)
             {
-                db.BooksNeeds.Add(booksNeed);
+                db.Books.Add(Bk);
+                db.BooksNeeds.Add(bkcn);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

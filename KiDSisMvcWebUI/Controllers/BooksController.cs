@@ -18,7 +18,13 @@ namespace KiDSisMvcWebUI.Controllers
         // GET: Books
         public ActionResult Index()
         {
-            return View(db.Books.ToList());
+            //BooksCategory b = new BooksCategory();
+            //b = db.BooksCategorys.FirstOrDefault(x=>x.Name=="OrtaOkul");
+
+            List<Book> _boks = db.Books.Where(x => x.BooksCategorys.Name == "OrtaOkul").ToList();
+
+            return View(_boks);
+            //return View(db.Books.ToList());
         }
 
         // GET: Books/Details/5
@@ -49,6 +55,7 @@ namespace KiDSisMvcWebUI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Code,Name,Class,BookCount")] Book book)
         {
+            
             if (ModelState.IsValid)
             {
                 db.Books.Add(book);
