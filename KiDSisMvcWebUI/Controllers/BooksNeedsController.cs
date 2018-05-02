@@ -21,6 +21,7 @@ namespace KiDSisMvcWebUI.Controllers
 
             List<Book> bk = db.Books.ToList();
             List<BooksNeed> bkn = db.BooksNeeds.ToList();
+            List < SchoolsCategory> sc= db.SchoolsCategorys.ToList();
 
             ShoolBooksNeedsViewModel wm = new ShoolBooksNeedsViewModel();
             List<ShoolBooksNeedsViewModel> wmlist = new List<ShoolBooksNeedsViewModel>();
@@ -28,6 +29,7 @@ namespace KiDSisMvcWebUI.Controllers
             wm.Name = bk[0].Name;
             wm.Class = bk[0].Class;
             wm.BookCount = bkn[0].BookCount;
+            wm.Category = sc[2].Category;
 
             wmlist.Add(wm);
 

@@ -18,10 +18,14 @@
 <table class="table">
     <tr>
         <th>
-            Kitap ismi
+            Okul türü
         </th>
         <th>
             Sınıf
+            
+        </th>
+        <th>
+            Kitap ismi
         </th>
         <th>
             Kitap Sayısı
@@ -32,14 +36,17 @@
     {
         <tr>
             <td>
-                @item.Name
+                @item.Category
+            </td>
+            <td>
+                @item.Class
                
                
 
                 @*@Html.DisplayFor(modelItem => item.BookCount)*@
             </td>
             <td>
-                @item.Class
+                @item.Name
             </td>
             <td>
                 @item.BookCount
