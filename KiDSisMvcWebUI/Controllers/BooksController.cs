@@ -20,7 +20,7 @@ namespace KiDSisMvcWebUI.Controllers
         {
             //BooksCategory b = new BooksCategory();
             //b = db.BooksCategorys.FirstOrDefault(x=>x.Name=="OrtaOkul");
-
+            // Bir şarta göre sorgulama yapma kodu
             //List<Book> _boks = db.Books.Where(x => x.BooksCategorys.Name == "OrtaOkul").ToList();
             List<Book> _boks = db.Books.ToList();
             return View(_boks);
