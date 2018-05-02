@@ -9,7 +9,9 @@ namespace KiDSisMvcWebUI.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
+            //Tablolar Dolu olsada iþlem yapar
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(KiDSisMvcWebUI.Entity.DataContext context)

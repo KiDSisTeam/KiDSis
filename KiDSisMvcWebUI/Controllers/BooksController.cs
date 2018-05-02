@@ -53,7 +53,7 @@ namespace KiDSisMvcWebUI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Code,Name,Class")] Book book)
+        public ActionResult Create([Bind(Include = "Id,Code,Name,Class,BookType")] Book book)
         {
             
             if (ModelState.IsValid)
@@ -86,7 +86,7 @@ namespace KiDSisMvcWebUI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Code,Name,Class,BookCount")] Book book)
+        public ActionResult Edit([Bind(Include = "Id,Code,Name,Class,BookType")] Book book)
         {
             if (ModelState.IsValid)
             {

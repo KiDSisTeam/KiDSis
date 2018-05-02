@@ -19,13 +19,13 @@
 			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 			<strong>Dikkat! </strong>Kaydı silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.
 		</div>
-		<table class="table">
-			<thead>
+		<table class="table table-bordered">
+			<thead class="bg-info">
 				<tr>
-					<th>Kod</th>
+					<th>Kitap Kodu</th>
 					<th>Kitap İsmi</th>
 					<th>Sınıf</th>
-					<th>Kitap Sayısı</th>
+					<th>Kitap Türü</th>
 					<th>İşlemler</th>
 				</tr>
 			</thead>
@@ -41,7 +41,7 @@
 						@Html.DisplayFor(model => model.Class)
 					</td>
 					<td>
-						@Html.DisplayFor(model => model.BookCount)
+						@Html.DisplayFor(model => model.BookType)
 					</td>
 					<td>
 						@using (Html.BeginForm())
