@@ -4,29 +4,42 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<ul class="list-group ">
+    <li class="list-group-item bg-info" style="text-align:center">
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>BooksDelivery</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.BookCount)
-        </dt>
+        <h2 style="color:white">Kaydı Sil</h2>
+    </li>
+</ul>
+<br />
 
-        <dd>
-            @Html.DisplayFor(model => model.BookCount)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
+<div class="alert alert-danger" role="alert">
+    Silmek İstediğinizden Emin misiniz? 
 </div>
+
+
+<hr />
+
+
+<dl class="dl-horizontal">
+    <dt>
+        Kitap Sayısı
+        @*@Html.DisplayNameFor(model => model.BookCount)*@
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.BookCount)
+    </dd>
+
+</dl>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Kaydı Sil" class="btn btn-outline-info" />
+        @Html.ActionLink("Geri Dön", "Index")
+    </div>
+}
+</div>
+

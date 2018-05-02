@@ -28,9 +28,8 @@ namespace KiDSisMvcWebUI.Controllers
             wm.Id = bk[0].Id;
             wm.Name = bk[0].Name;
             wm.Class = bk[0].Class;
-            wm.BookCount = bkn[0].BookCount;
-            wm.Category = sc[2].Category;
-
+            //wm.BookCount = bkn[0].BookCount;
+            wm.Category = sc[0].Category;
             wmlist.Add(wm);
 
 

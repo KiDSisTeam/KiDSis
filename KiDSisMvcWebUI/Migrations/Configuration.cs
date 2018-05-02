@@ -9,7 +9,7 @@ namespace KiDSisMvcWebUI.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(KiDSisMvcWebUI.Entity.DataContext context)
