@@ -20,7 +20,7 @@
 	<table class="table table-bordered">
 		<tr style="color: white;" class="bg-info">
 			<th>
-				Kod
+				Kitap Kodu
 
 				@*@Html.DisplayNameFor(model => model.Code)*@
 			</th>
@@ -52,7 +52,7 @@
 					@Html.DisplayFor(modelItem => item.Class)
 				</td>
 				<td>
-					@Html.DisplayFor(modelItem => item.BookCount)
+					@*@Html.DisplayFor(modelItem => item.BookCount)*@
 				</td>
 				<td>
 					@Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-info   btn-sm" })
