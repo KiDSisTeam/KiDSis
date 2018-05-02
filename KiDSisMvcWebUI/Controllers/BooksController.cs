@@ -21,8 +21,8 @@ namespace KiDSisMvcWebUI.Controllers
             //BooksCategory b = new BooksCategory();
             //b = db.BooksCategorys.FirstOrDefault(x=>x.Name=="OrtaOkul");
 
-            List<Book> _boks = db.Books.Where(x => x.BooksCategorys.Name == "OrtaOkul").ToList();
-
+            //List<Book> _boks = db.Books.Where(x => x.BooksCategorys.Name == "OrtaOkul").ToList();
+            List<Book> _boks = db.Books.ToList();
             return View(_boks);
             //return View(db.Books.ToList());
         }
