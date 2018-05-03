@@ -4,23 +4,35 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="bg-light">
+	<ul class="list-group ">
+		<li class="list-group-item bg-info" style="text-align:center">
+			<h2 style="color: white;">Detay</h2>
+		</li>
+	</ul>
 
-<div>
-    <h4>BooksStock</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.BookCount)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BookCount)
-        </dd>
-
-    </dl>
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">
+					Kitap Sayısı
+					@*@Html.DisplayNameFor(model => model.BookCount)*@
+				</th>
+				<th scope="col">
+					İşlemler
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+					@Html.DisplayFor(model => model.BookCount)
+				</td>
+				<td>
+					@Html.ActionLink("Düzenle", "Edit", new { id = Model.Id }, new { @class = "btn btn-info   btn-sm" })
+					@Html.ActionLink("Geri Dön", "Index", new { id = Model.Id }, new { @class = "btn btn-success btn-sm" })
+				</td>
+			</tr>
+		</tbody>
+	</table>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

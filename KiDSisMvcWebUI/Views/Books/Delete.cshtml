@@ -17,6 +17,7 @@
 	<div style="text-align:center;">
 		<div class="alert alert-danger alert-dismissible mt-2">
 			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			<i class="fas fa-exclamation-triangle"></i>
 			<strong>Dikkat! </strong>Kaydı silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.
 		</div>
 		<table class="table">
@@ -25,7 +26,7 @@
 					<th>Kod</th>
 					<th>Kitap İsmi</th>
 					<th>Sınıf</th>
-					<th>Kitap Sayısı</th>
+					@*<th>Kitap Sayısı</th>*@
 					<th>İşlemler</th>
 				</tr>
 			</thead>
@@ -40,17 +41,17 @@
 					<td>
 						@Html.DisplayFor(model => model.Class)
 					</td>
-					<td>
+					@*<td>
 						@Html.DisplayFor(model => model.BookCount)
-					</td>
+					</td>*@
 					<td>
 						@using (Html.BeginForm())
 						{
 							@Html.AntiForgeryToken()
 
 							<div class="form-actions no-color">
-								<input type="submit" value="Kaydı Sil" class="btn btn-outline-danger btn-sm" />
-								@Html.ActionLink("Geri Dön", "Index", new { id = Model.Id }, new { @class = "btn btn-outline-success btn-sm" })
+								<input type="submit" value="Kaydı Sil" class="btn btn-danger btn-sm" />
+								@Html.ActionLink("Geri Dön", "Index", new { id = Model.Id }, new { @class = "btn btn-success btn-sm" })
 							</div>
 						}
 					</td>

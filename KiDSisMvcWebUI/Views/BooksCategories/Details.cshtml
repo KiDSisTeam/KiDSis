@@ -1,28 +1,40 @@
 ﻿@model KiDSisMvcWebUI.Models.BooksCategory
 
 @{
-    ViewBag.Title = "Details";
+	ViewBag.Title = "Details";
 }
-<ul class="list-group ">
-    <li class="list-group-item bg-info" style="text-align:center">
-        <h2 style="color: white;">Detay</h2>
-    </li>
-</ul>
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            Kitap Kategorisi
-            @*@Html.DisplayNameFor(model => model.Name)*@
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+<div class="bg-light">
+	<ul class="list-group ">
+		<li class="list-group-item bg-info" style="text-align:center">
+			<h2 style="color: white;">Detay</h2>
+		</li>
+	</ul>
 
-    </dl>
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">
+					Kitap Kategorisi
+					@*@Html.DisplayNameFor(model => model.Name)*@
+				</th>
+				<th scope="col">
+					İşlemler
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+					@Html.DisplayFor(model => model.Name)
+				</td>
+				<td>
+					@Html.ActionLink("Düzenle", "Edit", new { id = Model.Id }, new { @class = "btn btn-info   btn-sm" })
+					@Html.ActionLink("Geri Dön", "Index", new { id = Model.Id }, new { @class = "btn btn-success btn-sm" })
+				</td>
+			</tr>
+		</tbody>
+	</table>
 </div>
-<p>
-    @Html.ActionLink("Düzenle", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Geri Dön", "Index")
-</p>
+
+

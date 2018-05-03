@@ -4,42 +4,44 @@
     ViewBag.Title = "Index";
 }
 
-<ul class="list-group ">
-    <li class="list-group-item bg-info" style="text-align:center">
-        <h2 style="color:white">Yetkiler</h2>
-    </li>
-</ul>
-<p>
-    @Html.ActionLink("Yeni Kayıt", "Create", null, new { @class = "btn btn-success   btn-sm mt-2" })
-</p>
-<table class="table">
-    <tr>
-        <th>
-            Yetki Adı
-            @*@Html.DisplayNameFor(model => model.Name)*@
-        </th>
-        <th>
-            Yetki Türü
-            @*@Html.DisplayNameFor(model => model.Type)*@
-        </th>
-        <th>İşlemler</th>
-    </tr>
+<div class="bg-light">
+	<ul class="list-group ">
+		<li class="list-group-item bg-info" style="text-align:center">
+			<h2 style="color:white">Yetkiler</h2>
+		</li>
+	</ul>
+	<p>
+		@Html.ActionLink("Yeni Kayıt", "Create", null, new { @class = "btn btn-success   btn-sm mt-2" })
+	</p>
+	<table class="table">
+		<tr>
+			<th>
+				Yetki Adı
+				@*@Html.DisplayNameFor(model => model.Name)*@
+			</th>
+			<th>
+				Yetki Türü
+				@*@Html.DisplayNameFor(model => model.Type)*@
+			</th>
+			<th>İşlemler</th>
+		</tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Type)
-            </td>
-            <td>
-                @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-info   btn-sm" })
-                @Html.ActionLink("Detay", "Details", new { id = item.Id }, new { @class = "btn btn-success   btn-sm" })
-                @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger   btn-sm" })
-            </td>
-        </tr>
-    }
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.Name)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Type)
+				</td>
+				<td>
+					@Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-info   btn-sm" })
+					@Html.ActionLink("Detay", "Details", new { id = item.Id }, new { @class = "btn btn-success   btn-sm" })
+					@Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger   btn-sm" })
+				</td>
+			</tr>
+		}
 
-</table>
+	</table>
+</div>
