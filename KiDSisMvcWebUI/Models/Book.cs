@@ -13,10 +13,10 @@ namespace KiDSisMvcWebUI.Models
         public string Class { get; set; }
         //Kitap türü ders kitabı çalışma kitabı öğretmen kitabı
         public string BookType { get; set; }
-       
-      
-           
-       
+        public int BooksCategoryId { get; set; }
+        
+
+
 
 
 

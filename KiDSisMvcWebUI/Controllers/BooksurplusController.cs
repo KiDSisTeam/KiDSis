@@ -11,138 +11,107 @@ using KiDSisMvcWebUI.Models;
 
 namespace KiDSisMvcWebUI.Controllers
 {
-    public class BooksNeedsController : Controller
+    public class BooksurplusController : Controller
     {
         private DataContext db = new DataContext();
 
-        // GET: BooksNeeds
+        // GET: Booksurplus
         public ActionResult Index()
         {
-
-            List<Book> bk = db.Books.ToList();
-            List<BooksNeed> bkn = db.BooksNeeds.ToList();
-            List < SchoolsCategory> sc= db.SchoolsCategorys.ToList();
-
-            ShoolBooksNeedsViewModel wm = new ShoolBooksNeedsViewModel();
-            List<ShoolBooksNeedsViewModel> wmlist = new List<ShoolBooksNeedsViewModel>();
-            //wm.Id = bk[0].Id;
-            //wm.Name = bk[0].Name;
-            //wm.Class = bk[0].Class;
-            ////wm.BookCount = bkn[0].BookCount;
-            //wm.Category = sc[0].Category;
-            wm.Id = bk[0].Id;
-            wm.Name = bk[0].Name;
-            wm.Class = bk[0].Class;
-            //wm.BookCount = bkn[0].BookCount;
-            wm.BookCategory = sc[0].Category;
-            wmlist.Add(wm);
-
-
-
-            return View(wmlist);
+            return View(db.Booksurplus.ToList());
         }
 
-        // GET: BooksNeeds/Details/5
+        // GET: Booksurplus/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BooksNeed booksNeed = db.BooksNeeds.Find(id);
-            if (booksNeed == null)
+            Booksurplus booksurplus = db.Booksurplus.Find(id);
+            if (booksurplus == null)
             {
                 return HttpNotFound();
             }
-            return View(booksNeed);
+            return View(booksurplus);
         }
 
-        // GET: BooksNeeds/Create
+        // GET: Booksurplus/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: BooksNeeds/Create
+        // POST: Booksurplus/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ShoolBooksNeedsViewModel booksNeed)
+        public ActionResult Create([Bind(Include = "Id,BookCount,BookId,UserId")] Booksurplus booksurplus)
         {
-            BooksNeed bkcn = new BooksNeed();
-            bkcn.BookCount = booksNeed.BookCount;
-
-            Book Bk = new Book();
-           
-            Bk.Name = booksNeed.Name;
-            Bk.Class = booksNeed.Class;
-
-
             if (ModelState.IsValid)
             {
-                db.Books.Add(Bk);
-                db.BooksNeeds.Add(bkcn);
+                db.Booksurplus.Add(booksurplus);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(booksNeed);
+            return View(booksurplus);
         }
 
-        // GET: BooksNeeds/Edit/5
+        // GET: Booksurplus/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BooksNeed booksNeed = db.BooksNeeds.Find(id);
-            if (booksNeed == null)
+            Booksurplus booksurplus = db.Booksurplus.Find(id);
+            if (booksurplus == null)
             {
                 return HttpNotFound();
             }
-            return View(booksNeed);
+            return View(booksurplus);
         }
 
-        // POST: BooksNeeds/Edit/5
+        // POST: Booksurplus/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,BookCount")] BooksNeed booksNeed)
+        public ActionResult Edit([Bind(Include = "Id,BookCount,BookId,UserId")] Booksurplus booksurplus)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(booksNeed).State = EntityState.Modified;
+                db.Entry(booksurplus).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(booksNeed);
+            return View(booksurplus);
         }
 
-        // GET: BooksNeeds/Delete/5
+        // GET: Booksurplus/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BooksNeed booksNeed = db.BooksNeeds.Find(id);
-            if (booksNeed == null)
+            Booksurplus booksurplus = db.Booksurplus.Find(id);
+            if (booksurplus == null)
             {
                 return HttpNotFound();
             }
-            return View(booksNeed);
+            return View(booksurplus);
         }
 
-        // POST: BooksNeeds/Delete/5
+        // POST: Booksurplus/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            BooksNeed booksNeed = db.BooksNeeds.Find(id);
-            db.BooksNeeds.Remove(booksNeed);
+            Booksurplus booksurplus = db.Booksurplus.Find(id);
+            db.Booksurplus.Remove(booksurplus);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

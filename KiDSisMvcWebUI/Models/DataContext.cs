@@ -7,7 +7,7 @@ using System.Web;
 
 namespace KiDSisMvcWebUI.Entity
 {//DbContext işlemleri yapabilmek için DbContext Sınıfından miras alması gerekir.
-    public class DataContext:DbContext
+    public class DataContext : DbContext
     {//eklenen base kodu istenen veritabanını oluşturmaya yardımcı olur.
         //base kısmına veritabanı ismi yazılmalıdır.
         public DataContext() : base("KiDSisDb")
@@ -22,6 +22,7 @@ namespace KiDSisMvcWebUI.Entity
         public DbSet<BooksStock> BooksStocks { get; set; }
         public DbSet<SchoolsCategory> SchoolsCategorys { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Booksurplus> Booksurplus { get; set; }
 
         public System.Data.Entity.DbSet<KiDSisMvcWebUI.Models.ShoolBooksNeedsViewModel> ShoolBooksNeedsViewModels { get; set; }
     }

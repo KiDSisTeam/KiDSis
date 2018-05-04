@@ -146,6 +146,11 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Views\Booksurplus\Create.cshtml" />
+    <Content Include="Views\Booksurplus\Delete.cshtml" />
+    <Content Include="Views\Booksurplus\Details.cshtml" />
+    <Content Include="Views\Booksurplus\Edit.cshtml" />
+    <Content Include="Views\Booksurplus\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -161,10 +166,12 @@
     <Compile Include="Controllers\BooksDeliveriesController.cs" />
     <Compile Include="Controllers\BooksNeedsController.cs" />
     <Compile Include="Controllers\BooksStocksController.cs" />
+    <Compile Include="Controllers\BooksurplusController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SchoolsCategoriesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\booksurplus.cs" />
     <Compile Include="Models\DataContext.cs" />
     <Compile Include="Models\DataInitializer.cs" />
     <Compile Include="Global.asax.cs">
@@ -243,6 +250,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Download\" />
+    <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
