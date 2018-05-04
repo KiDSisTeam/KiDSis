@@ -4,16 +4,17 @@
     ViewBag.Title = "Create";
 }
 
-<ul class="list-group ">
-    <li class="list-group-item bg-info" style="text-align:center">
+<div class="bg-light">
+	<ul class="list-group ">
+		<li class="list-group-item bg-info" style="text-align:center">
 
-        <h2 style="color:white">Yeni Kayıt</h2>
+			<h2 style="color:white">Yeni Kayıt</h2>
 
-    </li>
+		</li>
 
 
 
-</ul>
+	</ul>
 
 
 
@@ -51,10 +52,10 @@
         </div>
     </div>
 
-    <div class="form-group">
-        <label class="control-label col-md-2">
-            Sınıf
-        </label>
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                Sınıf
+            </label>
 
         @*@Html.LabelFor(model => model.Class, htmlAttributes: new { @class = "control-label col-md-2" })*@
         <div class="col-md-10">
@@ -88,6 +89,8 @@
 </div>
 }
 
-<div class="control-label col-md-2">
-    @Html.ActionLink("Geri Dön", "Index")
+	<div class="control-label col-md-2">
+		@Html.ActionLink("Geri Dön", "Index")
+	</div>
+
 </div>

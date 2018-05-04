@@ -4,41 +4,53 @@
     ViewBag.Title = "Delete";
 }
 
-<ul class="list-group ">
-    <li class="list-group-item bg-info" style="text-align:center">
-        <h2 style="color:white">Kayıt Silme</h2>
-    </li>
-</ul>
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            Yetki Adı
-            @*@Html.DisplayNameFor(model => model.Name)*@
-        </dt>
+<div class="bg-light">
+	<ul class="list-group ">
+		<li class="list-group-item bg-info" style="text-align:center">
+			<h2 style="color:white">Kayıt Silme</h2>
+		</li>
+	</ul>
+	<div style="text-align:center;" class="alert alert-danger alert-dismissible mt-2">
+		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		<i class="fas fa-exclamation-triangle"></i>
+		<strong>Dikkat! </strong>Kaydı silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.
+	</div>
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">
+					Yetki Adı
+					@*@Html.DisplayNameFor(model => model.Name)*@
+				</th>
+				<th scope="col">
+					Yetki Türü
+					@*@Html.DisplayNameFor(model => model.Type)*@
+				</th>
+				<th scope="col">
+					İşlemler
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+					@Html.DisplayFor(model => model.Name)
+				</td>
+				<td>
+					@Html.DisplayFor(model => model.Type)
+				</td>
+				<td>
+					@using (Html.BeginForm())
+					{
+						@Html.AntiForgeryToken()
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            Yetki Türü
-            @*@Html.DisplayNameFor(model => model.Type)*@
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Type)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Kaydı Sil" class="btn btn-outline-info" /> |
-            @Html.ActionLink("Geri Dön", "Index")
-        </div>
-    }
+						<div class="form-actions no-color">
+							<input type="submit" value="Kaydı Sil" class="btn btn-info btn-sm" />
+							@Html.ActionLink("Geri Dön", "Index", new { id = Model.Id }, new { @class = "btn btn-success btn-sm" })
+						</div>
+					}
+				</td>
+			</tr>
+		</tbody>
+	</table>
 </div>
