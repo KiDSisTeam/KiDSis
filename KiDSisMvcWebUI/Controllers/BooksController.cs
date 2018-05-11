@@ -58,7 +58,7 @@ namespace KiDSisMvcWebUI.Controllers
             
             if (ModelState.IsValid)
             {
-                db.Books.Add(book);
+                db.Books.Add(book);              
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
