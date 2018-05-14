@@ -4,8 +4,25 @@
     // Layout = "~/Views/Shared/_Layout - login.cshtml";
     Layout = "/Views/Shared/_Layout-Login.cshtml";
 }
+@*if true değer döndürüyorsa kullanıcı giriş yapmış demektir.*@
 
-@* <h2>Index</h2>*@
+<div class="container">
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <label class="col-form-label label-info">
+            @User.Identity.Name
+        </label>
+        <a href="/Account/Logout" class="btn btn-outline-danger">
+            Logout
+        </a>
+    }
+    else
+    {
+        <a href="/Account/Login" class="btn btn-outline-success">Login</a>
+        <a href="/Account/Register" class="btn btn-outline-primary">Register</a>
+    }
+</div>
 
 <!DOCTYPE html>
 <html>

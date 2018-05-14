@@ -21,11 +21,35 @@ namespace KiDSisMvcWebUI.Controllers
         {
             var userStore = new UserStore<ApplicationUser>(new IdentityDataContext());
             userManager = new UserManager<ApplicationUser>(userStore);
+            //parola koşulları kontrol ediliyor.
+            userManager.PasswordValidator = new CustomPasswordValidator()
+            {
+                //parola bir sayısal değer içermek zorunda
+                RequireDigit = true,
+                //parola minimum 7 karakter olamk zorunda
+                RequiredLength=7,
+                //küçük harf içermeli
+                RequireLowercase=true,
+                //büyük harf içrtmeli
+                RequireUppercase=true,
+                //Alfanumerik değer içermeli
+                RequireNonLetterOrDigit=true,
 
+
+
+            };
+            userManager.UserValidator = new UserValidator<ApplicationUser>(userManager)
+            {//bir emaili bir kişi kullanabilir.
+                RequireUniqueEmail=true,
+                //alfa numerik karakter içermesin
+                AllowOnlyAlphanumericUserNames=false,
+            };
         }
-        public ActionResult Login()
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult Login(string returnUrl)
         {
-
+            ViewBag.returnUrl = returnUrl;
             return View();
         }
 
@@ -101,11 +125,15 @@ namespace KiDSisMvcWebUI.Controllers
                 }
 
             }
-
-
-
-
+            
             return View(model);
+        }
+        public ActionResult Logout()
+        {
+
+            var authManager = HttpContext.GetOwinContext().Authentication;
+            authManager.SignOut();
+            return RedirectToAction("Login");
         }
 
 
