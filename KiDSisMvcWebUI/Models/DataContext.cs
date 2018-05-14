@@ -9,8 +9,8 @@ namespace KiDSisMvcWebUI.Entity
 {//DbContext işlemleri yapabilmek için DbContext Sınıfından miras alması gerekir.
     public class DataContext : DbContext
     {//eklenen base kodu istenen veritabanını oluşturmaya yardımcı olur.
-        //base kısmına veritabanı ismi yazılmalıdır.
-        public DataContext() : base("KiDSisDb")
+        // base kısmına var olan bir connection string ismini yazmalmalı
+        public DataContext() : base("dataConnection")
         {
             Database.SetInitializer(new DataInitializer());
         }

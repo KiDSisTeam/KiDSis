@@ -1,0 +1,201 @@
+﻿
+@{
+    ViewBag.Title = "tutanak";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-12">
+    <div class="jumbotron">
+        <h1>KİDSİS - Kitap Teslim Tutanağı İşlemleri</h1>
+        <p>Bu sayfa üzerinden okullara teslim edilen kitaplar için tutanak hazırlayabilirsiniz. Ayrıntılı bilgi için lütfen yardım sayfasını ziyaret edin.</p>
+        <hr>
+        <div class="container">
+        </div>
+        <div>
+            <form action="#" method="post">
+                <div class="form-group">
+                    <div>
+                        <h4><strong>Teslim Tutanağı Oluşturma</strong></h4>
+                        <p class="lead">Teslim edilen kitaplar için aşağıdan rapor oluşturabilirsiniz.</p>
+                    </div>
+                    <label for="teslimTarihi"><strong>Teslim Tarihi</strong></label>
+                    <input type="date" class="form-control" id="teslimTarihi">
+                    <label for="formOkul" class="mt-3"><strong>Teslim Alan Okul</strong></label>
+                    <select class="form-control" id="formOkul">
+                        <option value="701965">100. Yıl Atatürk İlkokulu</option>
+                        <option value="701968">Ahmet Taner Kışlalı İlkokulu</option>
+                        <option value="708360">Anadolu İlkokulu</option>
+                        <option value="701976">Atatürk Ortaokulu</option>
+                        <option value="762487">Barbaros İmam Hatip Ortaokulu</option>
+                        <option value="309543">Çamlıtepe Mesleki ve Teknik Anadolu Lisesi</option>
+                        <option value="701982">Çelik Sanayi Ortaokulu</option>
+                        <option value="759812">Fatih İlkokulu</option>
+                        <option value="701990">General Edip Bayoğlu İlkokulu</option>
+                        <option value="701998">Halide Edip Adıvar Ortaokulu</option>
+                        <option value="174585">Halk Eğitim Merkezi</option>
+                        <option value="974923">Hereke Anadolu Lisesi</option>
+                        <option value="702012">Hereke Kışladüzü İlkokulu</option>
+                        <option value="701947">Hereke Kışladüzü Ortaokulu</option>
+                        <option value="361626">Hereke Mesleki ve Teknik Anadolu Lisesi</option>
+                        <option value="708370">Hereke Nuh Çimento İlkokulu</option>
+                        <option value="173817">Hereke Nuh Çimento Mesleki ve Teknik Anadolu Lisesi</option>
+                        <option value="713709">Hereke Nuh Çimento Ortaokulu</option>
+                        <option value="714541">Hereke Sümer İmam Hatip Ortaokulu</option>
+                        <option value="702016">İgsaş Ortaokulu</option>
+                        <option value="853146">İlimtepe 17 Ağustos İlkokulu</option>
+                        <option value="713706">İlimtepe 17 Ağustos Ortaokulu</option>
+                        <option value="708388">İlimtepe İlkokulu</option>
+                        <option value="713705">İlimtepe Ortaokulu</option>
+                        <option value="761869">Kaşgarlı Mahmut İmam Hatip Ortaokulu</option>
+                        <option value="708394">Kirazlıyalı Tevfik Fikret İlkokulu</option>
+                        <option value="713703">Kirazlıyalı Tevfik Fikret Ortaokulu</option>
+                        <option value="750145">Körfez Anaokulu</option>
+                        <option value="964124">Körfez Atatürk Anadolu Lisesi</option>
+                        <option value="974272">Körfez Emlak Konut Anadolu İmam Hatip Lisesi</option>
+                        <option value="758015">Körfez Fen Lisesi</option>
+                        <option value="702023">Körfez Hedise Evyap İlkokulu</option>
+                        <option value="752399">Körfez Hereke Uzunpınar İlkokulu</option>
+                        <option value="752403">Körfez Hereke Uzunpınar Ortaokulu</option>
+                        <option value="719035">Körfez İmam Hatip Ortaokulu</option>
+                        <option value="173795">Körfez Mesleki ve Teknik Anadolu Lisesi</option>
+                        <option value="702004">Körfez Nene Hatun İlkokulu</option>
+                        <option value="967373">Körfez Orhangazi Anadolu Lisesi</option>
+                        <option value="749337">Körfezkent Emlak Konut İlkokulu</option>
+                        <option value="749336">Körfezkent Emlak Konut Ortaokulu</option>
+                        <option value="385692">Mesleki Eğitim Merkezi</option>
+                        <option value="963196">Mevlana Mesleki ve Teknik Anadolu Lisesi</option>
+                        <option value="760183">Milangaz Hacer Demirören Mesleki ve Teknik Anadolu Lisesi</option>
+                        <option value="705102">Mimar Sinan İlkokulu</option>
+                        <option value="751567">Mustafa Kemal Mesleki ve Teknik Anadolu Lisesi</option>
+                        <option value="705116">Nuh Çimento Vatan İlkokulu</option>
+                        <option value="701950">Nuh Çimento Vatan Ortaokulu</option>
+                        <option value="173783">Oruç Reis Anadolu Lisesi</option>
+                        <option value="705134">Petkim Ortaokulu</option>
+                        <option value="708406">Rıfat Ilgaz İlkokulu</option>
+                        <option value="713700">Rıfat Ilgaz Ortaokulu</option>
+                        <option value="705189">Seka Çocuk Dostları Ortaokulu</option>
+                        <option value="705141">Sevindikli İlkokulu</option>
+                        <option value="701952">Sevindikli Ortaokulu</option>
+                        <option value="974924">Tüpraş 50. Yil Anadolu Lisesi</option>
+                        <option value="705173">Tüpraş İlkokulu</option>
+                        <option value="705216">Uluğbey Ortaokulu</option>
+                        <option value="760151">Yarımca Anadolu Lisesi</option>
+                        <option value="972452">Yarımca Anaokulu</option>
+                        <option value="705247">Yarımca Ortaokulu</option>
+                        <option value="705367">Yavuz Selim İlkokulu</option>
+                        <option value="705369">Yeniyalı Fahri Korutürk İlkokulu</option>
+                        <option value="705162">Yukarı Hereke İlkokulu</option>
+                        <option value="701956">Yukarı Hereke Ortaokulu</option>
+                        <option value="99971675">Özel Körfez Has Anaokulu</option>
+                        <option value="99911183">Özel Körfezim İlkokulu</option>
+                        <option value="99952595">Özel Körfezim Ortaokulu</option>
+                        <option value="99977741">Özel Körfezkent Rengin Anaokulu</option>
+                        <option value="99975150">Özel Rengin Anaokulu</option>
+                        <option value="99960234">Özel Ünitem Temel Lisesi</option>
+                    </select>
+                    <label for="formSinif" class="mt-3"><strong>Sınıf</strong></label>
+                    <select class="form-control" id="formSinif">
+                        <option value="1sinif">1. Sınıf</option>
+                        <option value="2sinif">2. Sınıf</option>
+                        <option value="3sinif">3. Sınıf</option>
+                        <option value="4sinif">4. Sınıf</option>
+                        <option value="5sinif">5. Sınıf</option>
+                        <option value="6sinif">6. Sınıf</option>
+                        <option value="7sinif">7. Sınıf</option>
+                        <option value="8sinif">8. Sınıf</option>
+                        <option value="9sinif">9. Sınıf</option>
+                        <option value="10sinif">10. Sınıf</option>
+                        <option value="11sinif">11. Sınıf</option>
+                        <option value="12sinif">12. Sınıf</option>
+                    </select>
+                    <label for="formKitap" class="mt-3"><strong>Kitap Seçimi Yapın</strong></label>
+                    <select class="form-control" id="formKitap">
+                        <option value="200020">ALMANCA A1.1 DÜZEYİ DERS KİTABI</option>
+                        <option value="200030">ALMANCA A1.1 DÜZEYİ ÖĞRENCİ ÇALIŞMA KİTABI</option>
+                        <option value="200670">COĞRAFYA 10</option>
+                        <option value="200680">COĞRAFYA 11</option>
+                        <option value="200690">COĞRAFYA 12</option>
+                        <option value="200700">COĞRAFYA 9</option>
+                        <option value="200720">ÇAĞDAŞ TÜRK VE DÜNYA TARİHİ 12</option>
+                        <option value="201410">DEMOKRASİ VE İNSAN HAKLARI (Seçmeli)</option>
+                        <option value="201480">DİN KÜLTÜRÜ VE AHLÂK BİLGİSİ 10</option>
+                        <option value="201490">DİN KÜLTÜRÜ VE AHLÂK BİLGİSİ 11</option>
+                        <option value="201500">DİN KÜLTÜRÜ VE AHLÂK BİLGİSİ 12</option>
+                        <option value="201510">DİN KÜLTÜRÜ VE AHLÂK BİLGİSİ 9</option>
+                        <option value="201530">DİNLER TARİHİ  (And. İmam Hatip L.)</option>
+                        <option value="201590">FELSEFE 11</option>
+                    </select>
+                    <label for="formSayi" class="mt-3"><strong>Kitap Sayısını Girin</strong></label>
+                    <input id="formSayi" placeholder="Talep edilen kitap sayısını girin" class="form-control" type="number" name="kitapSayisi" value="kitapSayisi" />
+                    <input style="color: white;" class="form-control btn bg-info mt-2" type="submit" name="formGonder" value="Rapor Oluştur" />
+                    <input style="color: white;" class="form-control btn bg-info mt-2" type="reset" value="Formu Temizle" />
+                </div>
+            </form>
+        </div>
+
+        <br /> <br /> <br />
+        <div>
+            <h4><strong>Teslim Tutanağı Çıkarma</strong></h4>
+            <h5>Oluşturulan Son 5 Tutanak</h5>
+            <hr />
+            <div class="table-responsive">
+                <table class="table table-striped mt-2">
+                    <thead>
+                        <tr class="bg-info">
+                            <th>Okul Adı</th>
+                            <th>Sınıf</th>
+                            <th>Kitap Adı</th>
+                            <th>Kitap Adeti</th>
+                            <th>Teslim Tarihi</th>
+                            <th>İşlem</th>
+                        </tr>
+                    </thead>
+                    <tbody class="searchable">
+                        <tr>
+                            <td>Hacer Demirören Çok Programlı Lisesi</td>
+                            <td>12. Sınıf</td>
+                            <td>Edebiyat</td>
+                            <td>1500</td>
+                            <td>15/04/2018</td>
+                            <td><a href="#">Rapor</a> I <a href="#">Sil</a></td>
+                        </tr>
+                        <tr>
+                            <td>Yavuz Selim İlkokulu</td>
+                            <td>3. Sınıf</td>
+                            <td>Matematik</td>
+                            <td>750</td>
+                            <td>04/03/2017</td>
+                            <td><a href="#">Rapor</a> I <a href="#">Sil</a></td>
+                        </tr>
+                        <tr>
+                            <td>Körfez Fen Lisesi</td>
+                            <td>9. Sınıf</td>
+                            <td>Biyoloji</td>
+                            <td>350</td>
+                            <td>01/01/2018</td>
+                            <td><a href="#">Rapor</a> I <a href="#">Sil</a></td>
+                        </tr>
+                        <tr>
+                            <td>Petkim Ortaokulu</td>
+                            <td>6. Sınıf</td>
+                            <td>Sosyal Bilgiler</td>
+                            <td>250</td>
+                            <td>15/05/2017</td>
+                            <td><a href="#">Rapor</a> I <a href="#">Sil</a></td>
+                        </tr>
+                        <tr>
+                            <td>Petkim Ortaokulu</td>
+                            <td>6. Sınıf</td>
+                            <td>Sosyal Bilgiler</td>
+                            <td>250</td>
+                            <td>15/05/2017</td>
+                            <td><a href="#">Rapor</a> I <a href="#">Sil</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <a href="arsiv.html" class="btn btn-info btn-block">Tüm Kayıtları Gör</a>
+            </div>
+        </div>
+    </div>
+</div>
+    

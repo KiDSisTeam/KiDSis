@@ -15,7 +15,7 @@ namespace KiDSisMvcWebUI.Models
         public string Class { get; set; }
         public int BookCount { get; set; }
         public string BookCategory { get; set; }
-        public string SchoolsCategoryCategory { get; set; }
+        public string SchoolsCategory { get; set; }
 
 
     }

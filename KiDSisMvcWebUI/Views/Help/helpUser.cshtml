@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "helpUser";
+    Layout = "~/Views/Shared/_Layout-User.cshtml";
+}
+
+
+
+<body style="background-image:url(resim/arkaplan.png)">
+   
+
+
+
+        <div class="jumbotron mt-2">
+            <h1>KİDSİS - Yardım Sayfası</h1><hr>
+            Soru görüş ve önerileriniz için lütfen <strong>0 (262) 528 9394 - 126</strong> numaralı telefondan <strong>Şef İsim SOYİSİM</strong> ile iletişime geçin. <br><br>
+            <div id="accordion">
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <strong><i class="fas fa-caret-right"></i> KİDSİS - Kitap Dağıtım Sistemi Nedir?</strong>
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            <strong>Kidsis - Kitap dağıtım sistemi okul ile İlçe Milli Eğitim Müdürlüğü arasında kitap dağıtım sürecini hızlandırmayı amaçlayan bir web sitedidir. Bu sistem sayesinde okullar depoda bulunan güncel kitap sayılarını görüntüleyebilir, sistem üzerinden kitap talebinde bulunabilir.</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingTwo">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <strong><i class="fas fa-caret-right"></i> Kitap talebi nasıl oluşturulur?</strong>
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                        <div class="card-body">
+                            <strong>Sisteme giriş yaptıktan sonra <a style="color: red;" href="#">buradaki linke</a> tıklarayarak Talep Oluşturma sayfasına gidilir. Burada bulunan kısımlar doldurularak "Talep Oluştur" butonuna tıklanır. Bu sayede talebiniz oluşturulmuş olur.</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingThree">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                <strong><i class="fas fa-caret-right"></i> Depo kontrolü nasıl yapılır?</strong>
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                        <div class="card-body">
+                            <strong>Sisteme giriş yaptıktan sonra <a style="color: red;" href="#">buradaki linke</a> tıklayarak "Stok Sayfası" açılır. Bu sayfada güncel kitap listesine ulaşılabilir. Arama kısmından talep edeceğiniz kitabın olup olmadığını kontrol edebilirsiniz.</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingFour">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                <strong><i class="fas fa-caret-right"></i> Güvenli çıkış nasıl yapılır?</strong>
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                        <div class="card-body">
+                            <strong>Sistem üzerindeki tüm işlemlerinizi hallettikten sonra sol tarafta logonun hemen altında bulunan okul isminin yanındaki "Çıkış Yap" linkine tıklanır. Bu sayede güvenli çıkış yapılmış olur. </strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</body>

@@ -21,21 +21,37 @@ namespace KiDSisMvcWebUI.Controllers
 
             List<Book> bk = db.Books.ToList();
             List<BooksNeed> bkn = db.BooksNeeds.ToList();
-            List < SchoolsCategory> sc= db.SchoolsCategorys.ToList();
-
+            List <SchoolsCategory> sc= db.SchoolsCategorys.ToList();
+            List<BooksCategory> _booksCategory = db.BooksCategorys.ToList();
             ShoolBooksNeedsViewModel wm = new ShoolBooksNeedsViewModel();
             List<ShoolBooksNeedsViewModel> wmlist = new List<ShoolBooksNeedsViewModel>();
+
+            foreach (var item in bk)
+            {
+                wm.Id = item.Id;
+                wm.Name = item.Name;
+                wm.Class = item.Class;
+                wm.BookCategory = _booksCategory.FirstOrDefault(x=>x.Id==item.BooksCategoryId).Name;
+                wm.SchoolsCategory = /*sc.FirstOrDefault(x => x.Id == item.Id).Category;*/
+                    
+                db.BooksCategorys.FirstOrDefault(x=>x.Id==item.BooksCategoryId).Name;
+                wmlist.Add(wm);
+
+
+            }
+
+
             //wm.Id = bk[0].Id;
             //wm.Name = bk[0].Name;
             //wm.Class = bk[0].Class;
             ////wm.BookCount = bkn[0].BookCount;
             //wm.Category = sc[0].Category;
-            wm.Id = bk[0].Id;
-            wm.Name = bk[0].Name;
-            wm.Class = bk[0].Class;
-            //wm.BookCount = bkn[0].BookCount;
-            wm.BookCategory = sc[0].Category;
-            wmlist.Add(wm);
+            //wm.Id = bk[0].Id;
+            //wm.Name = bk[0].Name;
+            //wm.Class = bk[0].Class;
+            ////wm.BookCount = bkn[0].BookCount;
+            //wm.BookCategory = sc[0].Category;
+            //wmlist.Add(wm);
 
 
 
@@ -74,13 +90,14 @@ namespace KiDSisMvcWebUI.Controllers
             bkcn.BookCount = booksNeed.BookCount;
 
             Book Bk = new Book();
-           
+            
             Bk.Name = booksNeed.Name;
             Bk.Class = booksNeed.Class;
 
 
             if (ModelState.IsValid)
             {
+
                 db.Books.Add(Bk);
                 db.BooksNeeds.Add(bkcn);
                 db.SaveChanges();

@@ -1,0 +1,599 @@
+﻿
+@{
+    ViewBag.Title = "SchoolContact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+    <div class="col-md-12">
+        <div class="jumbotron">
+            <h1>KİDSİS - Okul Listesi</h1>
+            <p>Okul iletişim bilgilerine aşağıdaki tablodan ulaşabilirsiniz.<br></p>
+            <hr>
+            <div class="input-group">
+                <input id="filter" type="text" class="form-control" placeholder="Arama Yapın..." />
+            </div>
+            <table style="font-size:15px; table-layout:fixed;" class="table table-striped mt-2 table-responsive">
+                <thead>
+                    <tr class="bg-info">
+                        <th>Okul Adı</th>
+                        <th>Yönetici Adı</th>
+                        <th>Görevi</th>
+                        <th>Sabit Telefon</th>
+                        <th>Cep Telefonu</th>
+                        <th>E-Posta</th>
+                    </tr>
+                </thead>
+                <tbody class="searchable">
+                    <tr>
+                        <td>100. Yıl Atatürk İlkokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Ahmet Taner Kışlalı İlkokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Anadolu İlkokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Atatürk Ortaokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Barbaros İmam Hatip Ortaokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Çamlıtepe Mesleki ve Teknik Anadolu Lisesi</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Çelik Sanayi Ortaokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Fatih İlkokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>General Edip Bayoğlu İlkokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Halide Edip Adıvar Ortaokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Halk Eğitim Merkezi</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Hereke Anadolu Lisesi</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Hereke Kışladüzü İlkokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Hereke Kışladüzü Ortaokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Hereke Mesleki ve Teknik Anadolu Lisesi</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Hereke Nuh Çimento İlkokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Hereke Nuh Çimento Mesleki ve Teknik Anadolu Lisesi</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Hereke Nuh Çimento Ortaokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Hereke Sümer İmam Hatip Ortaokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>İgsaş Ortaokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>İlimtepe 17 Ağustos İlkokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>İlimtepe 17 Ağustos Ortaokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>İlimtepe İlkokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>İlimtepe Ortaokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Kaşgarlı Mahmut İmam Hatip Ortaokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Kirazlıyalı Tevfik Fikret İlkokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Kirazlıyalı Tevfik Fikret Ortaokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Körfez Anaokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Körfez Atatürk Anadolu Lisesi</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Körfez Emlak Konut Anadolu İmam Hatip Lisesi</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Körfez Fen Lisesi</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Körfez Hedise Evyap İlkokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Körfez Hereke Uzunpınar İlkokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Körfez Hereke Uzunpınar Ortaokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Körfez İmam Hatip Ortaokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Körfez Mesleki ve Teknik Anadolu Lisesi</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Körfez Nene Hatun İlkokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Körfez Orhangazi Anadolu Lisesi</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Körfezkent Emlak Konut İlkokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Körfezkent Emlak Konut Ortaokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Mesleki Eğitim Merkezi</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Mevlana Mesleki ve Teknik Anadolu Lisesi</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Milangaz Hacer Demirören Mesleki ve Teknik Anadolu Lisesi</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Mimar Sinan İlkokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Mustafa Kemal Mesleki ve Teknik Anadolu Lisesi</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Nuh Çimento Vatan İlkokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Nuh Çimento Vatan Ortaokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Oruç Reis Anadolu Lisesi</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Petkim Ortaokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Rıfat Ilgaz İlkokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Rıfat Ilgaz Ortaokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Seka Çocuk Dostları Ortaokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Sevindikli İlkokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Sevindikli Ortaokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Tüpraş 50. Yil Anadolu Lisesi</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Tüpraş İlkokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Uluğbey Ortaokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Yarımca Anadolu Lisesi</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Yarımca Anaokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Yarımca Ortaokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Yavuz Selim İlkokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Yeniyalı Fahri Korutürk İlkokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Yukarı Hereke İlkokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Yukarı Hereke Ortaokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Özel Körfez Has Anaokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Özel Körfezim İlkokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Özel Körfezim Ortaokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Özel Körfezkent Rengin Anaokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Özel Rengin Anaokulu</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                    <tr>
+                        <td>Özel Ünitem Temel Lisesi</td>
+                        <td>Aşkın MİRİL</td>
+                        <td>Müdür</td>
+                        <td>0262 527 25 64</td>
+                        <td>0555 555 55 55</td>
+                        <td>701965@meb.k12.tr</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+       
+    </div>
+
+@*<script src="~/Scripts/ara.js"></script>*@
+
+
+    <script src="~/Scripts/jquery-3.2.1.slim.min.js"></script>
+    <script src="~/Scripts/ara.js"></script>
+

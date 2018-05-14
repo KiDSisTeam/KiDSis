@@ -45,6 +45,9 @@ namespace KiDSisMvcWebUI.Controllers
         // GET: Books/Create
         public ActionResult Create()
         {
+            List<string> SchoolList = new List<string>
+            {"ANAOKULU","İLKOKUL", "ORTAOKUL","LİSE","ÖZEL ÖĞRETİM"};
+            ViewBag.ShoolListViewBag = SchoolList;
             return View();
         }
 
@@ -53,11 +56,33 @@ namespace KiDSisMvcWebUI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Code,Name,Class,BookType")] Book book)
+        public ActionResult Create([Bind(Include = "Id,Code,Name,Class,BookType,BooksCategoryId")] Book book)
         {
+            if (book.BookType=="ANAOKULU")
+            {
+                book.BooksCategoryId = 1;
+            }
+            else if (book.BookType == "İLKOKUL")
+            {
+                book.BooksCategoryId = 2;
+            }
+            else if (book.BookType == "ORTAOKUL")
+            {
+                book.BooksCategoryId = 3;
+            }
+            else if (book.BookType == "LİSE")
+            {
+                book.BooksCategoryId = 4;
+            }
+            else if (book.BookType == "ÖZEL ÖĞRETİM")
+            {
+                book.BooksCategoryId = 5;
+            }
             
             if (ModelState.IsValid)
             {
+
+
                 db.Books.Add(book);              
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -69,6 +94,7 @@ namespace KiDSisMvcWebUI.Controllers
         // GET: Books/Edit/5
         public ActionResult Edit(int? id)
         {
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -88,6 +114,27 @@ namespace KiDSisMvcWebUI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Code,Name,Class,BookType")] Book book)
         {
+            if (book.BookType == "ANAOKULU")
+            {
+                book.BooksCategoryId = 1;
+            }
+            else if (book.BookType == "İLKOKUL")
+            {
+                book.BooksCategoryId = 2;
+            }
+            else if (book.BookType == "ORTAOKUL")
+            {
+                book.BooksCategoryId = 3;
+            }
+            else if (book.BookType == "LİSE")
+            {
+                book.BooksCategoryId = 4;
+            }
+            else if (book.BookType == "ÖZEL ÖĞRETİM")
+            {
+                book.BooksCategoryId = 5;
+            }
+
             if (ModelState.IsValid)
             {
                 db.Entry(book).State = EntityState.Modified;

@@ -5,92 +5,112 @@
 }
 
 <div class="bg-light">
-	<ul class="list-group ">
-		<li class="list-group-item bg-info" style="text-align:center">
+    <ul class="list-group ">
+        <li class="list-group-item bg-info" style="text-align:center">
 
-			<h2 style="color:white">Yeni Kayıt</h2>
+            <h2 style="color:white">Yeni Kayıt</h2>
 
-		</li>
-
-
-
-	</ul>
+        </li>
 
 
 
+    </ul>
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-<div class="form-horizontal">
 
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
 
-        <label class="control-label col-md-2">
-            Kitap Kodu
-        </label>
 
-        @*@Html.LabelFor(model => model.Code, htmlAttributes: new { @class = "control-label col-md-2" })*@
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                Kitap Türü
+            </label>
+
+            @*@Html.LabelFor(model => model.Class, htmlAttributes: new { @class = "control-label col-md-2" })*@
+
+            <div class="col-md-10">
+
+                <select name="BookType" class="form-control">
+                    @foreach (var item in ViewBag.ShoolListViewBag)
+                {
+                    <option> @item</option>
+            }
+                </select>
+
+                @*@Html.EditorFor(model => model.BookType, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.ValidationMessageFor(model => model.BookType, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label class="control-label col-md-2">
-            Kitap İsmi
-        </label>
 
-        @*@Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })*@
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+
+
+
+
+        <div class="form-group">
+
+
+
+
+
+
+
+
+            <label class="control-label col-md-2">
+                Kitap Kodu
+            </label>
+
+            @*@Html.LabelFor(model => model.Code, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                Kitap İsmi
+            </label>
+
+            @*@Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
         <div class="form-group">
             <label class="control-label col-md-2">
                 Sınıf
             </label>
 
-        @*@Html.LabelFor(model => model.Class, htmlAttributes: new { @class = "control-label col-md-2" })*@
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Class, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Class, "", new { @class = "text-danger" })
+            @*@Html.LabelFor(model => model.Class, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Class, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Class, "", new { @class = "text-danger" })
+            </div>
+
         </div>
 
-    </div>
-    <div class="form-group">
-        <label class="control-label col-md-2">
-            Kitap Türü
-        </label>
 
-        @*@Html.LabelFor(model => model.Class, htmlAttributes: new { @class = "control-label col-md-2" })*@
-       
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.BookType, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.BookType, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Oluştur" class="btn btn-outline-info" />
             </div>
         </div>
-
-   
-
-
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Oluştur" class="btn btn-outline-info" />
-        </div>
     </div>
-</div>
-}
+    }
 
-	<div class="control-label col-md-2">
-		@Html.ActionLink("Geri Dön", "Index")
-	</div>
+    <div class="control-label col-md-2">
+        @Html.ActionLink("Geri Dön", "Index")
+    </div>
 
 </div>
