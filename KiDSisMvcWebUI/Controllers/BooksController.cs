@@ -45,8 +45,14 @@ namespace KiDSisMvcWebUI.Controllers
         // GET: Books/Create
         public ActionResult Create()
         {
-            List<string> SchoolList = new List<string>
-            {"ANAOKULU","İLKOKUL", "ORTAOKUL","LİSE","ÖZEL ÖĞRETİM"};
+            /*List<SchoolsCategory>*/
+
+            //veri tabanındaki bir sütunu listye atıyor.
+            List<string> SchoolList = db.SchoolsCategorys.Select(x => x.Category).ToList();
+
+
+            //List<string> SchoolList = new List<string>
+            //{"ANAOKULU","İLKOKUL", "ORTAOKUL","LİSE","ÖZEL ÖĞRETİM"};
             ViewBag.ShoolListViewBag = SchoolList;
             return View();
         }
@@ -58,27 +64,31 @@ namespace KiDSisMvcWebUI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Code,Name,Class,BookType,BooksCategoryId")] Book book)
         {
-            if (book.BookType=="ANAOKULU")
-            {
-                book.BooksCategoryId = 1;
-            }
-            else if (book.BookType == "İLKOKUL")
-            {
-                book.BooksCategoryId = 2;
-            }
-            else if (book.BookType == "ORTAOKUL")
-            {
-                book.BooksCategoryId = 3;
-            }
-            else if (book.BookType == "LİSE")
-            {
-                book.BooksCategoryId = 4;
-            }
-            else if (book.BookType == "ÖZEL ÖĞRETİM")
-            {
-                book.BooksCategoryId = 5;
-            }
-            
+            //aranan kod süper satır. isimleri karşılaştırıp id yi ekliyor.
+            book.BooksCategoryId = db.BooksCategorys.FirstOrDefault(x => x.Name == book.BookType).Id;
+
+
+            //if (book.BookType == "ANAOKULU")
+            //{
+            //    book.BooksCategoryId = 1;
+            //}
+            //else if (book.BookType == "İLKOKUL")
+            //{
+            //    book.BooksCategoryId = 2;
+            //}
+            //else if (book.BookType == "ORTAOKUL")
+            //{
+            //    book.BooksCategoryId = 3;
+            //}
+            //else if (book.BookType == "LİSE")
+            //{
+            //    book.BooksCategoryId = 4;
+            //}
+            //else if (book.BookType == "ÖZEL ÖĞRETİM")
+            //{
+            //    book.BooksCategoryId = 5;
+            //}
+
             if (ModelState.IsValid)
             {
 

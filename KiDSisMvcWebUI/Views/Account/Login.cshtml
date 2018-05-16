@@ -3,31 +3,34 @@
 @{
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_Layout-Login.cshtml";
+    //Layout = null;
 }
 
 
+<div class="container ">
+    
+        <div class="shadow-lg p-3 mb-5 bg-white rounded" style="max-width:50%;margin:auto   ">
+            @Html.ValidationSummary()
 
-
-<div class="container">
-    @Html.ValidationSummary()
-
-    @using (Html.BeginForm())
+            @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
         <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
 
         <div class="form-group">
-            <label>Username</label>
+            <label>Kurum Kodu:</label>
             @Html.TextBoxFor(i => i.Username, new { @class = "form-control" })
         </div>
 
         <div class="form-group">
-            <label>Parola</label>
+            <label>Parola:</label>
             @Html.PasswordFor(i => i.Password, new { @class = "form-control" })
         </div>
-        <button class="btn btn-primary" type="submit">Login</button>
-        <br />
-        <br />
-    }
+        <button class="btn btn-primary" type="submit">Giriş</button>
+        
+     
+}
+</div>
+
 </div>

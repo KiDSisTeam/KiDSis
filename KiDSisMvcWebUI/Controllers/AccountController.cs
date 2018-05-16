@@ -11,7 +11,7 @@ using UserIdentity.Models;
 
 namespace KiDSisMvcWebUI.Controllers
 {
-    [Authorize] //üye girişi gerktirir.
+    /*[Authorize] *///üye girişi gerktirir.
     public class AccountController : Controller
     {
         private UserManager<ApplicationUser> userManager;
@@ -25,15 +25,15 @@ namespace KiDSisMvcWebUI.Controllers
             userManager.PasswordValidator = new CustomPasswordValidator()
             {
                 //parola bir sayısal değer içermek zorunda
-                RequireDigit = true,
+                // RequireDigit = true,
                 //parola minimum 7 karakter olamk zorunda
                 RequiredLength=7,
                 //küçük harf içermeli
-                RequireLowercase=true,
+                //RequireLowercase=true,
                 //büyük harf içrtmeli
-                RequireUppercase=true,
+               // RequireUppercase=true,
                 //Alfanumerik değer içermeli
-                RequireNonLetterOrDigit=true,
+                // RequireNonLetterOrDigit=true,
 
 
 
@@ -49,6 +49,10 @@ namespace KiDSisMvcWebUI.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                return View("Error", new string[] { "Erişim hakkınız yok"});
+            }
             ViewBag.returnUrl = returnUrl;
             return View();
         }
@@ -79,7 +83,7 @@ namespace KiDSisMvcWebUI.Controllers
                     authManager.SignOut();
                     authManager.SignIn(authProperties, identity);
 
-                    return Redirect(string.IsNullOrEmpty(returnUrl) ? "/" : returnUrl);
+                    return Redirect(string.IsNullOrEmpty(returnUrl) ? "/BooksNeeds/Index" : returnUrl);
                 }
             }
 
@@ -113,6 +117,7 @@ namespace KiDSisMvcWebUI.Controllers
 
                 if (result.Succeeded)
                 {
+                    userManager.AddToRole(user.Id, "User");
                     return RedirectToAction("Login");
                 }
                 else

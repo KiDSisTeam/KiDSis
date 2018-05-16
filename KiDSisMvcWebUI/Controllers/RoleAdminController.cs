@@ -9,7 +9,8 @@ using System.Web.Mvc;
 using UserIdentity.Models;
 
 namespace KiDSisMvcWebUI.Controllers
-{
+{//Admin rolünde olmayan kişi bu kontrollera bağlı viewları görüntüleyemez.
+    [Authorize(Roles ="Admin")]
     public class RoleAdminController : Controller
     {
         private RoleManager<IdentityRole> roleManager;
