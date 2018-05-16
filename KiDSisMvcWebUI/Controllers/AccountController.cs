@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using UserIdentity.Models;
 
 namespace KiDSisMvcWebUI.Controllers
@@ -133,12 +134,16 @@ namespace KiDSisMvcWebUI.Controllers
             
             return View(model);
         }
+   
         public ActionResult Logout()
         {
 
             var authManager = HttpContext.GetOwinContext().Authentication;
             authManager.SignOut();
-            return RedirectToAction("Login");
+
+            return RedirectToAction("Login", new RouteValueDictionary(
+    new { controller = "Account", action = "Login"}));
+            // return RedirectToAction("Login");
         }
 
 

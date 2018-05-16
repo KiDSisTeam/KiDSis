@@ -18,17 +18,19 @@ namespace KiDSisMvcWebUI.Controllers
         // GET: BooksNeeds
         public ActionResult Index()
         {
-
-            List<Book> bk = db.Books.ToList();
+            List<Book> bk = new List<Book>();
+            bk = db.Books.ToList();
             List<BooksNeed> bkn = db.BooksNeeds.ToList();
             List<SchoolsCategory> sc = db.SchoolsCategorys.ToList();
             List<BooksCategory> _booksCategory = db.BooksCategorys.ToList();
-            ShoolBooksNeedsViewModel wm = new ShoolBooksNeedsViewModel();
+           
             List<ShoolBooksNeedsViewModel> wmlist = new List<ShoolBooksNeedsViewModel>();
 
             foreach (var item in bkn)
-            {
+            {// bu model foreach içinde eklenmeli
+                ShoolBooksNeedsViewModel wm = new ShoolBooksNeedsViewModel();
                 wm.Id = item.Id;
+                wm.Name = bk.FirstOrDefault(x => x.Id == item.BookId).Name;
                 wm.Name = item.Name;
                 wm.Class = bk.FirstOrDefault(x => x.Id == item.BookId).Class;
                 wm.BookCategory = bk.FirstOrDefault(x => x.Id == item.BookId).BookType;
