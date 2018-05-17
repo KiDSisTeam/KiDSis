@@ -11,7 +11,7 @@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="~/Css/Ozel.css">
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
-
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
 
 
 </head>
@@ -55,8 +55,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <!-- Yönetici Giriş Yapılmış Hali -->
-                    <label style="color: white;" class="ml-2 mt-1 mr-2"><strong><i class="fas fa-user-circle"></i> Okul İsmi</strong></label>
-                    <a href="/Account/Login">Çıkış Yap</a>
+                    <label style="color: white;" class="ml-2 mt-1 mr-2"><strong><i class="fas fa-user-circle"></i>  @User.Identity.Name</strong></label>
+                    <a href="/Account/Logout">Çıkış Yap</a>
                 </div>
             </div>
         </nav>
