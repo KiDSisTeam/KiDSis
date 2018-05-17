@@ -42,11 +42,7 @@ namespace KiDSisMvcWebUI.Controllers
                 /* wm.SchoolsCategory =*/ /*sc.FirstOrDefault(x => x.Id == item.Id).Category;*/
                 wm.SchoolsCategory = db.SchoolsCategorys.FirstOrDefault(x => x.Id == item.BookId).Category;
                 wmlist.Add(wm);
-
-
-            }         
-
-
+            }      
             return View(wmlist);
         }
 

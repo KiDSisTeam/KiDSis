@@ -5,14 +5,12 @@ using System.Web;
 
 namespace KiDSisMvcWebUI.Models
 {
-    public class Booksurplus
+    public class ShoolBooksurplusViewModel
     {
         public int Id { get; set; }
-        public int BookCount { get; set; }
+        public string SchoolsCategory { get; set; }
         public string Name { get; set; }
-        public int BookId { get; set; }
-        public int UserId { get; set; }
-
-
+        public string Class { get; set; }
+        public int BookCount { get; set; }
     }
 }

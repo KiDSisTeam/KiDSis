@@ -248,6 +248,7 @@
     <Compile Include="Models\SchoolsCategory.cs" />
     <Compile Include="Models\ShoolBooksNeedsViewModel.cs" />
     <Compile Include="Models\ShoolBooksStocksViewModel.cs" />
+    <Compile Include="Models\ShoolBooksurplusViewModel.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -18,7 +18,37 @@ namespace KiDSisMvcWebUI.Controllers
         // GET: Booksurplus
         public ActionResult Index()
         {
-            return View(db.Booksurplus.ToList());
+
+            List<Book> bk = new List<Book>();
+            bk = db.Books.ToList();
+            List<BooksNeed> bkn = db.BooksNeeds.ToList();
+            List<SchoolsCategory> sc = db.SchoolsCategorys.ToList();
+            List<BooksCategory> _booksCategory = db.BooksCategorys.ToList();
+            List<BooksStock> bstk = db.BooksStocks.ToList();
+            List<Booksurplus> bksrp = db.Booksurplus.ToList();
+
+            List<ShoolBooksurplusViewModel> wmlist = new List<ShoolBooksurplusViewModel>();
+
+            foreach (var item in bksrp)
+            {// bu model foreach içinde eklenmeli
+                ShoolBooksurplusViewModel wm = new ShoolBooksurplusViewModel();
+                wm.Id = item.Id;
+                wm.Name = bk.FirstOrDefault(x => x.Id == item.BookId).Name;
+                //wm.Name = item.Name;
+                wm.Class = bk.FirstOrDefault(x => x.Id == item.BookId).Class;
+                //wm.BookCategory = bk.FirstOrDefault(x => x.Id == item.BookId).BookType;
+                wm.BookCount = item.BookCount;
+
+                //bkn.FirstOrDefault(x => x.Id == item.Id).BookCount;
+                /* wm.SchoolsCategory =*/ /*sc.FirstOrDefault(x => x.Id == item.Id).Category;*/
+                wm.SchoolsCategory = db.SchoolsCategorys.FirstOrDefault(x => x.Id == item.BookId).Category;
+                wmlist.Add(wm);
+            }
+            return View(wmlist);
+
+
+
+
         }
 
         // GET: Booksurplus/Details/5
@@ -39,6 +69,21 @@ namespace KiDSisMvcWebUI.Controllers
         // GET: Booksurplus/Create
         public ActionResult Create()
         {
+            //veri tabanındaki bir sütunu listye atıyor.
+            List<string> SchoolCategoryList = db.SchoolsCategorys.Select(x => x.Category).ToList();
+
+            ViewBag.ShoolListViewBag = SchoolCategoryList;
+
+
+            List<string> BookNameList = db.Books.Select(x => x.Name).ToList();
+
+            ViewBag.BookNameListViewBag = BookNameList;
+
+            List<string> BookClassList = db.Books.Select(x => x.Class).ToList();
+
+            ViewBag.BookClassListViewBag = BookClassList;
+
+
             return View();
         }
 
@@ -47,15 +92,19 @@ namespace KiDSisMvcWebUI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,BookCount,BookId,UserId")] Booksurplus booksurplus)
+        public ActionResult Create([Bind(Include = "Id,BookCount,BookId,UserId,Name")] Booksurplus booksurplus)
         {
+            //aranan kod süper satır. isimleri karşılaştırıp id yi ekliyor.
+            booksurplus.BookId = db.Books.FirstOrDefault(x => x.Name == booksurplus.Name).Id;
+
+            booksurplus.UserId = 1;
             if (ModelState.IsValid)
             {
                 db.Booksurplus.Add(booksurplus);
+                //db.Entry(booksNeed).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             return View(booksurplus);
         }
 
