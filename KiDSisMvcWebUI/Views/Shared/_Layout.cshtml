@@ -38,7 +38,7 @@
                     </li>
                     <li class="nav-item">
                         <a style="color:white;" href=/BooksNeeds/Index
- class="nav-link btn btn-info"><i class="fas fa-calendar-plus"></i> Talepler</></a>
+                           class="nav-link btn btn-info"><i class="fas fa-calendar-plus"></i>Talepler</></a>
                     </li>
                     <li class="nav-item">
                         <a style="color:white;" href="/Help/tutanak" class="nav-link btn btn-info"><i class="fas fa-book"></i> Tutanak</></a>
@@ -49,6 +49,12 @@
                     <li class="nav-item">
                         <a style="color:white;" href="/School/SchoolContact" class="nav-link btn btn-info"><i class="fas fa-graduation-cap"></i> Okullar</a>
                     </li>
+                   
+                    <li class="nav-item">
+                        <a style="color:white;" href="/Manager/Index" class="nav-link btn btn-info"><i class="fas fa-cogs"></i> Yönetici İşlemleri</a>
+                    </li>
+
+
                     <li class="nav-item">
                         <a style="color:white;" href="/Help/helpManager" class="nav-link btn btn-info"><i class="far fa-question-circle"></i> Yardım</a>
                     </li>
@@ -61,13 +67,20 @@
 
         <nav style="padding: 0px;border-bottom-right-radius:5px; border-bottom-left-radius:5px;" class="navbar navbar-expand-lg navbar-dark bg-dark">
             @*<div class="container"> </div>*@
-            <div class="row">
-                <div class="col-md-12">
+          
+                
                     <!-- Yönetici Giriş Yapılmış Hali -->
+
                     <label style="color: white;" class="ml-2 mt-1 mr-2"><strong><i class="fas fa-user-circle"></i>  @User.Identity.Name</strong></label>
                     <a href="/Account/Logout">Çıkış Yap</a>
-                </div>
-            </div>
+               
+               
+                    @*<span >
+                        <label style="color: white;" class="ml-2 mt-1 "><strong><i class="fas fa-user-circle"></i> </strong></label>
+                        <a href="/Manager/Index">Yönetici İşlemleri</a>
+                    </span>*@
+              
+          
         </nav>
     </div>
 

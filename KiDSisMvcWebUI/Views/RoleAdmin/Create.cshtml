@@ -4,16 +4,20 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create Role</h2>
+<ul class="list-group ">
+    <li class="list-group-item bg-info" style="text-align:center">
+        <h2 style="color: white;">Yeni Yetki Ekle</h2>
+    </li>
+</ul>
 <hr />
 @Html.ValidationSummary()
 @using (Html.BeginForm())
 {
     <div class="form-group">
-        <label>Name</label>
+        <label>Yetki Adı</label>
         <input name="name" value="@Model" class="form-control" />
 
     </div>
-    <button type="submit" class="btn btn-outline-primary" >Creat</button>
+    <button type="submit" class="btn btn-outline-primary">Oluştur</button>
 }
 
