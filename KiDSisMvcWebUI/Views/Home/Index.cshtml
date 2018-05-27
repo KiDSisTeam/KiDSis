@@ -9,13 +9,28 @@
 <div class="container">
 
     @if (User.Identity.IsAuthenticated)
-    {  
-    <b>
-        <label> Hoş Geldin </label>
-        <label class="col-form-label label-info">
-            @User.Identity.Name
-        </label>
-    </b>
+    {
+        <b>
+            <label> Hoş Geldin </label>
+
+
+            @*Burada role göre işlem yapabilirsin.*@
+
+            @if (@User.IsInRole("Admin"))
+            {
+                <label> Sen Yöneticisin  </label>
+            }
+            else
+            {
+                    <label> Sen Kullanıcısın</label>
+            }
+
+
+
+            <label class="col-form-label label-info">
+                @User.Identity.Name
+            </label>
+        </b>
         //burada Account altındaki logout actionını çalıştırarak. çıkış yapmasını sağlıyor.
         <a href="/Account/Logout" class="btn btn-outline-danger btn-sm">
             Çıkış

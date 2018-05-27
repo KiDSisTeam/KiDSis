@@ -16,5 +16,9 @@ namespace KiDSisMvcWebUI.Controllers
         {
             return View();
         }
+        public ActionResult HomePage()
+        {
+            return View();
+        }
     }
 }

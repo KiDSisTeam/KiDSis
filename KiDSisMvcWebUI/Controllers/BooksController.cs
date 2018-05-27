@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using KiDSisMvcWebUI.Entity;
 using KiDSisMvcWebUI.Models;
 
@@ -43,12 +44,17 @@ namespace KiDSisMvcWebUI.Controllers
         }
 
         // GET: Books/Create
-        public ActionResult Create()
+        public ActionResult Create(int Id = 0)
         {
             /*List<SchoolsCategory>*/
 
             //veri tabanındaki bir sütunu listye atıyor.
             List<string> SchoolList = db.SchoolsCategorys.Select(x => x.Category).ToList();
+            ViewBag.KayıtHata = "";
+            if (Id==1)
+            {
+                ViewBag.KayıtHata = " Bu Kayıt daha önce eklenmiştir.";
+            }
 
 
             //List<string> SchoolList = new List<string>
@@ -88,23 +94,38 @@ namespace KiDSisMvcWebUI.Controllers
             //{
             //    book.BooksCategoryId = 5;
             //}
-
-            if (ModelState.IsValid)
+            ViewBag.KayıtHata = "";
+            Book bookControl = new Book();
+            bookControl = db.Books.FirstOrDefault(x => x.Code == book.Code);
+            if (bookControl!=null)
             {
+                //ViewBag.KayıtHata = "Bu Kayıt daha önce eklenmiştir.";
+                //return RedirectToAction("Create", "Books",);
+                return RedirectToAction("Create", new RouteValueDictionary(
+                new { controller = "Books", action = "Create", Id = 1 }));
+            }
+            else
+            {
+                if (ModelState.IsValid)
+                {
 
 
-                db.Books.Add(book);              
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                    db.Books.Add(book);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return RedirectToAction("Create");
             }
 
-            return View(book);
+
+
+
         }
 
         // GET: Books/Edit/5
         public ActionResult Edit(int? id)
         {
-            
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

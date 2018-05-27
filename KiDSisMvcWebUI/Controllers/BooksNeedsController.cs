@@ -30,14 +30,16 @@ namespace KiDSisMvcWebUI.Controllers
             {// bu model foreach içinde eklenmeli
                 ShoolBooksNeedsViewModel wm = new ShoolBooksNeedsViewModel();
                 wm.Id = item.Id;
+                //wm.BookId=
                 wm.Name = bk.FirstOrDefault(x => x.Id == item.BookId).Name;
                 wm.Name = item.Name;
+                //wm.BookCode= bk.FirstOrDefault(x => x.Id == item.BookId).Code;
                 wm.Class = bk.FirstOrDefault(x => x.Id == item.BookId).Class;
                 wm.BookCategory = bk.FirstOrDefault(x => x.Id == item.BookId).BookType;
                 wm.BookCount = item.BookCount;
                     //bkn.FirstOrDefault(x => x.Id == item.Id).BookCount;
                 /* wm.SchoolsCategory =*/ /*sc.FirstOrDefault(x => x.Id == item.Id).Category;*/
-                wm.SchoolsCategory = db.SchoolsCategorys.FirstOrDefault(x => x.Id == item.Id).Category;
+                wm.SchoolsCategory = db.SchoolsCategorys.FirstOrDefault(x => x.Id == item.BookId).Category;
                 wmlist.Add(wm);
 
 
@@ -85,7 +87,7 @@ namespace KiDSisMvcWebUI.Controllers
             ViewBag.ShoolListViewBag = SchoolCategoryList;
 
 
-            List<string> BookNameList = db.Books.Select(x => x.Name).ToList();
+            List<Book> BookNameList = db.Books.ToList();
 
             ViewBag.BookNameListViewBag = BookNameList;
 
@@ -104,7 +106,9 @@ namespace KiDSisMvcWebUI.Controllers
         public ActionResult Create([Bind(Include = "Id,BookCount,BookId,UserId,Name")] BooksNeed booksNeed)
         {
             //aranan kod süper satır. isimleri karşılaştırıp id yi ekliyor.
-            booksNeed.BookId = db.Books.FirstOrDefault(x => x.Name == booksNeed.Name).Id;
+            //booksNeed.BookId = db.Books.FirstOrDefault(x => x.Name == booksNeed.Name).Id;
+
+            booksNeed.BookId =Convert.ToInt32(booksNeed.Name);
 
             booksNeed.UserId = 1;
             if (ModelState.IsValid)
@@ -193,6 +197,29 @@ namespace KiDSisMvcWebUI.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+
+
+        public ActionResult SchoolsCategories()
+        {
+            List<SchoolsCategory> Category = db.SchoolsCategorys.ToList();
+            return Json(Category, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetClass(string BookType)
+        {
+            List<Book> book = db.Books.Where(x => x.BookType == BookType).OrderByDescending(x=>x.Name).ToList();
+            return Json(book, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetBookName(string Class)
+        {
+            List<Book> bookName = db.Books.Where(x => x.Class == Class).ToList();
+            return Json(bookName, JsonRequestBehavior.AllowGet);
+        }
+
+
+
 
         protected override void Dispose(bool disposing)
         {
