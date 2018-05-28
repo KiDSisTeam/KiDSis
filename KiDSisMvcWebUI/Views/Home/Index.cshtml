@@ -7,7 +7,6 @@
 @*if true değer döndürüyorsa kullanıcı giriş yapmış demektir.*@
 
 <div class="container">
-
     @if (User.Identity.IsAuthenticated)
     {
         <b>
@@ -18,11 +17,12 @@
 
             @if (@User.IsInRole("Admin"))
             {
+               
                 <label> Sen Yöneticisin  </label>
             }
             else
             {
-                    <label> Sen Kullanıcısın</label>
+                <label> Sen Kullanıcısın</label>
             }
 
 

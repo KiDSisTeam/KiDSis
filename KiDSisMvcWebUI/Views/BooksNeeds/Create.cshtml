@@ -2,8 +2,7 @@
 
 @{
     ViewBag.Title = "Book Need Create";
-    // Layout = null;
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout-User.cshtml";
 
 }
 <ul class="list-group ">
@@ -104,11 +103,11 @@
                     this.Category + '>' + this.Category + '</option>');
             });
             $.getJSON('/BooksNeeds/GetClass', { BookType: $('#Category').val() }, function (data) {
-                debugger
+                //debugger
                 //var test = document.getElementById(Category);
-                var e = document.getElementById("Category");
-                var strUser = e.options[e.selectedIndex].value;
-                console.log(strUser);
+                //var e = document.getElementById("Category");
+               /* var strUser = e.options[e.se;lectedIndex].value*/
+               // console.log(strUser);
                 $.each(data, function () {
                     $('#ClassProperty').append('<optionv selected value=' +
                         this.Class + '>' + this.Class + '</option>');
@@ -116,10 +115,10 @@
             });
 
             $.getJSON('/BooksNeeds/GetBookName', { Class: $('#ClassProperty').val() }, function (data) {
-                debugger
-                var e1 = document.getElementById("ClassProperty");
-                var strUser1 = e1.options[e1.selectedIndex].value;
-                console.log(strUser1);
+                //debugger
+                //var e1 = document.getElementById("ClassProperty");
+                //var strUser1 = e1.options[e1.selectedIndex].value;
+                //console.log(strUser1);
                 $.each(data, function () {
                     $('#NameProperty').append('<option value=' +
                         this.Name + '>' + this.Name + '</option>');
@@ -134,7 +133,7 @@
             alert('Error getting categories!');
             });
 
-        debugger
+        //debugger
         // Dropdown list change event.
         $('#Category').change(function () {
             $('#ClassProperty option').remove();
@@ -147,10 +146,10 @@
                 alert('Error getting products!');
             });
         });
-        debugger
+        //debugger
         // Kitap İsmi Buradan Getirilecek
         $('#ClassProperty').change(function () {
-            debugger
+            //debugger
             $('#NameProperty option').remove();
             $.getJSON('/BooksNeeds/GetBookName', { Class: $('#ClassProperty').val() }, function (data) {
                 $.each(data, function () {

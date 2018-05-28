@@ -11,7 +11,7 @@ namespace KiDSisMvcWebUI.Controllers
     {
         DataContext _context = new DataContext();
         // GET: Home
-        [Authorize]
+        //[Authorize]
         public ActionResult Index()
         {
             return View();

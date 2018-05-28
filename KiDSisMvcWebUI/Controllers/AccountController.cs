@@ -8,6 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using System.Web.Security;
 using UserIdentity.Models;
 
 namespace KiDSisMvcWebUI.Controllers
@@ -53,7 +54,8 @@ namespace KiDSisMvcWebUI.Controllers
             if (HttpContext.User.Identity.IsAuthenticated)
             {
                 return View("Error", new string[] { "Erişim hakkınız yok"});
-            }
+
+               }
             ViewBag.returnUrl = returnUrl;
             return View();
         }
@@ -74,23 +76,32 @@ namespace KiDSisMvcWebUI.Controllers
                 else
                 {
                     var authManager = HttpContext.GetOwinContext().Authentication;
-
                     var identity = userManager.CreateIdentity(user, "ApplicationCookie");
                     var authProperties = new AuthenticationProperties()
                     {
                         IsPersistent = true
                     };
+                    //Kullanıcının rolüne göre yönlendirme
+                    //if (Roles.IsUserInRole(User.Identity.Name, "Admin"))
+                    //{
+                    //    return RedirectToAction("HomePage", "Home");
+
+                    //}
+                    //else if (Roles.IsUserInRole(User.Identity.Name, "User"))
+                    //{
+                    //    return RedirectToAction("Index", "BooksNeeds");
+                    //}
+
 
                     authManager.SignOut();
                     authManager.SignIn(authProperties, identity);
-
                     return Redirect(string.IsNullOrEmpty(returnUrl) ? "/BooksNeeds/Index" : returnUrl);
                 }
             }
-
             ViewBag.returnUrl = returnUrl;
             return View(model);
         }
+
         [AllowAnonymous] //üye girişi olmadan ulaşmayı sağlar
         public ActionResult Register()
         {
@@ -119,7 +130,7 @@ namespace KiDSisMvcWebUI.Controllers
                 if (result.Succeeded)
                 {
                     userManager.AddToRole(user.Id, "User");
-                    return RedirectToAction("Login");
+                    return RedirectToAction("Index","Admin");
                 }
                 else
                 {
