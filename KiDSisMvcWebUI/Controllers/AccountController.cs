@@ -16,6 +16,7 @@ namespace KiDSisMvcWebUI.Controllers
     /*[Authorize] *///üye girişi gerktirir.
     public class AccountController : Controller
     {
+        //private IdentityDataContext db = new IdentityDataContext();
         private UserManager<ApplicationUser> userManager;
         //private object userManager;
 
@@ -65,9 +66,15 @@ namespace KiDSisMvcWebUI.Controllers
         [AllowAnonymous]
         public ActionResult Login(LoginModel model, string returnUrl)
         {
+           
             if (ModelState.IsValid)
             {
                 var user = userManager.Find(model.Username, model.Password);
+                //kişinin ıd sini sessiona attık
+                
+                Session["ManagerId"] = user.Id.ToString();
+
+               // Session["Role"] = user.Roles.Where(x=>x.RoleId==db.);
 
                 if (user == null)
                 {
@@ -76,7 +83,7 @@ namespace KiDSisMvcWebUI.Controllers
                 else
                 {
                     var authManager = HttpContext.GetOwinContext().Authentication;
-                    var identity = userManager.CreateIdentity(user, "ApplicationCookie");
+                    var identity = userManager.CreateIdentity(user, "ApplicationCookie");                
                     var authProperties = new AuthenticationProperties()
                     {
                         IsPersistent = true

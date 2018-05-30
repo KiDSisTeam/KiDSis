@@ -23,13 +23,14 @@ namespace KiDSisMvcWebUI.Controllers
             List<BooksNeed> bkn = db.BooksNeeds.ToList();
             List<SchoolsCategory> sc = db.SchoolsCategorys.ToList();
             List<BooksCategory> _booksCategory = db.BooksCategorys.ToList();
-           
+
             List<ShoolBooksNeedsViewModel> wmlist = new List<ShoolBooksNeedsViewModel>();
 
             foreach (var item in bkn)
             {// bu model foreach içinde eklenmeli
                 ShoolBooksNeedsViewModel wm = new ShoolBooksNeedsViewModel();
                 wm.Id = item.Id;
+                wm.UserId = item.UserId;
                 //wm.BookId=
                 wm.Name = bk.FirstOrDefault(x => x.Id == item.BookId).Name;
                 wm.Name = item.Name;
@@ -37,7 +38,7 @@ namespace KiDSisMvcWebUI.Controllers
                 wm.Class = bk.FirstOrDefault(x => x.Id == item.BookId).Class;
                 wm.BookCategory = bk.FirstOrDefault(x => x.Id == item.BookId).BookType;
                 wm.BookCount = item.BookCount;
-                    //bkn.FirstOrDefault(x => x.Id == item.Id).BookCount;
+                //bkn.FirstOrDefault(x => x.Id == item.Id).BookCount;
                 /* wm.SchoolsCategory =*/ /*sc.FirstOrDefault(x => x.Id == item.Id).Category;*/
                 wm.SchoolsCategory = db.SchoolsCategorys.FirstOrDefault(x => x.Id == item.BookId).Category;
                 wmlist.Add(wm);
@@ -57,10 +58,10 @@ namespace KiDSisMvcWebUI.Controllers
             ////wm.BookCount = bkn[0].BookCount;
             //wm.BookCategory = sc[0].Category;
             //wmlist.Add(wm);
-
-
-
-            return View(wmlist);
+            //kişinin kendi eklediği kayıtları görmesi sağlandı
+            string managerId = (Session["ManagerId"]).ToString();
+            return View(wmlist.Where(x => x.UserId.ToString() == managerId));
+            // return View(wmlist);
         }
 
         // GET: BooksNeeds/Details/5
@@ -108,9 +109,11 @@ namespace KiDSisMvcWebUI.Controllers
             //aranan kod süper satır. isimleri karşılaştırıp id yi ekliyor.
             //booksNeed.BookId = db.Books.FirstOrDefault(x => x.Name == booksNeed.Name).Id;
 
-            booksNeed.BookId =Convert.ToInt32(booksNeed.Name);
+            booksNeed.BookId = Convert.ToInt32(booksNeed.Name);
 
-            booksNeed.UserId = 1;
+            booksNeed.UserId = Session["ManagerId"].ToString();
+
+            //sorular.MangerId = Convert.ToInt32(Session["MangerId"]);
             if (ModelState.IsValid)
             {
                 db.BooksNeeds.Add(booksNeed);
@@ -208,7 +211,7 @@ namespace KiDSisMvcWebUI.Controllers
 
         public JsonResult GetClass(string BookType)
         {
-            List<Book> book = db.Books.Where(x => x.BookType == BookType).OrderByDescending(x=>x.Name).ToList();
+            List<Book> book = db.Books.Where(x => x.BookType == BookType).OrderByDescending(x => x.Name).ToList();
             return Json(book, JsonRequestBehavior.AllowGet);
         }
 

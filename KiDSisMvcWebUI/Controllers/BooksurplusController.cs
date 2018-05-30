@@ -33,6 +33,7 @@ namespace KiDSisMvcWebUI.Controllers
             {// bu model foreach içinde eklenmeli
                 ShoolBooksurplusViewModel wm = new ShoolBooksurplusViewModel();
                 wm.Id = item.Id;
+                wm.UserId = item.UserId;
                 wm.Name = bk.FirstOrDefault(x => x.Id == item.BookId).Name;
                 //wm.Name = item.Name;
                 wm.Class = bk.FirstOrDefault(x => x.Id == item.BookId).Class;
@@ -44,7 +45,10 @@ namespace KiDSisMvcWebUI.Controllers
                 wm.SchoolsCategory = db.SchoolsCategorys.FirstOrDefault(x => x.Id == item.BookId).Category;
                 wmlist.Add(wm);
             }
-            return View(wmlist);
+
+            string managerId = (Session["ManagerId"]).ToString();
+            return View(wmlist.Where(x => x.UserId.ToString() == managerId));
+            //return View(wmlist);
 
 
 
@@ -97,7 +101,7 @@ namespace KiDSisMvcWebUI.Controllers
             //aranan kod süper satır. isimleri karşılaştırıp id yi ekliyor.
             booksurplus.BookId = db.Books.FirstOrDefault(x => x.Name == booksurplus.Name).Id;
 
-            booksurplus.UserId = 1;
+            booksurplus.UserId = Session["ManagerId"].ToString();
             if (ModelState.IsValid)
             {
                 db.Booksurplus.Add(booksurplus);
