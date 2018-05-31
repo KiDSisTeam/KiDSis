@@ -37,10 +37,11 @@ namespace KiDSisMvcWebUI.Controllers
                 //wm.BookCode= bk.FirstOrDefault(x => x.Id == item.BookId).Code;
                 wm.Class = bk.FirstOrDefault(x => x.Id == item.BookId).Class;
                 wm.BookCategory = bk.FirstOrDefault(x => x.Id == item.BookId).BookType;
+               
                 wm.BookCount = item.BookCount;
                 //bkn.FirstOrDefault(x => x.Id == item.Id).BookCount;
                 /* wm.SchoolsCategory =*/ /*sc.FirstOrDefault(x => x.Id == item.Id).Category;*/
-                wm.SchoolsCategory = db.SchoolsCategorys.FirstOrDefault(x => x.Id == item.BookId).Category;
+                wm.SchoolsCategory = db.Books.FirstOrDefault(x => x.Id == item.BookId).BookType;
                 wmlist.Add(wm);
 
 
@@ -85,16 +86,24 @@ namespace KiDSisMvcWebUI.Controllers
             //veri tabanındaki bir sütunu listye atıyor.
             List<string> SchoolCategoryList = db.SchoolsCategorys.Select(x => x.Category).ToList();
 
-            ViewBag.ShoolListViewBag = SchoolCategoryList;
+            // ViewBag.ShoolListViewBag = SchoolCategoryList;
+            ViewBag.ShoolListViewBag= Session["SchoolType"].ToString();
+            //wm.BookCategory = Session["SchoolType"].ToString();
 
 
             List<Book> BookNameList = db.Books.ToList();
-
             ViewBag.BookNameListViewBag = BookNameList;
 
-            List<string> BookClassList = db.Books.Select(x => x.Class).ToList();
+            //List<string> BookClassList = db.Books.Where(x=>x.BookType== Session["SchoolType"].ToString()).Select(x => x.Class).ToList();
+            string schooltype = Session["SchoolType"].ToString();
+            // List<string> BookClassList = db.Books.Select(x => x.Class).ToList();
+            List<string> BookClassList = db.Books.Where(x=>x.BookType== schooltype).Select(x => x.Class).Distinct().ToList();
 
             ViewBag.BookClassListViewBag = BookClassList;
+           
+
+          //  List<string> BookNameList = db.Books.Select(x => x.Class== BookClassList).ToList();
+
 
             return View();
         }
@@ -104,12 +113,12 @@ namespace KiDSisMvcWebUI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,BookCount,BookId,UserId,Name")] BooksNeed booksNeed)
+        public ActionResult Create([Bind(Include = "Id,BookCount,BookId,UserId,Name,Category")] BooksNeed booksNeed)
         {
             //aranan kod süper satır. isimleri karşılaştırıp id yi ekliyor.
-            //booksNeed.BookId = db.Books.FirstOrDefault(x => x.Name == booksNeed.Name).Id;
-
-            booksNeed.BookId = Convert.ToInt32(booksNeed.Name);
+            booksNeed.BookId = db.Books.FirstOrDefault(x => x.Name == booksNeed.Name).Id;
+            
+            //booksNeed.BookId = Convert.ToInt32(booksNeed.Name);
 
             booksNeed.UserId = Session["ManagerId"].ToString();
 

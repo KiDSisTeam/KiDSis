@@ -8,5 +8,6 @@ namespace KiDSisMvcWebUI.Identity
 {
     public class ApplicationUser:IdentityUser
     {
+        public string SchoolType { get; set; }
     }
 }

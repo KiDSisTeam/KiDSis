@@ -1,4 +1,6 @@
-﻿using KiDSisMvcWebUI.Identity;
+﻿using KiDSisMvcWebUI.Entity;
+using KiDSisMvcWebUI.Identity;
+using KiDSisMvcWebUI.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
@@ -16,7 +18,8 @@ namespace KiDSisMvcWebUI.Controllers
     /*[Authorize] *///üye girişi gerktirir.
     public class AccountController : Controller
     {
-        //private IdentityDataContext db = new IdentityDataContext();
+       // private IdentityDataContext dbI = new IdentityDataContext();
+        private DataContext db = new DataContext();
         private UserManager<ApplicationUser> userManager;
         //private object userManager;
 
@@ -69,12 +72,7 @@ namespace KiDSisMvcWebUI.Controllers
            
             if (ModelState.IsValid)
             {
-                var user = userManager.Find(model.Username, model.Password);
-                //kişinin ıd sini sessiona attık
-                
-                Session["ManagerId"] = user.Id.ToString();
-
-               // Session["Role"] = user.Roles.Where(x=>x.RoleId==db.);
+                var user = userManager.Find(model.Username, model.Password);             
 
                 if (user == null)
                 {
@@ -88,19 +86,35 @@ namespace KiDSisMvcWebUI.Controllers
                     {
                         IsPersistent = true
                     };
-                    //Kullanıcının rolüne göre yönlendirme
-                    //if (Roles.IsUserInRole(User.Identity.Name, "Admin"))
-                    //{
-                    //    return RedirectToAction("HomePage", "Home");
 
-                    //}
-                    //else if (Roles.IsUserInRole(User.Identity.Name, "User"))
-                    //{
-                    //    return RedirectToAction("Index", "BooksNeeds");
-                    //}
+                    //kişinin ıd sini sessiona attık
+                    Session["ManagerId"] = user.Id.ToString();
+                    Session["SchoolType"] = user.SchoolType;
+
+                    // Kişinin rolüne göre yönlendirme
+                    if (userManager.IsInRole(user.Id, "Admin"))
+                    {
+                        return RedirectToAction("HomePage", "Home");
+                    }
+                    else if (userManager.IsInRole(user.Id, "Admin"))
+                    {
+                        return RedirectToAction("Index", "BooksNeeds");
+                    }
 
 
-                    authManager.SignOut();
+                        //Kullanıcının rolüne göre yönlendirme
+                        //if (Roles.IsUserInRole(User.Identity.Name, "Admin"))
+                        //{
+                        //    return RedirectToAction("HomePage", "Home");
+
+                        //}
+                        //else if (Roles.IsUserInRole(User.Identity.Name, "User"))
+                        //{
+                        //    return RedirectToAction("Index", "BooksNeeds");
+                        //}
+
+
+                        authManager.SignOut();
                     authManager.SignIn(authProperties, identity);
                     return Redirect(string.IsNullOrEmpty(returnUrl) ? "/BooksNeeds/Index" : returnUrl);
                 }
@@ -112,6 +126,10 @@ namespace KiDSisMvcWebUI.Controllers
         [AllowAnonymous] //üye girişi olmadan ulaşmayı sağlar
         public ActionResult Register()
         {
+            List<string> SchoolTypeList = db.SchoolsCategorys.Select(x=>x.Category).ToList();
+
+            ViewBag.SchoolTypeListViewBag = SchoolTypeList;
+
             return View();
         }
         //// GET: Account
@@ -131,6 +149,8 @@ namespace KiDSisMvcWebUI.Controllers
                 var user = new ApplicationUser();
                 user.UserName = model.UserName;
                 user.Email = model.Email;
+                user.SchoolType = model.SchoolType;
+                //user.PasswordHash = model.Password;
                 var result = userManager.Create(user, model.Password);
 
 

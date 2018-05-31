@@ -42,7 +42,7 @@ namespace KiDSisMvcWebUI.Controllers
 
                 //bkn.FirstOrDefault(x => x.Id == item.Id).BookCount;
                 /* wm.SchoolsCategory =*/ /*sc.FirstOrDefault(x => x.Id == item.Id).Category;*/
-                wm.SchoolsCategory = db.SchoolsCategorys.FirstOrDefault(x => x.Id == item.BookId).Category;
+                wm.SchoolsCategory = db.Books.FirstOrDefault(x => x.Id == item.BookId).BookType;
                 wmlist.Add(wm);
             }
 
@@ -74,21 +74,28 @@ namespace KiDSisMvcWebUI.Controllers
         public ActionResult Create()
         {
             //veri tabanındaki bir sütunu listye atıyor.
-            List<string> SchoolCategoryList = db.SchoolsCategorys.Select(x => x.Category).ToList();
+            //List<string> SchoolCategoryList = db.SchoolsCategorys.Select(x => x.Category).ToList();
 
-            ViewBag.ShoolListViewBag = SchoolCategoryList;
+            ViewBag.ShoolListViewBag = Session["SchoolType"].ToString();
 
 
             List<string> BookNameList = db.Books.Select(x => x.Name).ToList();
 
             ViewBag.BookNameListViewBag = BookNameList;
 
-            List<string> BookClassList = db.Books.Select(x => x.Class).ToList();
 
+
+            //List<string> BookClassList = db.Books.Select(x => x.Class).ToList();
+
+            string schooltype = Session["SchoolType"].ToString();
+            List<string> BookClassList = db.Books.Where(x => x.BookType == schooltype).Select(x => x.Class).Distinct().ToList();
             ViewBag.BookClassListViewBag = BookClassList;
 
-
             return View();
+
+
+
+
         }
 
         // POST: Booksurplus/Create

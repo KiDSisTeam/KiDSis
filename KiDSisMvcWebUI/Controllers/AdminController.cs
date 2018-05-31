@@ -27,7 +27,7 @@ namespace KiDSisMvcWebUI.Controllers
 
 
         //illa kullanıcı girişi yapılarak açılabilir.
-        [Authorize]
+       // [Authorize]
         
         public ActionResult Index()
         {

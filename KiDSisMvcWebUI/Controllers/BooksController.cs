@@ -68,12 +68,12 @@ namespace KiDSisMvcWebUI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Code,Name,Class,BookType,BooksCategoryId")] Book book)
+        public ActionResult Create([Bind(Include = "Id,Code,Name,Class,BookType,BooksCategoryId,Category")] Book book)
         {
             //aranan kod süper satır. isimleri karşılaştırıp id yi ekliyor.
             book.BooksCategoryId = db.BooksCategorys.FirstOrDefault(x => x.Name == book.BookType).Id;
-
-
+          
+            
             //if (book.BookType == "ANAOKULU")
             //{
             //    book.BooksCategoryId = 1;

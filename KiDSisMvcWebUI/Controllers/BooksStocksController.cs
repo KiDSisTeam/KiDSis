@@ -40,11 +40,51 @@ namespace KiDSisMvcWebUI.Controllers
 
                 //bkn.FirstOrDefault(x => x.Id == item.Id).BookCount;
                 /* wm.SchoolsCategory =*/ /*sc.FirstOrDefault(x => x.Id == item.Id).Category;*/
-                wm.SchoolsCategory = db.SchoolsCategorys.FirstOrDefault(x => x.Id == item.BookId).Category;
+                wm.SchoolsCategory = db.Books.FirstOrDefault(x => x.Id == item.BookId).BookType;
                 wmlist.Add(wm);
-            }      
+            }     
+            
             return View(wmlist);
         }
+
+
+
+
+        // GET: BooksStocks
+        public ActionResult Index2()
+        {
+
+            List<Book> bk = new List<Book>();
+            bk = db.Books.ToList();
+            List<BooksNeed> bkn = db.BooksNeeds.ToList();
+            List<SchoolsCategory> sc = db.SchoolsCategorys.ToList();
+            List<BooksCategory> _booksCategory = db.BooksCategorys.ToList();
+            List<BooksStock> bstk = db.BooksStocks.ToList();
+
+            List<ShoolBooksStocksViewModel> wmlist = new List<ShoolBooksStocksViewModel>();
+
+            foreach (var item in bstk)
+            {// bu model foreach içinde eklenmeli
+                ShoolBooksStocksViewModel wm = new ShoolBooksStocksViewModel();
+                wm.Id = item.Id;
+                wm.Name = bk.FirstOrDefault(x => x.Id == item.BookId).Name;
+                //wm.Name = item.Name;
+                wm.Class = bk.FirstOrDefault(x => x.Id == item.BookId).Class;
+                //wm.BookCategory = bk.FirstOrDefault(x => x.Id == item.BookId).BookType;
+                wm.BookCount = item.BookCount;
+
+                //bkn.FirstOrDefault(x => x.Id == item.Id).BookCount;
+                /* wm.SchoolsCategory =*/ /*sc.FirstOrDefault(x => x.Id == item.Id).Category;*/
+                wm.SchoolsCategory = db.Books.FirstOrDefault(x => x.Id == item.BookId).BookType;
+                wmlist.Add(wm);
+            }
+           
+            string schoolType = (Session["SchoolType"]).ToString();
+            return View(wmlist.Where(x => x.SchoolsCategory.ToString() == schoolType));
+            //return View(wmlist);
+        }
+
+
 
         // GET: BooksStocks/Details/5
         public ActionResult Details(int? id)
