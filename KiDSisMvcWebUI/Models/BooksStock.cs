@@ -11,10 +11,10 @@ namespace KiDSisMvcWebUI.Models
         //Count : Sayı Adet
         public int BookCount { get; set; }
         public string Name { get; set; }
-
+        public string DemandDate { get; set; }
         public int BookId { get; set; }
 
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
 
     }

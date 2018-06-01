@@ -32,6 +32,7 @@ namespace KiDSisMvcWebUI.Controllers
             {// bu model foreach içinde eklenmeli
                 ShoolBooksStocksViewModel wm = new ShoolBooksStocksViewModel();
                 wm.Id = item.Id;
+                wm.DemandDate = item.DemandDate;
                 wm.Name = bk.FirstOrDefault(x => x.Id == item.BookId).Name;
                 //wm.Name = item.Name;
                 wm.Class = bk.FirstOrDefault(x => x.Id == item.BookId).Class;
@@ -67,6 +68,7 @@ namespace KiDSisMvcWebUI.Controllers
             {// bu model foreach içinde eklenmeli
                 ShoolBooksStocksViewModel wm = new ShoolBooksStocksViewModel();
                 wm.Id = item.Id;
+                wm.DemandDate = item.DemandDate;
                 wm.Name = bk.FirstOrDefault(x => x.Id == item.BookId).Name;
                 //wm.Name = item.Name;
                 wm.Class = bk.FirstOrDefault(x => x.Id == item.BookId).Class;
@@ -131,8 +133,8 @@ namespace KiDSisMvcWebUI.Controllers
         {
             //aranan kod süper satır. isimleri karşılaştırıp id yi ekliyor.
             booksStock.BookId = db.Books.FirstOrDefault(x => x.Name == booksStock.Name).Id;
-
-            booksStock.UserId = 1;
+            booksStock.DemandDate = DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss");            
+            booksStock.UserId = Session["ManagerId"].ToString();
             if (ModelState.IsValid)
             {
                 db.BooksStocks.Add(booksStock);

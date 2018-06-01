@@ -1,4 +1,4 @@
-﻿@model IEnumerable<KiDSisMvcWebUI.Models.ShoolBooksStocksViewModel>
+﻿
 @{
     ViewBag.Title = "Index2";
     Layout = "~/Views/Shared/_Layout-User.cshtml";
@@ -11,14 +11,14 @@
         </li>
     </ul>
 
-    @*<p>
+    <p>
         @Html.ActionLink("Yeni Kayıt", "Create", null, new { @class = "btn btn-success   btn-sm mt-2" })
-    </p>*@
+    </p>
     <table class="table table-bordered">
         <tr style="color: white;" class="bg-info">
-            @*<th>
+            <th>
                 Okul türü
-            </th>*@
+            </th>
             <th>
                 Sınıf
 
@@ -32,15 +32,15 @@
             <th>
                 İşlem Tarihi
             </th>
-            @*<th>İşlemler</th>*@
+            <th>İşlemler</th>
         </tr>
 
         @foreach (var item in Model)
         {
             <tr>
-                @*<td>
+                <td>
                     @item.SchoolsCategory
-                </td>*@
+                </td>
                 <td>
                     @item.Class
 
@@ -61,13 +61,14 @@
 
 
 
-                @*<td>
+                <td>
                     @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-info   btn-sm" })
                     @Html.ActionLink("Detay", "Details", new { id = item.Id }, new { @class = "btn btn-success   btn-sm" })
                     @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger   btn-sm" })
-                </td>*@
+                </td>
             </tr>
         }
 
     </table>
 </div>
+
