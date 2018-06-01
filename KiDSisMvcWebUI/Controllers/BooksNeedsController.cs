@@ -34,6 +34,7 @@ namespace KiDSisMvcWebUI.Controllers
                 //wm.BookId=
                 wm.Name = bk.FirstOrDefault(x => x.Id == item.BookId).Name;
                 wm.Name = item.Name;
+                wm.DemandDate = item.DemandDate;
                 //wm.BookCode= bk.FirstOrDefault(x => x.Id == item.BookId).Code;
                 wm.Class = bk.FirstOrDefault(x => x.Id == item.BookId).Class;
                 wm.BookCategory = bk.FirstOrDefault(x => x.Id == item.BookId).BookType;
@@ -121,6 +122,11 @@ namespace KiDSisMvcWebUI.Controllers
             //booksNeed.BookId = Convert.ToInt32(booksNeed.Name);
 
             booksNeed.UserId = Session["ManagerId"].ToString();
+            
+            booksNeed.DemandDate = DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss");
+            //DateTime.Now.ToString("dd-MM-yyyyThh:mm:sszzz");
+
+            //DateTime.Now.ToString("yyyy-MM-ddThh:mm:sszzz");
 
             //sorular.MangerId = Convert.ToInt32(Session["MangerId"]);
             if (ModelState.IsValid)

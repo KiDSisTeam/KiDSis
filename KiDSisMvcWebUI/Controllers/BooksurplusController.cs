@@ -35,6 +35,7 @@ namespace KiDSisMvcWebUI.Controllers
                 wm.Id = item.Id;
                 wm.UserId = item.UserId;
                 wm.Name = bk.FirstOrDefault(x => x.Id == item.BookId).Name;
+                wm.DemandDate = item.DemandDate;
                 //wm.Name = item.Name;
                 wm.Class = bk.FirstOrDefault(x => x.Id == item.BookId).Class;
                 //wm.BookCategory = bk.FirstOrDefault(x => x.Id == item.BookId).BookType;
@@ -109,6 +110,7 @@ namespace KiDSisMvcWebUI.Controllers
             booksurplus.BookId = db.Books.FirstOrDefault(x => x.Name == booksurplus.Name).Id;
 
             booksurplus.UserId = Session["ManagerId"].ToString();
+            booksurplus.DemandDate = DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss");
             if (ModelState.IsValid)
             {
                 db.Booksurplus.Add(booksurplus);

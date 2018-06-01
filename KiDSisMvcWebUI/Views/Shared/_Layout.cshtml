@@ -16,7 +16,7 @@
     @*<script src="~/Scripts/jquery-3.2.1.slim.min.js"></script>*@
     @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
     <script src="~/Scripts/bootstrap.min.js"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+    @*<script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>*@
     @*<script src="~/Scripts/modernizr-2.6.2.js"></script>*@
     <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
 
@@ -38,32 +38,32 @@
             <div class="collapse navbar-collapse" id="menuac">
                 <ul class="navbar-nav ml-auto mt-2">
                     <li class="nav-item">
-                        <a style="color:white;" href="/Home/HomePage" class="nav-link btn btn-info"><i class="fas fa-home"></i> Ana Sayfa</a>
+                        <a style="color:white;" href="/Home/HomePage" class="nav-link btn btn-info"><i class="fa fa-home"></i> Ana Sayfa</a>
                     </li>
                     <li class="nav-item">
-                        <a style="color:white;" href="/BooksStocks/Index" class="nav-link btn btn-info"><i class="fas fa-archive"></i> Depo Stok</a>
+                        <a style="color:white;" href="/BooksStocks/Index" class="nav-link btn btn-info"><i class="fa fa-archive"></i> Depo Stok</a>
                     </li>
                     <li class="nav-item">
                         <a style="color:white;" href=/BooksNeeds/Index
-                           class="nav-link btn btn-info"><i class="fas fa-calendar-plus"></i>Talepler</></a>
+                           class="nav-link btn btn-info"><i class="fa fa-calendar-plus"></i>Talepler</></a>
                     </li>
                     <li class="nav-item">
-                        <a style="color:white;" href="/Help/tutanak" class="nav-link btn btn-info"><i class="fas fa-book"></i> Tutanak</></a>
+                        <a style="color:white;" href="/Help/tutanak" class="nav-link btn btn-info"><i class="fa fa-book"></i> Tutanak</></a>
                     </li>
                     <li class="nav-item">
-                        <a style="color:white;" href="/Help/reports" class="nav-link btn btn-info"><i class="fas fa-paperclip"></i> Raporlar</a>
+                        <a style="color:white;" href="/Help/reports" class="nav-link btn btn-info"><i class="fa fa-paperclip"></i> Raporlar</a>
                     </li>
                     <li class="nav-item">
-                        <a style="color:white;" href="/School/SchoolContact" class="nav-link btn btn-info"><i class="fas fa-graduation-cap"></i> Okullar</a>
+                        <a style="color:white;" href="/School/SchoolContact" class="nav-link btn btn-info"><i class="fa fa-graduation-cap"></i> Okullar</a>
                     </li>
                    
                     <li class="nav-item">
-                        <a style="color:white;" href="/Manager/Index" class="nav-link btn btn-info"><i class="fas fa-cogs"></i> Yönetici İşlemleri</a>
+                        <a style="color:white;" href="/Manager/Index" class="nav-link btn btn-info"><i class="fa fa-cogs"></i> Yönetici İşlemleri</a>
                     </li>
 
 
                     <li class="nav-item">
-                        <a style="color:white;" href="/Help/helpManager" class="nav-link btn btn-info"><i class="far fa-question-circle"></i> Yardım</a>
+                        <a style="color:white;" href="/Help/helpManager" class="nav-link btn btn-info"><i class="fa fa-question-circle"></i> Yardım</a>
                     </li>
                 </ul>
             </div>
@@ -78,12 +78,13 @@
                 
                     <!-- Yönetici Giriş Yapılmış Hali -->
 
-                    <label style="color: white;" class="ml-2 mt-1 mr-2"><strong><i class="fas fa-user-circle"></i>  @User.Identity.Name</strong></label>
+                    <label style="color: white;" class="ml-2 mt-1 mr-2"><strong><i class="fa fa-user-circle"></i>  @User.Identity.Name              
+                             </strong></label>
                     <a href="/Account/Logout">Çıkış Yap</a>
                
                
                     @*<span >
-                        <label style="color: white;" class="ml-2 mt-1 "><strong><i class="fas fa-user-circle"></i> </strong></label>
+                        <label style="color: white;" class="ml-2 mt-1 "><strong><i class="fa fa-user-circle"></i> </strong></label>
                         <a href="/Manager/Index">Yönetici İşlemleri</a>
                     </span>*@
               

@@ -20,26 +20,29 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
+
+        @*
         <div class="form-group">
             <label class="control-label col-md-2">
                 Okul Türü
-            </label>
-            @*@Html.LabelFor(model => model.BookCount, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            </label>*@
+        @*@Html.LabelFor(model => model.BookCount, htmlAttributes: new { @class = "control-label col-md-2" })*@
+        @*
+        <div class="col-md-10">
 
-            <div class="col-md-10">
+            <select name="Category" class="form-control">
 
-                <select name="Category" class="form-control">
+                <option> @ViewBag.ShoolListViewBag</option>*@
 
-                    <option> @ViewBag.ShoolListViewBag</option>
-
-                    @*@foreach (var item in ViewBag.ShoolListViewBag)
-                    {
-                        <option> @item</option>
-                    }*@
+        @*@foreach (var item in ViewBag.ShoolListViewBag)
+        {
+            <option> @item</option>
+        }*@
+        @*
                 </select>
                 @Html.ValidationMessageFor(model => model.SchoolsCategory, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
 
         <div class="form-group">
