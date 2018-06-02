@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using KiDSisMvcWebUI.Entity;
 using KiDSisMvcWebUI.Models;
 
@@ -18,6 +19,8 @@ namespace KiDSisMvcWebUI.Controllers
         // GET: Booksurplus
         public ActionResult Index()
         {
+            
+
 
             List<Book> bk = new List<Book>();
             bk = db.Books.ToList();
@@ -111,19 +114,45 @@ namespace KiDSisMvcWebUI.Controllers
 
             booksurplus.UserId = Session["ManagerId"].ToString();
             booksurplus.DemandDate = DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss");
-            if (ModelState.IsValid)
+
+            ViewBag.KayıtHata = "";
+            Booksurplus booksurplusControl = new Booksurplus();
+            booksurplusControl = db.Booksurplus.FirstOrDefault(x => x.BookId == booksurplus.BookId);
+            if (booksurplusControl != null)
             {
-                db.Booksurplus.Add(booksurplus);
-                //db.Entry(booksNeed).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+               TempData["Control"] = "1";
+                return RedirectToAction("Edit", new RouteValueDictionary(
+               new { controller = "Booksurplus", action = "Edit", Id = booksurplus.BookId,  }));
+
             }
-            return View(booksurplus);
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Booksurplus.Add(booksurplus);
+                    //db.Entry(booksNeed).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return View(booksurplus);
+
+
+            }
+
+
+
         }
 
         // GET: Booksurplus/Edit/5
         public ActionResult Edit(int? id)
         {
+            ViewBag.KayıtHata = "";
+
+            if (TempData["Control"] != null)
+            {
+                ViewBag.KayıtHata = " Bu Kitabı daha önce eklediniz. Lütfen kitap sayısını güncelleyiniz!";
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -133,6 +162,7 @@ namespace KiDSisMvcWebUI.Controllers
             {
                 return HttpNotFound();
             }
+            
             return View(booksurplus);
         }
 
@@ -145,7 +175,9 @@ namespace KiDSisMvcWebUI.Controllers
         {
             if (ModelState.IsValid)
             {
+                booksurplus.DemandDate = DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss");
                 db.Entry(booksurplus).State = EntityState.Modified;
+               // db.Booksurplus.Add(booksurplus);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

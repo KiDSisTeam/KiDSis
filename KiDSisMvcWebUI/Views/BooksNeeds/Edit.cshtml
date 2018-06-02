@@ -23,7 +23,20 @@
             <label class="control-label col-md-2">
                 Kitap Sayısı
             </label>
-            @*@Html.LabelFor(model => model.BookCount, htmlAttributes: new { @class = "control-label col-md-2" })*@
+
+            @if (TempData["Control"] != null)
+    {<div class="alert alert-danger" role="alert">
+            <i class="fas fa-exclamation-triangle" @*style="font-size: 48px;"*@></i>&nbsp;&nbsp;
+            <b>@ViewBag.KayıtHata</b>
+
+        </div>
+
+
+}
+
+
+
+        @*@Html.LabelFor(model => model.BookCount, htmlAttributes: new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.BookCount, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.BookCount, "", new { @class = "text-danger" })

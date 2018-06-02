@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using KiDSisMvcWebUI.Entity;
 using KiDSisMvcWebUI.Models;
 
@@ -18,6 +19,8 @@ namespace KiDSisMvcWebUI.Controllers
         // GET: BooksNeeds
         public ActionResult Index()
         {
+           
+
             List<Book> bk = new List<Book>();
             bk = db.Books.ToList();
             List<BooksNeed> bkn = db.BooksNeeds.ToList();
@@ -33,12 +36,12 @@ namespace KiDSisMvcWebUI.Controllers
                 wm.UserId = item.UserId;
                 //wm.BookId=
                 wm.Name = bk.FirstOrDefault(x => x.Id == item.BookId).Name;
-                wm.Name = item.Name;
+                //wm.Name = item.Name;
                 wm.DemandDate = item.DemandDate;
                 //wm.BookCode= bk.FirstOrDefault(x => x.Id == item.BookId).Code;
                 wm.Class = bk.FirstOrDefault(x => x.Id == item.BookId).Class;
                 wm.BookCategory = bk.FirstOrDefault(x => x.Id == item.BookId).BookType;
-               
+
                 wm.BookCount = item.BookCount;
                 //bkn.FirstOrDefault(x => x.Id == item.Id).BookCount;
                 /* wm.SchoolsCategory =*/ /*sc.FirstOrDefault(x => x.Id == item.Id).Category;*/
@@ -83,12 +86,14 @@ namespace KiDSisMvcWebUI.Controllers
 
         // GET: BooksNeeds/Create
         public ActionResult Create()
-        {
+        {        
+
+
             //veri tabanındaki bir sütunu listye atıyor.
             List<string> SchoolCategoryList = db.SchoolsCategorys.Select(x => x.Category).ToList();
 
             // ViewBag.ShoolListViewBag = SchoolCategoryList;
-            ViewBag.ShoolListViewBag= Session["SchoolType"].ToString();
+            ViewBag.ShoolListViewBag = Session["SchoolType"].ToString();
             //wm.BookCategory = Session["SchoolType"].ToString();
 
 
@@ -98,12 +103,12 @@ namespace KiDSisMvcWebUI.Controllers
             //List<string> BookClassList = db.Books.Where(x=>x.BookType== Session["SchoolType"].ToString()).Select(x => x.Class).ToList();
             string schooltype = Session["SchoolType"].ToString();
             // List<string> BookClassList = db.Books.Select(x => x.Class).ToList();
-            List<string> BookClassList = db.Books.Where(x=>x.BookType== schooltype).Select(x => x.Class).Distinct().ToList();
+            List<string> BookClassList = db.Books.Where(x => x.BookType == schooltype).Select(x => x.Class).Distinct().ToList();
 
             ViewBag.BookClassListViewBag = BookClassList;
-           
 
-          //  List<string> BookNameList = db.Books.Select(x => x.Class== BookClassList).ToList();
+
+            //  List<string> BookNameList = db.Books.Select(x => x.Class== BookClassList).ToList();
 
 
             return View();
@@ -118,25 +123,41 @@ namespace KiDSisMvcWebUI.Controllers
         {
             //aranan kod süper satır. isimleri karşılaştırıp id yi ekliyor.
             booksNeed.BookId = db.Books.FirstOrDefault(x => x.Name == booksNeed.Name).Id;
-            
+
             //booksNeed.BookId = Convert.ToInt32(booksNeed.Name);
 
             booksNeed.UserId = Session["ManagerId"].ToString();
-            
+
             booksNeed.DemandDate = DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss");
             //DateTime.Now.ToString("dd-MM-yyyyThh:mm:sszzz");
 
             //DateTime.Now.ToString("yyyy-MM-ddThh:mm:sszzz");
 
             //sorular.MangerId = Convert.ToInt32(Session["MangerId"]);
-            if (ModelState.IsValid)
+            ViewBag.KayıtHata = "";
+            BooksNeed bookNeedControl = new BooksNeed();
+            bookNeedControl = db.BooksNeeds.FirstOrDefault(x => x.BookId == booksNeed.BookId);
+            if (bookNeedControl != null)
             {
-                db.BooksNeeds.Add(booksNeed);
-                //db.Entry(booksNeed).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                TempData["Control"] = "1";
+                return RedirectToAction("Edit", new RouteValueDictionary(
+               new { controller = "BooksNeeds", action = "Edit", Id = booksNeed.BookId }));
+
             }
-            return View(booksNeed);
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    db.BooksNeeds.Add(booksNeed);
+                    //db.Entry(booksNeed).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return View(booksNeed);
+
+            }
+
+
 
             //BooksNeed bkcn = new BooksNeed();
             //bkcn.BookCount = booksNeed.BookCount;
@@ -162,11 +183,18 @@ namespace KiDSisMvcWebUI.Controllers
         // GET: BooksNeeds/Edit/5
         public ActionResult Edit(int? id)
         {
+            ViewBag.KayıtHata = "";
+
+            if (TempData["Control"] != null)
+            {
+                ViewBag.KayıtHata = " Bu Kitabı daha önce eklediniz. Lütfen kitap sayısını güncelleyiniz!";
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BooksNeed booksNeed = db.BooksNeeds.Find(id);
+            BooksNeed booksNeed = db.BooksNeeds.FirstOrDefault(x=>x.BookId==id);
             if (booksNeed == null)
             {
                 return HttpNotFound();
@@ -183,7 +211,9 @@ namespace KiDSisMvcWebUI.Controllers
         {
             if (ModelState.IsValid)
             {
+                booksNeed.BookId = booksNeed.BookId;
                 db.Entry(booksNeed).State = EntityState.Modified;
+                booksNeed.DemandDate = DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss");
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
