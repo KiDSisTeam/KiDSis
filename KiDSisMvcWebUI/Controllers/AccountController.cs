@@ -90,6 +90,7 @@ namespace KiDSisMvcWebUI.Controllers
                     //kişinin ıd sini sessiona attık
                     Session["ManagerId"] = user.Id.ToString();
                     Session["SchoolType"] = user.SchoolType;
+                    Session["SchoolName"] = user.UserName;
 
                     // Kişinin rolüne göre yönlendirme
                     if (userManager.IsInRole(user.Id, "Admin"))

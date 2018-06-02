@@ -18,10 +18,7 @@ namespace KiDSisMvcWebUI.Controllers
 
         // GET: Booksurplus
         public ActionResult Index()
-        {
-            
-
-
+        {    
             List<Book> bk = new List<Book>();
             bk = db.Books.ToList();
             List<BooksNeed> bkn = db.BooksNeeds.ToList();
@@ -49,15 +46,50 @@ namespace KiDSisMvcWebUI.Controllers
                 wm.SchoolsCategory = db.Books.FirstOrDefault(x => x.Id == item.BookId).BookType;
                 wmlist.Add(wm);
             }
-
             string managerId = (Session["ManagerId"]).ToString();
             return View(wmlist.Where(x => x.UserId.ToString() == managerId));
             //return View(wmlist);
-
-
-
-
         }
+
+
+
+        public ActionResult Index2()
+        {
+            List<Book> bk = new List<Book>();
+            bk = db.Books.ToList();
+            List<BooksNeed> bkn = db.BooksNeeds.ToList();
+            List<SchoolsCategory> sc = db.SchoolsCategorys.ToList();
+            List<BooksCategory> _booksCategory = db.BooksCategorys.ToList();
+            List<BooksStock> bstk = db.BooksStocks.ToList();
+            List<Booksurplus> bksrp = db.Booksurplus.ToList();
+
+            List<ShoolBooksurplusViewModel> wmlist = new List<ShoolBooksurplusViewModel>();
+
+            foreach (var item in bksrp)
+            {// bu model foreach içinde eklenmeli
+                ShoolBooksurplusViewModel wm = new ShoolBooksurplusViewModel();
+                wm.Id = item.Id;
+                wm.SchoolName = item.SchoolName;
+                wm.UserId = item.UserId;
+                wm.Name = bk.FirstOrDefault(x => x.Id == item.BookId).Name;
+                wm.DemandDate = item.DemandDate;
+                //wm.Name = item.Name;
+                wm.Class = bk.FirstOrDefault(x => x.Id == item.BookId).Class;
+                //wm.BookCategory = bk.FirstOrDefault(x => x.Id == item.BookId).BookType;
+                wm.BookCount = item.BookCount;
+
+                //bkn.FirstOrDefault(x => x.Id == item.Id).BookCount;
+                /* wm.SchoolsCategory =*/ /*sc.FirstOrDefault(x => x.Id == item.Id).Category;*/
+                wm.SchoolsCategory = db.Books.FirstOrDefault(x => x.Id == item.BookId).BookType;
+                wmlist.Add(wm);
+            }
+            string managerId = (Session["ManagerId"]).ToString();
+            //return View(wmlist.Where(x => x.UserId.ToString() == managerId));
+            return View(wmlist);
+        }
+
+
+
 
         // GET: Booksurplus/Details/5
         public ActionResult Details(int? id)
@@ -113,6 +145,7 @@ namespace KiDSisMvcWebUI.Controllers
             booksurplus.BookId = db.Books.FirstOrDefault(x => x.Name == booksurplus.Name).Id;
 
             booksurplus.UserId = Session["ManagerId"].ToString();
+            booksurplus.SchoolName = Session["SchoolName"].ToString();
             booksurplus.DemandDate = DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss");
 
             ViewBag.KayıtHata = "";

@@ -32,6 +32,9 @@
                 Okul türü
             </th>*@
         <th>
+            Sıra No
+        </th>
+        <th>
             Sınıf
 
         </th>
@@ -46,10 +49,15 @@
         </th>
         <th>İşlemler</th>
     </tr>
-
+    @{ int rowNo = 0; } 
     @foreach (var item in Model)
     {
         <tr>
+
+            <td>
+
+                @(rowNo += 1)
+            </td>
             @*<td>
                     @item.SchoolsCategory
                 </td>*@

@@ -23,8 +23,11 @@
     <table class="table table-bordered">
         <tr style="color: white;" class="bg-info">
             @*<th>
-                    Okul türü
-                </th>*@
+                Okul türü
+            </th>*@
+            <th>
+                Sıra No
+            </th>
             <th>
                 Sınıf
 
@@ -38,40 +41,43 @@
             <th>İşlem Tarihi </th>
             <th>İşlemler</th>
         </tr>
-
+        @{ int rowNo = 0; } 
         @foreach (var item in Model)
-        {
-            <tr>
-                @*<td>
-                        @item.SchoolsCategory
-                    </td>*@
-                <td>
-                    @item.Class
+    {
+        <tr>
+            @*<td>
+                @item.SchoolsCategory
+            </td>*@
+            <td>
+                @(rowNo += 1)
+            </td>
+            <td>
+                @item.Class
 
 
 
-                    @*@Html.DisplayFor(modelItem => item.BookCount)*@
-                </td>
-                <td>
-                    @item.Name
-                </td>
-                <td>
-                    @item.BookCount
-                </td>
-                <td>
-                    @item.DemandDate
-                </td>
+                @*@Html.DisplayFor(modelItem => item.BookCount)*@
+            </td>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                @item.BookCount
+            </td>
+            <td>
+                @item.DemandDate
+            </td>
 
 
 
 
-                <td>
-                    @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-info   btn-sm" })
-                    @Html.ActionLink("Detay", "Details", new { id = item.Id }, new { @class = "btn btn-success   btn-sm" })
-                    @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger   btn-sm" })
-                </td>
-            </tr>
-        }
+            <td>
+                @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-info   btn-sm" })
+                @Html.ActionLink("Detay", "Details", new { id = item.Id }, new { @class = "btn btn-success   btn-sm" })
+                @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger   btn-sm" })
+            </td>
+        </tr>
+}
 
     </table>
 </div>

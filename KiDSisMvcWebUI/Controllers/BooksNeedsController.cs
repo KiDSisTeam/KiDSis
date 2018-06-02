@@ -69,6 +69,65 @@ namespace KiDSisMvcWebUI.Controllers
             // return View(wmlist);
         }
 
+
+        public ActionResult Index2()
+        {
+
+
+            List<Book> bk = new List<Book>();
+            bk = db.Books.ToList();
+            List<BooksNeed> bkn = db.BooksNeeds.ToList();
+            List<SchoolsCategory> sc = db.SchoolsCategorys.ToList();
+            List<BooksCategory> _booksCategory = db.BooksCategorys.ToList();
+
+            List<ShoolBooksNeedsViewModel> wmlist = new List<ShoolBooksNeedsViewModel>();
+
+            foreach (var item in bkn)
+            {// bu model foreach içinde eklenmeli
+                ShoolBooksNeedsViewModel wm = new ShoolBooksNeedsViewModel();
+                wm.Id = item.Id;
+                wm.UserId = item.UserId;
+                //wm.BookId=
+                wm.Name = bk.FirstOrDefault(x => x.Id == item.BookId).Name;
+                //wm.Name = item.Name;
+                wm.DemandDate = item.DemandDate;
+                wm.ShoolName = item.ShoolName;
+                //wm.BookCode= bk.FirstOrDefault(x => x.Id == item.BookId).Code;
+                wm.Class = bk.FirstOrDefault(x => x.Id == item.BookId).Class;
+                wm.BookCategory = bk.FirstOrDefault(x => x.Id == item.BookId).BookType;
+
+                wm.BookCount = item.BookCount;
+                //bkn.FirstOrDefault(x => x.Id == item.Id).BookCount;
+                /* wm.SchoolsCategory =*/ /*sc.FirstOrDefault(x => x.Id == item.Id).Category;*/
+                wm.SchoolsCategory = db.Books.FirstOrDefault(x => x.Id == item.BookId).BookType;
+                wmlist.Add(wm);
+
+
+            }
+
+
+            //wm.Id = bk[0].Id;
+            //wm.Name = bk[0].Name;
+            //wm.Class = bk[0].Class;
+            ////wm.BookCount = bkn[0].BookCount;
+            //wm.Category = sc[0].Category;
+            //wm.Id = bk[0].Id;
+            //wm.Name = bk[0].Name;
+            //wm.Class = bk[0].Class;
+            ////wm.BookCount = bkn[0].BookCount;
+            //wm.BookCategory = sc[0].Category;
+            //wmlist.Add(wm);
+            //kişinin kendi eklediği kayıtları görmesi sağlandı
+            string managerId = (Session["ManagerId"]).ToString();
+           // return View(wmlist.Where(x => x.UserId.ToString() == managerId));
+             return View(wmlist);
+        }
+
+
+
+
+
+
         // GET: BooksNeeds/Details/5
         public ActionResult Details(int? id)
         {
@@ -125,7 +184,7 @@ namespace KiDSisMvcWebUI.Controllers
             booksNeed.BookId = db.Books.FirstOrDefault(x => x.Name == booksNeed.Name).Id;
 
             //booksNeed.BookId = Convert.ToInt32(booksNeed.Name);
-
+            booksNeed.ShoolName = Session["SchoolName"].ToString();
             booksNeed.UserId = Session["ManagerId"].ToString();
 
             booksNeed.DemandDate = DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss");

@@ -17,6 +17,9 @@
     <table class="table table-bordered">
         <tr style="color: white;" class="bg-info">
             <th>
+                Sıra No
+            </th>
+            <th>
                 Okul türü
             </th>
             <th>
@@ -34,10 +37,13 @@
             </th>
             <th>İşlemler</th>
         </tr>
-
+        @{ int rowNo = 0; } 
         @foreach (var item in Model)
     {
         <tr>
+            <td>
+                @(rowNo += 1)
+            </td>
             <td>
                 @item.SchoolsCategory
             </td>
