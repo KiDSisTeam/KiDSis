@@ -253,7 +253,7 @@ namespace KiDSisMvcWebUI.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BooksNeed booksNeed = db.BooksNeeds.FirstOrDefault(x=>x.BookId==id);
+            BooksNeed booksNeed = db.BooksNeeds.FirstOrDefault(x=>x.Id==id);
             if (booksNeed == null)
             {
                 return HttpNotFound();
