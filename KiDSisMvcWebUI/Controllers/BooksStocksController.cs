@@ -60,7 +60,8 @@ namespace KiDSisMvcWebUI.Controllers
             List<BooksNeed> bkn = db.BooksNeeds.ToList();
             List<SchoolsCategory> sc = db.SchoolsCategorys.ToList();
             List<BooksCategory> _booksCategory = db.BooksCategorys.ToList();
-            List<BooksStock> bstk = db.BooksStocks.ToList();
+            List<BooksStock> bstk = new List<BooksStock>();
+             bstk = db.BooksStocks.ToList();
 
             List<ShoolBooksStocksViewModel> wmlist = new List<ShoolBooksStocksViewModel>();
 
@@ -133,7 +134,7 @@ namespace KiDSisMvcWebUI.Controllers
         {
             //aranan kod süper satır. isimleri karşılaştırıp id yi ekliyor.
             booksStock.BookId = db.Books.FirstOrDefault(x => x.Name == booksStock.Name).Id;
-            booksStock.DemandDate = DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss");            
+            booksStock.DemandDate = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");            
             booksStock.UserId = Session["ManagerId"].ToString();
             if (ModelState.IsValid)
             {
@@ -178,10 +179,11 @@ namespace KiDSisMvcWebUI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,BookCount")] BooksStock booksStock)
+        public ActionResult Edit([Bind(Include = "Id,BookCount,BookId,DemandDate,Name,UserId")] BooksStock booksStock)
         {
             if (ModelState.IsValid)
             {
+                booksStock.DemandDate = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
                 db.Entry(booksStock).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

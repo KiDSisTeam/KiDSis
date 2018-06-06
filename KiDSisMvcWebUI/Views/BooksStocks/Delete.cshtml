@@ -15,19 +15,24 @@
 	<div style="text-align:center;">
 		<div class="alert alert-danger alert-dismissible mt-2">
 			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-			<i class="fas fa-exclamation-triangle"></i>
+			<i class="fa fa-exclamation-triangle"></i>
 			<strong>Dikkat! </strong>Kaydı silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.
 		</div>
 
 		<table class="table">
 			<thead>
-				<tr>
-					<th>Kitap Sayısı</th>
-					<th>İşlemler</th>
-				</tr>
+                <tr class="bg-info" style="color:white">
+                    <th>Kitap Adı</th>
+                    <th>Kitap Sayısı</th>
+                    <th>İşlemler</th>
+
+                </tr>
 			</thead>
 			<tbody>
 				<tr>
+                    <td>
+                        @Html.DisplayFor(model=>model.Name)
+                    </td>
 					<td>
 						@Html.DisplayFor(model => model.BookCount)
 					</td>

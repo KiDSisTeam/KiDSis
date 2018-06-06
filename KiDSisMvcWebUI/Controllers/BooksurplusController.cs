@@ -14,6 +14,7 @@ namespace KiDSisMvcWebUI.Controllers
 {
     public class BooksurplusController : Controller
     {
+        private const string Format = "dd/MM/yyyy HH:mm:ss";
         private DataContext db = new DataContext();
 
         // GET: Booksurplus
@@ -146,7 +147,7 @@ namespace KiDSisMvcWebUI.Controllers
 
             booksurplus.UserId = Session["ManagerId"].ToString();
             booksurplus.SchoolName = Session["SchoolName"].ToString();
-            booksurplus.DemandDate = DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss");
+            booksurplus.DemandDate = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
 
             ViewBag.KayıtHata = "";
             Booksurplus booksurplusControl = new Booksurplus();
@@ -208,7 +209,7 @@ namespace KiDSisMvcWebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                booksurplus.DemandDate = DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss");
+                booksurplus.DemandDate = DateTime.Now.ToString(Format);
                 db.Entry(booksurplus).State = EntityState.Modified;
                // db.Booksurplus.Add(booksurplus);
                 db.SaveChanges();

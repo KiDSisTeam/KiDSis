@@ -19,7 +19,7 @@ namespace KiDSisMvcWebUI.Controllers
         // GET: BooksNeeds
         public ActionResult Index()
         {
-           
+
 
             List<Book> bk = new List<Book>();
             bk = db.Books.ToList();
@@ -119,8 +119,8 @@ namespace KiDSisMvcWebUI.Controllers
             //wmlist.Add(wm);
             //kişinin kendi eklediği kayıtları görmesi sağlandı
             string managerId = (Session["ManagerId"]).ToString();
-           // return View(wmlist.Where(x => x.UserId.ToString() == managerId));
-             return View(wmlist);
+            // return View(wmlist.Where(x => x.UserId.ToString() == managerId));
+            return View(wmlist);
         }
 
 
@@ -145,7 +145,7 @@ namespace KiDSisMvcWebUI.Controllers
 
         // GET: BooksNeeds/Create
         public ActionResult Create()
-        {        
+        {
 
 
             //veri tabanındaki bir sütunu listye atıyor.
@@ -182,12 +182,12 @@ namespace KiDSisMvcWebUI.Controllers
         {
             //aranan kod süper satır. isimleri karşılaştırıp id yi ekliyor.
             booksNeed.BookId = db.Books.FirstOrDefault(x => x.Name == booksNeed.Name).Id;
-
+            //booksNeed.Id=db.BooksNeeds.FirstOrDefault(x => x.BookId == booksNeed.BookId).Id;
             //booksNeed.BookId = Convert.ToInt32(booksNeed.Name);
             booksNeed.ShoolName = Session["SchoolName"].ToString();
             booksNeed.UserId = Session["ManagerId"].ToString();
 
-            booksNeed.DemandDate = DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss");
+            booksNeed.DemandDate = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
             //DateTime.Now.ToString("dd-MM-yyyyThh:mm:sszzz");
 
             //DateTime.Now.ToString("yyyy-MM-ddThh:mm:sszzz");
@@ -200,7 +200,7 @@ namespace KiDSisMvcWebUI.Controllers
             {
                 TempData["Control"] = "1";
                 return RedirectToAction("Edit", new RouteValueDictionary(
-               new { controller = "BooksNeeds", action = "Edit", Id = booksNeed.BookId }));
+               new { controller = "BooksNeeds", action = "Edit", Id = booksNeed.Id }));
 
             }
             else
@@ -253,7 +253,12 @@ namespace KiDSisMvcWebUI.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BooksNeed booksNeed = db.BooksNeeds.FirstOrDefault(x=>x.Id==id);
+           
+            BooksNeed booksNeed = db.BooksNeeds.Find(id);
+
+
+
+
             if (booksNeed == null)
             {
                 return HttpNotFound();
@@ -266,13 +271,20 @@ namespace KiDSisMvcWebUI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,BookCount")] BooksNeed booksNeed)
+        public ActionResult Edit([Bind(Include = "Id,BookCount,Name,BookId,DemandDate,ShoolName,UserId")] BooksNeed booksNeed)
         {
+            //booksNeed.Id = booksNeed.Id;
+            //booksNeed.BookId = db.BooksNeeds.FirstOrDefault(x => x.Id == booksNeed.Id).BookId;
+            //booksNeed.Name = db.BooksNeeds.FirstOrDefault(x => x.Id == booksNeed.Id).Name;
+            //booksNeed.ShoolName = Session["SchoolName"].ToString();
+            //booksNeed.UserId = Session["ManagerId"].ToString();
+            //booksNeed.DemandDate = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+            //booksNeed.BookCount = booksNeed.BookCount;
+           
             if (ModelState.IsValid)
             {
-                booksNeed.BookId = booksNeed.BookId;
+                booksNeed.DemandDate = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
                 db.Entry(booksNeed).State = EntityState.Modified;
-                booksNeed.DemandDate = DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss");
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
