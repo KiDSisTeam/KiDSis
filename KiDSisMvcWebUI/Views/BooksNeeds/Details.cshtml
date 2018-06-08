@@ -4,12 +4,14 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout-User.cshtml";
 }
+
+
 <ul class="list-group ">
     <li class="list-group-item bg-info" style="text-align:center">
         <h2 style="color:white">Detay</h2>
     </li>
 </ul>
-<div>
+<div >
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -26,4 +28,5 @@
 <p>
     @Html.ActionLink("Düzenle", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Geri Dön", "Index")
+    
 </p>

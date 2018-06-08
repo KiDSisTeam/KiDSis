@@ -26,7 +26,7 @@ namespace KiDSisMvcWebUI.Controllers
             List<BooksNeed> bkn = db.BooksNeeds.ToList();
             List<SchoolsCategory> sc = db.SchoolsCategorys.ToList();
             List<BooksCategory> _booksCategory = db.BooksCategorys.ToList();
-
+            List<BooksStock> bkstk = db.BooksStocks.ToList();
             List<ShoolBooksNeedsViewModel> wmlist = new List<ShoolBooksNeedsViewModel>();
 
             foreach (var item in bkn)
@@ -41,6 +41,15 @@ namespace KiDSisMvcWebUI.Controllers
                 //wm.BookCode= bk.FirstOrDefault(x => x.Id == item.BookId).Code;
                 wm.Class = bk.FirstOrDefault(x => x.Id == item.BookId).Class;
                 wm.BookCategory = bk.FirstOrDefault(x => x.Id == item.BookId).BookType;
+                // stoktaki kitap sayısını bulmak için çalışıldı.
+                if ((bkstk.FirstOrDefault(x => x.BookId == item.BookId)) == null)
+                { wm.BooksStockBookCount = 0;
+                    
+                }
+                else
+                {wm.BooksStockBookCount = bkstk.FirstOrDefault(x => x.BookId == item.BookId).BookCount;
+                   
+                }
 
                 wm.BookCount = item.BookCount;
                 //bkn.FirstOrDefault(x => x.Id == item.Id).BookCount;

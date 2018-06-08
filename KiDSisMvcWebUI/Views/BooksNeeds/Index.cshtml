@@ -18,13 +18,12 @@
 
 <p>
     @Html.ActionLink("Yeni Talep", "Create", null, new { @class = "btn btn-success   btn-sm mt-2" })
+
+
+
+
+
 </p>
-
-
-
-
-
-
 
 <table class="table table-bordered">
     <tr style="color: white;" class="bg-info">
@@ -44,12 +43,13 @@
         <th>
             Kitap Sayısı
         </th>
+        <th>Depodaki Kitap Sayısı</th>
         <th>
             İşlem Tarihi
         </th>
         <th>İşlemler</th>
     </tr>
-    @{ int rowNo = 0; } 
+    @{ int rowNo = 0; }
     @foreach (var item in Model)
     {
         <tr>
@@ -73,8 +73,20 @@
             </td>
             <td>
                 @item.BookCount
-            </td>
 
+            </td>
+            <td>
+                @item.BooksStockBookCount
+                @*@if (item.BooksStockBookCount != 0)
+                    {
+                        @item.BooksStockBookCount
+                    }
+                    else
+                    {
+                          @item.BooksStockBookCount
+                    }*@
+
+            </td>
             <td>
                 @item.DemandDate
             </td>
@@ -90,3 +102,5 @@
     }
 
 </table>
+
+

@@ -20,6 +20,7 @@ namespace KiDSisMvcWebUI.Models
         public string UserId { get; set; }
         public string DemandDate { get; set; }
         public string ShoolName { get; set; }
+        public int BooksStockBookCount { get; set; }
 
 
 
