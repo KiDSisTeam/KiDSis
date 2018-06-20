@@ -90,6 +90,25 @@ namespace KiDSisMvcWebUI.Controllers
             return View(booksDelivery);
         }
 
+        // GET: BooksDeliveries/Details/5
+        public ActionResult BooksDeliveriesPrint(/*int? id*/)
+        {
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+            //BooksDelivery booksDelivery = db.BooksDeliverys.Find(id);
+            //if (booksDelivery == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            //return View(booksDelivery);
+            return View();
+        }
+
+
+
+
         // GET: BooksDeliveries/Delete/5
         public ActionResult Delete(int? id)
         {

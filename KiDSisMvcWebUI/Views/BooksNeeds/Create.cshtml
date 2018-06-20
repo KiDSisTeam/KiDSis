@@ -5,6 +5,7 @@
     Layout = "~/Views/Shared/_Layout-User.cshtml";
 
 }
+
 <ul class="list-group ">
     <li class="list-group-item bg-info" style="text-align:center">
         <h2 style="color:white">Yeni Talep</h2>
@@ -13,169 +14,145 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-<div class="form-horizontal">
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @*@Html.HiddenFor(model => model.Id)*@
-    @*
-        <div class="form-group">
-            <label class="control-label col-md-2">
-                Okul Türü
-            </label>
-            <div>
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @*@Html.HiddenFor(model => model.Id)*@
+        @*
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    Okul Türü
+                </label>
+                <div>
 
-                <select name="Category" class="form-control">
-
-
-                    <option> @ViewBag.ShoolListViewBag</option>*@
-
-    @*@foreach (var item in ViewBag.ShoolListViewBag)
-        {
-            <option> @item</option>
-        }*@@*
-        </select>
-        @Html.ValidationMessageFor(model => model.SchoolsCategory, "", new { @class = "text-danger" })*@
-
-        @* <select class="col-md-10 form-control" style="margin-left: 1%;" id="Category" name="Category"></select>*@
-        @* </div>
-            </div>*@
+                    <select name="Category" class="form-control">
 
 
+                        <option> @ViewBag.ShoolListViewBag</option>*@
 
-        <div class="form-group">
-            <label class="control-label col-md-2">
-                Kitap Sınıfı
-            </label>
-            <div>
-                @*
-                    <select class="col-md-10 form-control" style="margin-left: 1%;" id="ClassProperty" name="ClassProperty"></select>*@
+        @*@foreach (var item in ViewBag.ShoolListViewBag)
+            {
+                <option> @item</option>
+            }*@@*
+            </select>
+            @Html.ValidationMessageFor(model => model.SchoolsCategory, "", new { @class = "text-danger" })*@
 
-
-                <select name="Class" class="form-control">
-                    @foreach (var item in ViewBag.BookClassListViewBag)
-                    {
-                        <option> @item</option>
-                    }
-                </select>
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            @* <select class="col-md-10 form-control" style="margin-left: 1%;" id="Category" name="Category"></select>*@
+            @* </div>
+                </div>*@
 
 
 
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    Kitap Sınıfı
+                </label>
+                <div>
+
+                    @*<select class="col-md-10 form-control" style="margin-left: 1%;" id="ClassP" name="ClassP"></select>*@
 
 
+                    <select id="Class" name="Class" class="form-control">
+                            @foreach (var item in ViewBag.BookClassListViewBag)
+                            {
+                                <option> @item</option>
+                            }
+                        </select>
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+
+
+
+
+
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-md-2">
-                Kitap Adı
-            </label>
-            <div>
-                @*
-                    <select class="col-md-10 form-control" style="margin-left: 1%;" id="NameProperty" name="NameProperty"></select>*@
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    Kitap Adı
+                </label>
+                <div>
 
-                <select name="Name" class="form-control">
+                    <select class="col-md-10 form-control" style="margin-left: 1%;" id="NameProperty" name="Name"></select>
 
+                    @*<select name="Name" class="form-control">
 
 
-                    @foreach (var item in ViewBag.BookNameListViewBag)
-                    {
-                        <option value="@item.Name"> @item.Name</option>
-                    }
-                </select>
-                @Html.ValidationMessageFor(model => model.BookCount, "", new { @class = "text-danger" })
+
+                            @foreach (var item in ViewBag.BookNameListViewBag)
+                            {
+                                <option value="@item.Name"> @item.Name</option>
+                            }
+                        </select>
+                        @Html.ValidationMessageFor(model => model.BookCount, "", new { @class = "text-danger" })*@
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-md-2">
-                Kitap Sayısı
-            </label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.BookCount, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Class, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    Kitap Sayısı
+                </label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.BookCount, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Class, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Oluştur" class="btn btn-outline-info" />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Oluştur" class="btn btn-outline-info" />
+                </div>
             </div>
+
+
         </div>
-    </div>
     }
 <div>
     @Html.ActionLink("Geri Dön", "Index")
 </div>
 
-@*
-    <script src="~/Scripts/jquery-3.3.1.js"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-               $.getJSON('/BooksNeeds/SchoolsCategories', null, function (data) {
-                $.each(data, function () {
-                    $('#Category').append('<option value=' +
-                        this.Category + '>' + this.Category + '</option>');
-                });
-                $.getJSON('/BooksNeeds/GetClass', { BookType: $('#Category').val() }, function (data) {
-                    //debugger
-                    //var test = document.getElementById(Category);
-                    //var e = document.getElementById("Category");
-                   /* var strUser = e.options[e.se;lectedIndex].value*/
-                   // console.log(strUser);
-                    $.each(data, function () {
-                        $('#ClassProperty').append('<optionv selected value=' +
-                            this.Class + '>' + this.Class + '</option>');
-                    });
-                });
-
-                $.getJSON('/BooksNeeds/GetBookName', { Class: $('#ClassProperty').val() }, function (data) {
-                    //debugger
-                    //var e1 = document.getElementById("ClassProperty");
-                    //var strUser1 = e1.options[e1.selectedIndex].value;
-                    //console.log(strUser1);
-                    $.each(data, function () {
-                        $('#NameProperty').append('<option value=' +
-                            this.Name + '>' + this.Name + '</option>');
-                    });
-                })
-                    .fail(function (jqXHR, textStatus, errorThrown) {
-                    alert('Error getting products!');
-                    });
 
 
-            }).fail(function (jqXHR, textStatus, errorThrown) {
-                alert('Error getting categories!');
-                });
 
-            //debugger
-            // Dropdown list change event.
-            $('#Category').change(function () {
-                $('#ClassProperty option').remove();
-                $.getJSON('/BooksNeeds/GetClass', { BookType: $('#Category').val() }, function (data) {
-                    $.each(data, function () {
-                        $('#ClassProperty').append('<option value=' +
-                            this.Class + '>' + this.Class + '</option>');
-                    });
-                }).fail(function (jqXHR, textStatus, errorThrown) {
-                    alert('Error getting products!');
-                });
+
+@*<script src="~/Scripts/jquery-3.3.1.js"></script>*@
+
+@*<script src="https://code.jquery.com/jquery-3.3.1.js"
+    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>*@
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        //Get a list of categories and a list of products of the first category.
+        //$.getJSON('/BooksNeeds/SchoolsCategories', null, function (data) {
+        //    $.each(data, function () {
+        //        $('#ClassP').append('<option value=' +
+        //            this.intCatID + '>' + this.data + '</option>');
+
+        //    });
+
+
+        $.getJSON('/BooksNeeds/GetBookName', { Class: $('#Class').val() }, function (data) {
+            $.each(data, function () {
+                $('#NameProperty').append('<option value=' +
+                    this.Id + '>' + this.Name + '</option>');
             });
-            //debugger
-            // Kitap İsmi Buradan Getirilecek
-            $('#ClassProperty').change(function () {
-                //debugger
-                $('#NameProperty option').remove();
-                $.getJSON('/BooksNeeds/GetBookName', { Class: $('#ClassProperty').val() }, function (data) {
-                    $.each(data, function () {
-                        $('#NameProperty').append('<option value=' +
-                            this.Name + '>' + this.Name + '</option>');
-                    });
-                }).fail(function (jqXHR, textStatus, errorThrown) {
-                    alert('Error getting products!');
-                });
-            });
-
-
-
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            alert('Error getting products!');
         });
+        //}).fail(function (jqXHR, textStatus, errorThrown) {
+        //    alert('Error getting categories!');
+        //});
 
-    </script>*@
+        // Dropdown list change event.
+        $('#Class').change(function () {
+            $('#NameProperty option').remove();
+            $.getJSON('/BooksNeeds/GetBookName', { Class: $('#Class').val() }, function (data) {
+                $.each(data, function () {
+                    $('#NameProperty').append('<option value=' +
+                        this.Id + '>' + this.Name + '</option>');
+                });
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                alert('Error getting products!');
+            });
+        });
+    });
+
+</script>

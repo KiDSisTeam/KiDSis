@@ -10,11 +10,7 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="~/Css/Ozel.css">
-    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>*@
-    <script src="~/Scripts/jquery-3.3.1.slim.min.js"></script>
-    @*<script src="~/Scripts/jquery-3.2.1.slim.min.js"></script>*@
-    @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>   
     <script src="~/Scripts/bootstrap.min.js"></script>  
     @*<script src="~/Scripts/modernizr-2.6.2.js"></script>*@
     <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
@@ -44,21 +40,26 @@
                     </li>
                     <li class="nav-item">
                         <a style="color:white;" href=/BooksNeeds/Index2
-                           class="nav-link btn btn-info"><i class="fa fa-calendar-plus-o"></i> Talepler</></a>
+                           class="nav-link btn btn-info"><i class="fa fa-calendar-plus-o"></i>Talepler</></a>
                     </li>
                     <li class="nav-item">
                         <a style="color:white;" href=/Booksurplus/Index2
-                           class="nav-link btn btn-info"><i class="fa fa-book"></i> Fazlalıklar</></a>
+                           class="nav-link btn btn-info"><i class="fa fa-book"></i>Fazlalıklar</></a>
                     </li>
                     <li class="nav-item">
-                        <a style="color:white;" href="/Help/tutanak" class="nav-link btn btn-info"><i class="fa fa-book"></i> Tutanak</></a>
+                        <a style="color:white;" href="/BooksDeliveries/Index" class="nav-link btn btn-info"><i class="fa fa-paperclip"></i> Kitap Teslim</a>
                     </li>
-                    <li class="nav-item">
-                        <a style="color:white;" href="/Help/reports" class="nav-link btn btn-info"><i class="fa fa-paperclip"></i> Raporlar</a>
-                    </li>
-                    <li class="nav-item">
-                        <a style="color:white;" href="/School/SchoolContact" class="nav-link btn btn-info"><i class="fa fa-graduation-cap"></i> Okullar</a>
-                    </li>
+
+
+                    @*<li class="nav-item">
+            <a style="color:white;" href="/Help/tutanak" class="nav-link btn btn-info"><i class="fa fa-book"></i> Tutanak</></a>
+        </li>
+        <li class="nav-item">
+            <a style="color:white;" href="/Help/reports" class="nav-link btn btn-info"><i class="fa fa-paperclip"></i> Raporlar</a>
+        </li>
+        <li class="nav-item">
+            <a style="color:white;" href="/School/SchoolContact" class="nav-link btn btn-info"><i class="fa fa-graduation-cap"></i> Okullar</a>
+        </li>*@
 
                     <li class="nav-item">
                         <a style="color:white;" href="/Manager/Index" class="nav-link btn btn-info"><i class="fa fa-cogs"></i> Yönetici İşlemleri</a>
@@ -80,11 +81,11 @@
           
                 
                     <!-- Yönetici Giriş Yapılmış Hali -->
-
+          
                     <label style="color: white;" class="ml-2 mt-1 mr-2"><strong>
     <i class="fa fa-user-circle"></i>@User.Identity.Name</strong></label>
                     <a href="/Account/Logout">Çıkış Yap</a>
-               
+              
                
                     @*<span >
                         <label style="color: white;" class="ml-2 mt-1 "><strong><i class="fa fa-user-circle"></i> </strong></label>

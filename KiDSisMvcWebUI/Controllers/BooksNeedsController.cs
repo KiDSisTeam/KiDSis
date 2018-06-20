@@ -43,12 +43,14 @@ namespace KiDSisMvcWebUI.Controllers
                 wm.BookCategory = bk.FirstOrDefault(x => x.Id == item.BookId).BookType;
                 // stoktaki kitap sayısını bulmak için çalışıldı.
                 if ((bkstk.FirstOrDefault(x => x.BookId == item.BookId)) == null)
-                { wm.BooksStockBookCount = 0;
-                    
+                {
+                    wm.BooksStockBookCount = 0;
+
                 }
                 else
-                {wm.BooksStockBookCount = bkstk.FirstOrDefault(x => x.BookId == item.BookId).BookCount;
-                   
+                {
+                    wm.BooksStockBookCount = bkstk.FirstOrDefault(x => x.BookId == item.BookId).BookCount;
+
                 }
 
                 wm.BookCount = item.BookCount;
@@ -190,7 +192,8 @@ namespace KiDSisMvcWebUI.Controllers
         public ActionResult Create([Bind(Include = "Id,BookCount,BookId,UserId,Name,Category")] BooksNeed booksNeed)
         {
             //aranan kod süper satır. isimleri karşılaştırıp id yi ekliyor.
-            booksNeed.BookId = db.Books.FirstOrDefault(x => x.Name == booksNeed.Name).Id;
+            booksNeed.BookId = Convert.ToInt32(booksNeed.Name);
+            //booksNeed.BookId = db.Books.FirstOrDefault(x => x.Name == booksNeed.Name).Id;
             //booksNeed.Id=db.BooksNeeds.FirstOrDefault(x => x.BookId == booksNeed.BookId).Id;
             //booksNeed.BookId = Convert.ToInt32(booksNeed.Name);
             booksNeed.ShoolName = Session["SchoolName"].ToString();
@@ -208,8 +211,11 @@ namespace KiDSisMvcWebUI.Controllers
             if (bookNeedControl != null)
             {
                 TempData["Control"] = "1";
+
                 return RedirectToAction("Edit", new RouteValueDictionary(
-               new { controller = "BooksNeeds", action = "Edit", Id = booksNeed.Id }));
+               new { controller = "BooksNeeds", action = "Edit", Id=bookNeedControl.Id }));
+
+
 
             }
             else
@@ -262,8 +268,10 @@ namespace KiDSisMvcWebUI.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-           
-            BooksNeed booksNeed = db.BooksNeeds.Find(id);
+
+            BooksNeed booksNeed = db.BooksNeeds.Where(x => x.Id == id).FirstOrDefault();
+
+            //.Find(id);
 
 
 
@@ -282,6 +290,7 @@ namespace KiDSisMvcWebUI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,BookCount,Name,BookId,DemandDate,ShoolName,UserId")] BooksNeed booksNeed)
         {
+            //booksNeed.Id = db.BooksNeeds.FirstOrDefault(x => x.BookId == booksNeed.BookId).Id;
             //booksNeed.Id = booksNeed.Id;
             //booksNeed.BookId = db.BooksNeeds.FirstOrDefault(x => x.Id == booksNeed.Id).BookId;
             //booksNeed.Name = db.BooksNeeds.FirstOrDefault(x => x.Id == booksNeed.Id).Name;
@@ -289,10 +298,9 @@ namespace KiDSisMvcWebUI.Controllers
             //booksNeed.UserId = Session["ManagerId"].ToString();
             //booksNeed.DemandDate = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
             //booksNeed.BookCount = booksNeed.BookCount;
-           
+            booksNeed.DemandDate = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
             if (ModelState.IsValid)
             {
-                booksNeed.DemandDate = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
                 db.Entry(booksNeed).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -330,8 +338,11 @@ namespace KiDSisMvcWebUI.Controllers
 
         public ActionResult SchoolsCategories()
         {
-            List<SchoolsCategory> Category = db.SchoolsCategorys.ToList();
-            return Json(Category, JsonRequestBehavior.AllowGet);
+            string schooltype = Session["SchoolType"].ToString();
+            var BookClassList = db.Books.Where(x => x.BookType == schooltype).Select(x => x.Class).Distinct().ToList();
+            //List<string> BookClassList = db.Books.Where(x => x.BookType == schooltype).Select(x => x.Class).Distinct().ToList();
+            //List<SchoolsCategory> lstCat = db.SchoolsCategorys.ToList();
+            return Json(BookClassList, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetClass(string BookType)
@@ -342,7 +353,7 @@ namespace KiDSisMvcWebUI.Controllers
 
         public JsonResult GetBookName(string Class)
         {
-            List<Book> bookName = db.Books.Where(x => x.Class == Class).ToList();
+            List<Book> bookName = db.Books.Where(x => x.Class.Contains(Class)).ToList();
             return Json(bookName, JsonRequestBehavior.AllowGet);
         }
 

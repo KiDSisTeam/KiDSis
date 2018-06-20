@@ -1,0 +1,113 @@
+﻿
+@{
+    ViewBag.Title = "BooksDeliveriesPrint";
+    Layout = "~/Views/Shared/_LayoutReport.cshtml";
+}
+@*<input type="button" value="Print" onclick="window.print();" />
+<input type="button" onclick="printDiv('printableArea')" value="print a div!" />*@
+
+@*<a href="#" onclick="PrintFunction('#printdiv')" target="_blank" class="btn btn-warning btn-lg"<i class="fa fa-print">Yazdır</i> ></a>*@
+<div id="printdiv">
+    <br />
+    <br />
+    <h4 class="text-center">ÜCRETSİZ DERS KİTAPLARI TESLİM ETME TUTANAĞI</h4>
+    <br />
+    <span class="pmtallocated pull-right" style="padding-right:30px">
+        @DateTime.Now.ToString("dd/MM/yyyy")
+    </span>
+
+    <br />
+    <br />
+    <p style="padding-left:5em">
+        Aşağıda sayıları ve adedi tabloda belirtilen sayıda kitap Yarımca Ortaokuluna teslim edilmiştir.
+    </p>
+    <br />
+    <table class="table table-bordered">
+        <thead>
+            <tr style="color: white;" class="bg-info">
+                <th>
+                    Sıra No
+                </th>
+                <th>
+                    Kitap Adı
+                </th>
+                <th>
+                    Adet
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    1
+                </td>
+                <td>
+                    Fen Bilimleri
+                </td>
+                <td>
+                    100
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br />
+    <p class="container">
+        <span style="padding-left:20px">
+            TESLİM  EDEN
+        </span>
+
+        <span class="pmtallocated pull-right" style="padding-right:30px">
+            TESLİM  ALAN
+        </span>  <br />
+        ………………………………
+        <span class="pmtallocated pull-right" style="text-align:right">
+            …………………………………
+        </span>
+    </p>
+
+</div>
+
+@*<style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" >
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+        document.body.innerHTML = printContents;
+        window.print();
+        document.body.innerHTML = originalContents;
+    }
+</style>*@
+@*<script>
+    //$(document).ready(function () {
+    //    document.getElementById("printdiv").style.visibility = "hidden";
+    //});
+
+    function PrintFunction(div) {
+        document.getElementById("printdiv").style.visibility = "visible";
+        Popup($(div).html());
+    }
+    function Popup(data) {
+        var printwindow = window.open('', 'printdiv');
+        //printwindow.document.write('<html><head><title></title>');
+        //printwindow.document.write('</head><body>');
+        //printwindow.document.write(data);
+        //printwindow.document.write('</<body></html>');
+        printwindow.document.write(data);
+        printwindow.document.close();
+        document.getElementById("printdiv").style.visibility = "hidden";
+        printwindow.focus();
+        printwindow.print();
+        printwindow.close();
+        //document.getElementById("printdiv").style.visibility = "hidden";
+
+    }
+</script>*@
+<script>
+    $(document).ready(function () {
+
+        window.print();
+        printwindow.close();       
+        window.location.href = "/BooksDeliveries/Index";
+    });
+
+</script>

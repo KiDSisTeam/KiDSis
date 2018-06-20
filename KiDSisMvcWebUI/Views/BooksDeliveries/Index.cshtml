@@ -11,9 +11,11 @@
 		</li>
 	</ul>
 
-	<p>
-		@Html.ActionLink("Yeni Kayıt", "Create", null, new { @class = "btn btn-success   btn-sm mt-2" })
-	</p>
+    <p>
+        @Html.ActionLink("Yeni Kayıt", "Create", null, new { @class = "btn btn-success   btn-sm mt-2" })
+        @Html.ActionLink("Yazdır", "BooksDeliveriesPrint", null, new { @class = "btn btn-success   btn-sm mt-2" })
+
+    </p>
 	<table class="table table-bordered">
 		<tr class="bg-info" style="color:white">
 			<th>
