@@ -30,7 +30,10 @@
                     <select name="Category" class="form-control">
                         @foreach (var item in ViewBag.ShoolListViewBag)
                         {
-                            <option> @item</option>
+                            if (item != "İLÇE MİLLİ EĞİTİM")
+                            {
+                                <option> @item</option>
+                            }
                         }
                     </select>
                     @Html.ValidationMessageFor(model => model.SchoolsCategory, "", new { @class = "text-danger" })

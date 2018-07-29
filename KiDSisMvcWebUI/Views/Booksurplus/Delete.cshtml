@@ -38,12 +38,21 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Kaydı Sil" class="btn btn-danger btn-sm" />
+            @Html.ActionLink("Geri Dön", "Index", new { id = Model.Id }, new { @class = "btn btn-success btn-sm" })
         </div>
+
+
+
+
+        @*<div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>*@
     }
 </div>

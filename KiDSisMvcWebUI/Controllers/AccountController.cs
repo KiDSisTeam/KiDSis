@@ -95,7 +95,7 @@ namespace KiDSisMvcWebUI.Controllers
                     // Kişinin rolüne göre yönlendirme
                     if (userManager.IsInRole(user.Id, "Admin"))
                     {
-                        return RedirectToAction("HomePage", "Home");
+                        return RedirectToAction("Index", "BooksStocks");
                     }
                     else if (userManager.IsInRole(user.Id, "Admin"))
                     {

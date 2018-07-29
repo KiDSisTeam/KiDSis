@@ -115,8 +115,8 @@ namespace KiDSisMvcWebUI.Controllers
 
             ViewBag.ShoolListViewBag = Session["SchoolType"].ToString();
 
-
-            List<string> BookNameList = db.Books.Select(x => x.Name).ToList();
+            string schooltype = Session["SchoolType"].ToString();
+            List<string> BookNameList = db.Books.Where(x => x.BookType == schooltype).Select(x => x.Name).ToList();
 
             ViewBag.BookNameListViewBag = BookNameList;
 
@@ -124,7 +124,7 @@ namespace KiDSisMvcWebUI.Controllers
 
             //List<string> BookClassList = db.Books.Select(x => x.Class).ToList();
 
-            string schooltype = Session["SchoolType"].ToString();
+            //string schooltype = Session["SchoolType"].ToString();
             List<string> BookClassList = db.Books.Where(x => x.BookType == schooltype).Select(x => x.Class).Distinct().ToList();
             ViewBag.BookClassListViewBag = BookClassList;
 
@@ -142,10 +142,10 @@ namespace KiDSisMvcWebUI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,BookCount,BookId,UserId,Name")] Booksurplus booksurplus)
         {
-            //aranan kod süper satır. isimleri karşılaştırıp id yi ekliyor.
-            booksurplus.BookId = db.Books.FirstOrDefault(x => x.Name == booksurplus.Name).Id;
-
-            booksurplus.UserId = Session["ManagerId"].ToString();
+            //aranan kod süper satır. isimleri karşılaştırıp id yi ekliyor
+            booksurplus.BookId = Convert.ToInt32(booksurplus.Name);
+            //booksurplus.BookId = db.Books.FirstOrDefault(x => x.Name == booksurplus.Name).Id;
+                     booksurplus.UserId = Session["ManagerId"].ToString();
             booksurplus.SchoolName = Session["SchoolName"].ToString();
             booksurplus.DemandDate = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
 
@@ -243,6 +243,14 @@ namespace KiDSisMvcWebUI.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+         public JsonResult GetBookName(string Class)
+        {
+            List<Book> bookName = db.Books.Where(x => x.Class.Contains(Class)).ToList();
+            return Json(bookName, JsonRequestBehavior.AllowGet);
+        }
+
+
 
         protected override void Dispose(bool disposing)
         {

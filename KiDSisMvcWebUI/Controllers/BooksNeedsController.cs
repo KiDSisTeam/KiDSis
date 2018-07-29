@@ -268,9 +268,10 @@ namespace KiDSisMvcWebUI.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
+           
             BooksNeed booksNeed = db.BooksNeeds.Where(x => x.Id == id).FirstOrDefault();
-
+            booksNeed.Name = db.Books.FirstOrDefault(x => x.Id == booksNeed.BookId).Name.ToString();
+                
             //.Find(id);
 
 
