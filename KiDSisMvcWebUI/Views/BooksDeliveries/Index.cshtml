@@ -1,46 +1,160 @@
-﻿@model IEnumerable<KiDSisMvcWebUI.Models.BooksDelivery>
-
+﻿@model IEnumerable<KiDSisMvcWebUI.Models.ShoolBooksNeedsViewModel>
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<ul class="list-group ">
+    <li class="list-group-item bg-info" style="text-align:center">
+        <h2 style="color:white">Oluşturulan Talepler</h2>
+    </li>
+</ul>
+<form action="/BooksDeliveries/Index" method="post" id="form">
 
-<div class="bg-light">
-	<ul class="list-group ">
-		<li class="list-group-item bg-info" style="text-align:center">
-			<h2 style="color:white">Teslim Edilen Kitaplar</h2>
-		</li>
-	</ul>
+    @if (TempData["Control"] != null)
+    {
 
+        if (TempData["Control"] == "1")
+        {<div class="alert alert-danger" role="alert">
+                <i class="fa fa-exclamation-triangle" @*style="font-size: 48px;"*@></i>&nbsp;&nbsp;
+                <b>@ViewBag.KayıtHata1</b>
+
+            </div>
+        }
+        if (TempData["Control"] == "2")
+        {<div class="alert alert-danger" role="alert">
+                <i class="fa fa-exclamation-triangle" @*style="font-size: 48px;"*@></i>&nbsp;&nbsp;
+                <b>@ViewBag.KayıtHata2</b>
+
+            </div>
+        }
+
+
+    }
     <p>
-        @Html.ActionLink("Yeni Kayıt", "Create", null, new { @class = "btn btn-success   btn-sm mt-2" })
-        @Html.ActionLink("Yazdır", "BooksDeliveriesPrint", null, new { @class = "btn btn-success   btn-sm mt-2" })
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                Okul Adı
+            </label>
+            @*@Html.LabelFor(model => model.BookCount, htmlAttributes: new { @class = "control-label col-md-2" })*@
 
+            <div class="col-md-10">
+
+                <select name="Schols" id="Schols" class="form-control">
+                    @foreach (var item in ViewBag.ShoolListViewBag)
+                    {
+                        if (ViewBag.selected != null && ViewBag.selected != string.Empty && ViewBag.selected.Trim() == item.Trim())
+                        {
+                            <option selected> @item</option>
+                        }
+                        else
+                        {
+                            <option> @item</option>
+                        }
+                    }
+                </select>
+                @*@Html.ValidationMessageFor(model => model.SchoolsCategory, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
     </p>
-	<table class="table table-bordered">
-		<tr class="bg-info" style="color:white">
-			<th>
-				Kitap Sayısı
+    @*@using (Html.BeginForm("Index", "BooksDeliveries", FormMethod.Post))
+        {*@
 
-				@*@Html.DisplayNameFor(model => model.Code)*@
-			</th>
+    <table class="table table-bordered">
+        <tr style="color: white;" class="bg-info">
+            <th>
+                Sıra No
+            </th>
+            <th>
+                Sınıf
+            </th>
+            <th>
+                Kitap ismi
+            </th>
+            <th>
+                Talep Edilen Kitap Sayısı
+            </th>
+            <th>Depodaki Kitap Sayısı</th>
+            <th>
+                Teslim Edilen Adet
+            </th>
+            @*<th>İşlemler</th>*@
+        </tr>
+        @{
+            int rowNo = 0;
+        }
+        @foreach (var item in Model)
+        {
+            if (@item.BooksStockBookCount != 0 && item.BooksStockBookCount > 0)
+            {
 
-			<th>İşlemler</th>
-		</tr>
+
+                <tr>
+                    <td>
+                        @(rowNo += 1)
+                    </td>
+                    <td>
+                        @item.Class
+                    </td>
+                    <td>
+                        @item.Name
+                    </td>
+                    <td>
+                        @item.BookCount
+                    </td>
+                    <td>
+                        @item.BooksStockBookCount
+                    </td>
+                    <td>
+                        <input type="text" id="@rowNo" name="@rowNo" value="" />
+                    </td>
+                    <td style="visibility:hidden">
+                        <input style="display:none" type="text" id="@rowNo a" name="@rowNo" value="@item.BookId" />
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+    <input style="display:none" type="text" id="HiddenRowNo" name="HiddenRowNo" value="@rowNo" />
+    <div class="col-lg-1 col-md-1 col-sm-2 col-xs-4" style="float:right !important; margin-right:%5;">
+        <input class="btn btn-outline-info" style="padding:3%" type="button" onclick="AprovwedBook()" name="name" value="Onayla" />
+    </div>
+    <br />
+    <div><input style="display:none" type="submit" id="App" name="name" value="" /></div>
+    <input style="display:none" type="text" id="list" name="list" value="" />
+    <input style="display:none" type="text" id="BookIdList" name="BookIdList" value="" />
+    @*@Html.ActionLink("Onayla", "Create", null, new { @class = "btn btn-success   btn-sm mt-2" })*@
+</form>
+
+<script>
+
+    function AprovwedBook() {
+        debugger
+        var fruits = [];
+        var BookIdListJS = [];
+        var array = document.getElementById("HiddenRowNo").value;
+        debugger
+        for (i = 1; i <= array; i++) {
+            var text = document.getElementById(i).value;
+            fruits.push(text);
+            var t = i + " a";
+            var text1 = document.getElementById(t).value;
+            BookIdListJS.push(text1);
+        }
+        document.getElementById("list").value = fruits;
+        document.getElementById("BookIdList").value = BookIdListJS;
+        document.getElementById("App").click();
+    }
 
 
-		@foreach (var item in Model)
-		{
-			<tr>
-				<td>
-					@Html.DisplayFor(modelItem => item.BookCount)
-				</td>
-				<td>
-					@Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-primary   btn-sm" })
-					@Html.ActionLink("Detay", "Details", new { id = item.Id }, new { @class = "btn btn-success   btn-sm" })
-					@Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger   btn-sm" })
-				</td>
-			</tr>
-		}
 
-	</table>
-</div>
+    $("#Schols").change(function ()
+    {
+        debugger
+        var text = $("#Schols option:selected").text();
+        window.location.href = '/BooksDeliveries/DropdownChanged?text=' + text;
+        
+    });
+
+</script>
+
+

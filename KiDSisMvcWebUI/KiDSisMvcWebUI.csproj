@@ -210,6 +210,7 @@
     <Content Include="Views\Booksurplus\Index2.cshtml" />
     <Content Include="Views\BooksDeliveries\BooksDeliveriesPrint.cshtml" />
     <Content Include="Views\Shared\_LayoutReport.cshtml" />
+    <Content Include="Views\BooksDeliveries\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -254,6 +255,7 @@
     <Compile Include="Models\BooksDelivery.cs" />
     <Compile Include="Models\BooksNeed.cs" />
     <Compile Include="Models\BooksStock.cs" />
+    <Compile Include="Models\LookUpDto.cs" />
     <Compile Include="Models\SchoolBookDeliveriesViewModel.cs" />
     <Compile Include="Models\SchoolsCategory.cs" />
     <Compile Include="Models\ShoolBooksNeedsViewModel.cs" />
@@ -299,7 +301,7 @@
     <Content Include="Views\BooksDeliveries\Delete.cshtml" />
     <Content Include="Views\BooksDeliveries\Details.cshtml" />
     <Content Include="Views\BooksDeliveries\Edit.cshtml" />
-    <Content Include="Views\BooksDeliveries\Index.cshtml" />
+    <Content Include="Views\BooksDeliveries\Index1.cshtml" />
     <Content Include="Views\BooksNeeds\Create.cshtml" />
     <Content Include="Views\BooksNeeds\Delete.cshtml" />
     <Content Include="Views\BooksNeeds\Details.cshtml" />
