@@ -15,5 +15,6 @@ namespace KiDSisMvcWebUI.Models
         public string SchoolName { get; set; }
         public int BookCount { get; set; }
         public string UserId { get; set; }
+        public int BookId { get; set; }
     }
 }

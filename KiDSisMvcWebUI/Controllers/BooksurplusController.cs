@@ -35,6 +35,7 @@ namespace KiDSisMvcWebUI.Controllers
                 ShoolBooksurplusViewModel wm = new ShoolBooksurplusViewModel();
                 wm.Id = item.Id;
                 wm.UserId = item.UserId;
+                wm.BookId = item.BookId;
                 wm.Name = bk.FirstOrDefault(x => x.Id == item.BookId).Name;
                 wm.DemandDate = item.DemandDate;
                 //wm.Name = item.Name;
@@ -144,11 +145,11 @@ namespace KiDSisMvcWebUI.Controllers
         {
             //aranan kod süper satır. isimleri karşılaştırıp id yi ekliyor
             booksurplus.BookId = Convert.ToInt32(booksurplus.Name);
-            //booksurplus.BookId = db.Books.FirstOrDefault(x => x.Name == booksurplus.Name).Id;
+           // booksurplus.BookId = db.Books.FirstOrDefault(x => x.Name == booksurplus.Name).Id;
                      booksurplus.UserId = Session["ManagerId"].ToString();
             booksurplus.SchoolName = Session["SchoolName"].ToString();
             booksurplus.DemandDate = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
-
+            booksurplus.Id = db.Booksurplus.FirstOrDefault(x => x.BookId == booksurplus.BookId).Id;
             ViewBag.KayıtHata = "";
             Booksurplus booksurplusControl = new Booksurplus();
             booksurplusControl = db.Booksurplus.FirstOrDefault(x => x.BookId == booksurplus.BookId);
@@ -156,7 +157,7 @@ namespace KiDSisMvcWebUI.Controllers
             {
                TempData["Control"] = "1";
                 return RedirectToAction("Edit", new RouteValueDictionary(
-               new { controller = "Booksurplus", action = "Edit", Id = booksurplus.BookId,  }));
+               new { controller = "Booksurplus", action = "Edit", Id=booksurplus.Id  }));
 
             }
             else
@@ -191,7 +192,11 @@ namespace KiDSisMvcWebUI.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Booksurplus booksurplus = db.Booksurplus.Find(id);
+
+
+            //Booksurplus booksurplus = db.Booksurplus.Find(id);
+
+            Booksurplus booksurplus = db.Booksurplus.Where(x => x.Id == id).FirstOrDefault();
             if (booksurplus == null)
             {
                 return HttpNotFound();
@@ -205,8 +210,9 @@ namespace KiDSisMvcWebUI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,BookCount,BookId,UserId")] Booksurplus booksurplus)
+        public ActionResult Edit([Bind(Include = "Id,BookCount,BookId,UserId,Name,SchoolName,DemandDate")] Booksurplus booksurplus)
         {
+            booksurplus.DemandDate = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
             if (ModelState.IsValid)
             {
                 booksurplus.DemandDate = DateTime.Now.ToString(Format);

@@ -4,6 +4,8 @@
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout-User.cshtml";
 }
+
+
 <ul class="list-group ">
     <li class="list-group-item bg-info" style="text-align:center">
         <h2 style="color:white">Kaydı Düzenle</h2>
@@ -23,6 +25,8 @@
         @Html.HiddenFor(model=>model.DemandDate)
         @Html.HiddenFor(model=>model.ShoolName)
         @Html.HiddenFor(model=>model.UserId)
+
+
 
         <div class="form-group">
             @if (TempData["Control"] != null)
