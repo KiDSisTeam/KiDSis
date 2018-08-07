@@ -128,9 +128,10 @@
 
         //    });
 
-
+        debugger
         $.getJSON('/BooksNeeds/GetBookName', { Class: $('#Class').val() }, function (data) {
             $.each(data, function () {
+                debugger
                 $('#NameProperty').append('<option value=' +
                     this.Id + '>' + this.Name + '</option>');
             });

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using KiDSisMvcWebUI.Entity;
 using KiDSisMvcWebUI.Models;
 
@@ -43,8 +44,8 @@ namespace KiDSisMvcWebUI.Controllers
                 /* wm.SchoolsCategory =*/ /*sc.FirstOrDefault(x => x.Id == item.Id).Category;*/
                 wm.SchoolsCategory = db.Books.FirstOrDefault(x => x.Id == item.BookId).BookType;
                 wmlist.Add(wm);
-            }     
-            
+            }
+
             return View(wmlist);
         }
 
@@ -61,7 +62,7 @@ namespace KiDSisMvcWebUI.Controllers
             List<SchoolsCategory> sc = db.SchoolsCategorys.ToList();
             List<BooksCategory> _booksCategory = db.BooksCategorys.ToList();
             List<BooksStock> bstk = new List<BooksStock>();
-             bstk = db.BooksStocks.ToList();
+            bstk = db.BooksStocks.ToList();
 
             List<ShoolBooksStocksViewModel> wmlist = new List<ShoolBooksStocksViewModel>();
 
@@ -81,7 +82,7 @@ namespace KiDSisMvcWebUI.Controllers
                 wm.SchoolsCategory = db.Books.FirstOrDefault(x => x.Id == item.BookId).BookType;
                 wmlist.Add(wm);
             }
-           
+
             string schoolType = (Session["SchoolType"]).ToString();
             return View(wmlist.Where(x => x.SchoolsCategory.ToString() == schoolType));
             //return View(wmlist);
@@ -108,16 +109,16 @@ namespace KiDSisMvcWebUI.Controllers
         public ActionResult Create()
         {
             //veri tabanındaki bir sütunu listye atıyor.
-            List<string> SchoolCategoryList = db.SchoolsCategorys.Select(x => x.Category).ToList();
+            List<string> SchoolCategoryList = db.SchoolsCategorys.Select(x => x.Category).Distinct().ToList();
 
             ViewBag.ShoolListViewBag = SchoolCategoryList;
 
 
-            List<string> BookNameList = db.Books.Select(x => x.Name).ToList();
+            List<string> BookNameList = db.Books.Select(x => x.Name).Distinct().ToList();
 
             ViewBag.BookNameListViewBag = BookNameList;
 
-            List<string> BookClassList = db.Books.Select(x => x.Class).ToList();
+            List<string> BookClassList = db.Books.Select(x => x.Class).Distinct().ToList();
 
             ViewBag.BookClassListViewBag = BookClassList;
 
@@ -133,9 +134,31 @@ namespace KiDSisMvcWebUI.Controllers
         public ActionResult Create([Bind(Include = "Id,BookCount,BookId,UserId,Name")] BooksStock booksStock)
         {
             //aranan kod süper satır. isimleri karşılaştırıp id yi ekliyor.
-            booksStock.BookId = db.Books.FirstOrDefault(x => x.Name == booksStock.Name).Id;
-            booksStock.DemandDate = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");            
+            /*"Arapça - 5 Ders ve Öğrenci Çalışma Kitabı"*/
+            booksStock.BookId = db.Books.FirstOrDefault(x => x.Id.ToString() == booksStock.Name).Id;
+            booksStock.DemandDate = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
             booksStock.UserId = Session["ManagerId"].ToString();
+
+            ViewBag.KayıtHata = "";
+            BooksStock bookNeedControl = new BooksStock();
+            bookNeedControl = db.BooksStocks.FirstOrDefault(x => x.BookId == booksStock.BookId);
+            if (bookNeedControl != null)
+            {
+                TempData["Control"] = "1";
+                booksStock.Id = db.BooksStocks.FirstOrDefault(x => x.BookId == booksStock.BookId).Id;
+               
+
+
+
+                return RedirectToAction("Edit", new RouteValueDictionary(
+               new { controller = "BooksStocks", action = "Edit", Id = booksStock.Id }));
+
+
+
+            }
+
+
+
             if (ModelState.IsValid)
             {
                 db.BooksStocks.Add(booksStock);
@@ -162,6 +185,14 @@ namespace KiDSisMvcWebUI.Controllers
         // GET: BooksStocks/Edit/5
         public ActionResult Edit(int? id)
         {
+            ViewBag.KayıtHata = "";
+
+            if (TempData["Control"] != null)
+            {
+                ViewBag.KayıtHata = " Bu Kitabı daha önce eklediniz. Lütfen kitap sayısını güncelleyiniz!";
+            }
+
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -216,6 +247,39 @@ namespace KiDSisMvcWebUI.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public JsonResult GetClass(string Category)
+        {
+
+            var entityList = new List<Book>();
+            List<Book> book = db.Books.Where(x => x.BookType == Category).OrderByDescending(x => x.Class).ToList();
+
+            var Custom = book.Select(x => new { x.Class }).GroupBy(x => x.Class).ToList();
+            foreach (var item in Custom)
+            {
+                var DbControl = db.Books.FirstOrDefault(x => x.Class == item.Key);
+                var entity = new Book();
+                entity.Id = DbControl.Id;
+                entity.Class = DbControl.Class;
+                entityList.Add(entity);
+            }
+
+
+
+            //var list = book.Select(x => new { x.Class, x.Id }).Distinct().ToList();
+            return Json(entityList, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetBookName(string Class)
+        {
+            List<Book> bookName = db.Books.Where(x => x.Class == Class).ToList();
+            var list = bookName.Select(x => new { x.Id, x.Name }).Distinct().ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+
 
         protected override void Dispose(bool disposing)
         {
