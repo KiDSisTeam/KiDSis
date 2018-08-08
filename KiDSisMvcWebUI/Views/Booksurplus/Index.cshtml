@@ -16,68 +16,86 @@
         @Html.ActionLink("Yeni Kayıt", "Create", null, new { @class = "btn btn-success   btn-sm mt-2" })
     </p>
 
+    <div class="input-group">
+        <input id="filter" type="text" class="form-control" placeholder="Arama Yapın..." />
+    </div>
 
-   
 
 
     <table class="table table-bordered">
-        <tr style="color: white;" class="bg-info">
-            @*<th>
+        <thead>
+            <tr style="color: white;" class="bg-info">
+                @*<th>
                     Okul türü
                 </th>*@
-            <th>
-                Sıra No
-            </th>
-            <th>
-                Sınıf
+                <th>
+                    Sıra No
+                </th>
+                <th>
+                    Sınıf
 
-            </th>
-            <th>
-                Kitap ismi
-            </th>
-            <th>
-                Kitap Sayısı
-            </th>
-            <th>İşlem Tarihi </th>
-            <th>İşlemler</th>
-        </tr>
-        @{ int rowNo = 0; }
-        @foreach (var item in Model)
-        {
-            <tr>
-                @*<td>
-                        @item.SchoolsCategory
-                    </td>*@
-                <td>
-                    @(rowNo += 1)
-                </td>
-                <td>
-                    @item.Class
-
-
-
-                    @*@Html.DisplayFor(modelItem => item.BookCount)*@
-                </td>
-                <td>
-                    @item.Name
-                </td>
-                <td>
-                    @item.BookCount
-                </td>
-                <td>
-                    @item.DemandDate
-                </td>
-
-
-
-
-                <td>
-                    @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-info   btn-sm" })
-                    @*   @Html.ActionLink("Detay", "Details", new { id = item.Id }, new { @class = "btn btn-success   btn-sm" })*@
-                    @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger   btn-sm" })
-                </td>
+                </th>
+                <th>
+                    Kitap ismi
+                </th>
+                <th>
+                    Kitap Sayısı
+                </th>
+                <th>İşlem Tarihi </th>
+                <th>İşlemler</th>
             </tr>
-        }
+        </thead>
+        <tbody class="searchable">
+            @{ int rowNo = 0; }
+            @foreach (var item in Model)
+            {
+                <tr>
+                    @*<td>
+                    @item.SchoolsCategory
+                </td>*@
+                    <td>
+                        @(rowNo += 1)
+                    </td>
+                    <td>
+                        @item.Class
 
+
+
+                        @*@Html.DisplayFor(modelItem => item.BookCount)*@
+                    </td>
+                    <td>
+                        @item.Name
+                    </td>
+                    <td>
+                        @item.BookCount
+                    </td>
+                    <td>
+                        @item.DemandDate
+                    </td>
+
+
+
+
+                    <td>
+                        @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-info   btn-sm" })
+                        @*   @Html.ActionLink("Detay", "Details", new { id = item.Id }, new { @class = "btn btn-success   btn-sm" })*@
+                        @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger   btn-sm" })
+                    </td>
+                </tr>
+            }
+        </tbody>
     </table>
 </div>
+<script>
+    $(document).ready(function () {
+        (function ($) {
+            $('#filter').keyup(function () {
+                var rex = new RegExp($(this).val(), 'i');
+                $('.searchable tr').hide();
+                $('.searchable tr').filter(function () {
+                    return rex.test($(this).text());
+                }).show();
+            })
+        }(jQuery));
+    });
+</script>

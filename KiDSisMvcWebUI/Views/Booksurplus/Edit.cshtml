@@ -20,6 +20,9 @@
 
 
 
+
+    <hr />
+
     @if (TempData["Control"] != null)
     {<div class="alert alert-danger" role="alert">
             <i class="fas fa-exclamation-triangle" @*style="font-size: 48px;"*@></i>&nbsp;&nbsp;
@@ -29,9 +32,7 @@
 
 
     }
-    <br />
-    <hr />
-  
+
     <label class="control-label col-md-6">
         <strong>Kitap Adı: </strong>
         <span class="text-center" style="text-align:center"> @Model.Name</span>
