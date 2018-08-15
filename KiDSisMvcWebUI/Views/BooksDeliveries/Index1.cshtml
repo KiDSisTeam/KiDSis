@@ -1,46 +1,348 @@
-﻿@model IEnumerable<KiDSisMvcWebUI.Models.BooksDelivery>
-
+﻿@model IEnumerable<KiDSisMvcWebUI.Models.BooksDeliveryViewModel>
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<div class="bg-light">
-	<ul class="list-group ">
-		<li class="list-group-item bg-info" style="text-align:center">
-			<h2 style="color:white">Teslim Edilen Kitaplar</h2>
-		</li>
-	</ul>
-
-    <p>
-        @Html.ActionLink("Yeni Kayıt", "Create", null, new { @class = "btn btn-success   btn-sm mt-2" })
-        @Html.ActionLink("Yazdır", "BooksDeliveriesPrint", null, new { @class = "btn btn-success   btn-sm mt-2" })
-
-    </p>
-	<table class="table table-bordered">
-		<tr class="bg-info" style="color:white">
-			<th>
-				Kitap Sayısı
-
-				@*@Html.DisplayNameFor(model => model.Code)*@
-			</th>
-
-			<th>İşlemler</th>
-		</tr>
+<div>
 
 
-		@foreach (var item in Model)
-		{
-			<tr>
-				<td>
-					@Html.DisplayFor(modelItem => item.BookCount)
-				</td>
-				<td>
-					@Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-primary   btn-sm" })
-					@Html.ActionLink("Detay", "Details", new { id = item.Id }, new { @class = "btn btn-success   btn-sm" })
-					@Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger   btn-sm" })
-				</td>
-			</tr>
-		}
+    <ul id="Title" class="list-group ">
+        <li class="list-group-item bg-info" style="text-align:center">
+            <h2 style="color:white">Kitap Teslim</h2>
+        </li>
+    </ul>
+    <div id="Title1" style="display:none; margin:5%">
 
-	</table>
+
+        <h4 class="text-center">ÜCRETSİZ DERS KİTAPLARI TESLİM ETME TUTANAĞI</h4>
+
+        <span class="pmtallocated pull-right" style="padding-right:30px">
+            @DateTime.Now.ToString("dd/MM/yyyy")
+        </span>
+    </div>
+
+
+    <div id="Text1" style="display:none; margin:5%">
+
+
+        <p style="padding-left:5em; margin:5% ">
+            Aşağıda sayıları ve adedi tabloda belirtilen sayıda kitap Körfez İlçe Milli Eğitim Müdürlüğü tarafından <b>
+    @ViewBag.SchoolName
+            @*<script>
+
+                    $(document).ready(function () {
+
+                        <b>@ViewBag.SchoolName</b>
+                        //document.getElementById("Schols").selected.value;
+                        //document.getElementById("Schols").value;
+
+
+                        //var e = document.getElementById("Schols");
+                        //var strUser = e.options[e.selectedIndex].value;
+                        //strUser.text;
+                    });
+
+            </script>*@
+        </b> teslim edilmiştir.
+        </p>
+    </div>
+    <form action="/BooksDeliveries/DeliveryPost" method="post" id="form">
+
+        @if (TempData["Control"] != null)
+        {
+
+            if (TempData["Control"] == "1")
+            {<div class="alert alert-danger" role="alert">
+                    <i class="fa fa-exclamation-triangle" @*style="font-size: 48px;"*@></i>&nbsp;&nbsp;
+                    <b>@ViewBag.KayıtHata1</b>
+
+                </div>
+            }
+            if (TempData["Control"] == "2")
+            {<div class="alert alert-danger" role="alert">
+                    <i class="fa fa-exclamation-triangle" @*style="font-size: 48px;"*@></i>&nbsp;&nbsp;
+                    <b>@ViewBag.KayıtHata2</b>
+
+                </div>
+            }
+
+
+        }
+        <p>
+            <div class="form-group" id="FilterDiv">
+
+                @*@Html.LabelFor(model => model.BookCount, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                <div class="row">
+                    <label class="control-label col-md-1">
+                        Okul Adı:
+                    </label>
+
+                    <div class="col-md-3">
+
+                        <select name="Schols" id="Schols" class="form-control">
+                            @foreach (var item in ViewBag.ShoolListViewBag)
+                            {
+                                if (ViewBag.selected != null && ViewBag.selected != string.Empty && ViewBag.selected.Trim() == item.Trim())
+                                {
+                                    <option selected> @item</option>
+                                }
+                                else
+                                {
+                                    <option> @item</option>
+                                }
+                            }
+                        </select>
+                        @*@Html.ValidationMessageFor(model => model.SchoolsCategory, "", new { @class = "text-danger" })*@
+                    </div>
+                    <div class="col-md-3">
+
+                        <div>İlk Tarih :  <input type="text" name="date_ex" id="date_ex"></div>
+                    </div>
+                    <div class="col-md-4 ">
+                        <div>Son Tarih :  <input type="text" name="date_ex1" id="date_ex1"></div>
+
+                    </div>
+
+                    <div class="col-md-1">
+                        <input type="button" class="btn btn-outline-info" onclick="myFunction()" id="TableFilter" name="TableFilter" value="Filtre" />
+                    </div>
+                </div>
+            </div>
+        </p>
+
+
+        @*@using (Html.BeginForm("Index", "BooksDeliveries", FormMethod.Post))
+            {*@
+
+        <table class="table table-bordered">
+            <tr style="color: white;" class="bg-info">
+                <th>
+                    Sıra No
+                </th>
+                <th>
+                    Sınıf
+                </th>
+                <th>
+                    Kitap ismi
+                </th>
+                <th>
+                    Teslim Edilen Kitap Sayısı
+                </th>
+                @*<th>Depodaki Kitap Sayısı</th>
+                    <th>
+                        Teslim Edilen Adet
+                    </th>*@
+                @*<th>İşlemler</th>*@
+            </tr>
+            @{
+                int rowNo = 0;
+            }
+            @foreach (var item in Model)
+            {
+                if (@item.BookCount != 0 && item.BookCount > 0)
+                {
+
+
+                    <tr>
+                        <td>
+                            @(rowNo += 1)
+                        </td>
+                        <td>
+                            @item.Class
+                        </td>
+                        <td>
+                            @item.Name
+                        </td>
+                        <td>
+                            @item.BookCount
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-4">
+                <label>
+                    Teslim Alan
+                </label>
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-4">
+                <label>
+                    Teslim Eden
+                </label>
+            </div>
+        </div>
+        <div id="soyad" class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-4">
+                <input type="text" required name="DeliveredName" class="form-control" placeholder="Ad Soyad">
+            </div>
+            <div class="col-md-2 "></div>
+            <div class="col-md-4">
+                <input type="text" required name="Recipedname" class="form-control" placeholder="Ad Soyad">
+            </div>
+        </div>
+        <div class="row" id="Teslim" style="display:none">
+                <div class="col-md-1"></div>
+                <div class="col-md-4">
+                   
+                    <label>  <b>@ViewBag.TeslimEden</b> </label>
+                </div>
+                <div class="col-md-2"></div>
+                <div class="col-md-4">
+                    <label>  <b>@ViewBag.TeslimAlan</b> </label>
+                </div>
+            </div>
+
+        <input style="display:none" type="text" id="HiddenRowNo" name="HiddenRowNo" value="@rowNo" />
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4" style="float:right !important;  margin:1% ">
+            <div class="row" id="Button">
+                <input class="btn btn-outline-info" style="padding:3%; margin-right:5%" type="submit" name="name" value="KAYIT" />
+                <input class="btn btn-outline-info" style="padding:3%" type="button" onclick="AprovwedBook()" name="name" value="YAZDIR" />
+            </div>
+        </div>
+        <br />
+        <div><input style="display:none" type="submit" id="App" name="name" value="" /></div>
+        <input style="display:none" type="text" id="list" name="list" value="" />
+        <input style="display:none" type="text" id="BookIdList" name="BookIdList" value="" />
+        @*@Html.ActionLink("Onayla", "Create", null, new { @class = "btn btn-success   btn-sm mt-2" })*@
+    </form>
 </div>
+
+<script>
+    //$(document).ready(function () { });
+    function AprovwedBook() {
+        debugger
+
+        document.getElementById("FilterDiv").style.display = 'none';
+        document.getElementById("Title").style.display = 'none';
+        document.getElementById("Title1").style.display = 'block';
+        document.getElementById("Text1").style.display = 'block';
+        document.getElementById("Button").style.display = 'none';
+        document.getElementById("soyad").style.display = 'none';
+        document.getElementById("Teslim").style.display = 'block';
+        window.print();
+
+    }
+
+
+    function myFunctionPrint() {
+        document.getElementById("FilterDiv").style.display = 'block';
+        document.getElementById("Title").style.display = 'block';
+        document.getElementById("Title1").style.display = 'none';
+        document.getElementById("Button").style.display = 'none';
+        document.getElementById("Text1").style.display = 'block';
+        document.getElementById("soyad").style.display = 'block';
+        document.getElementById("Teslim").style.display = 'none';
+        location.reload();
+    }
+
+
+
+</script>
+
+
+<script>
+
+    //function AprovwedBook() {
+    //    debugger
+    //    var fruits = [];
+    //    var BookIdListJS = [];
+    //    var array = document.getElementById("HiddenRowNo").value;
+    //    debugger
+    //    for (i = 1; i <= array; i++) {
+    //        var text = document.getElementById(i).value;
+    //        fruits.push(text);
+    //        var t = i + " a";
+    //        var text1 = document.getElementById(t).value;
+    //        BookIdListJS.push(text1);
+    //    }
+    //    document.getElementById("list").value = fruits;
+    //    document.getElementById("BookIdList").value = BookIdListJS;
+    //    document.getElementById("App").click();
+    //}
+
+
+
+    //Dropdown'a göre filtre çalışıyordu form post yapısına dönüldü
+    //$("#Schols").change(function () {
+    //    debugger
+    //    var text = $("#Schols option:selected").text();
+    //    window.location.href = '/BooksDeliveries/Dropdownreport?text=' + text;
+
+    //});
+
+</script>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<script>
+    $(function () {
+        $("#date_ex").datepicker();
+    });
+    $(function () {
+        $("#date_ex1").datepicker();
+    });
+</script>
+<script>
+    /* Turkish initialisation for the jQuery UI date picker plugin. */
+    /* Written by Izzet Emre Erkan (kara@karalamalar.net). */
+    (function (factory) {
+        if (typeof define === "function" && define.amd) {
+
+            // AMD. Register as an anonymous module.
+            define(["../widgets/datepicker"], factory);
+        } else {
+
+            // Browser globals
+            factory(jQuery.datepicker);
+        }
+    }(function (datepicker) {
+
+        datepicker.regional.tr = {
+            closeText: "kapat",
+            prevText: "&#x3C;geri",
+            nextText: "ileri&#x3e",
+            currentText: "bugün",
+            monthNames: ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran",
+                "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"],
+            monthNamesShort: ["Oca", "Şub", "Mar", "Nis", "May", "Haz",
+                "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"],
+            dayNames: ["Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi"],
+            dayNamesShort: ["Pz", "Pt", "Sa", "Ça", "Pe", "Cu", "Ct"],
+            dayNamesMin: ["Pz", "Pt", "Sa", "Ça", "Pe", "Cu", "Ct"],
+            weekHeader: "Hf",
+            dateFormat: "dd.mm.yy",
+            firstDay: 1,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: ""
+        };
+        datepicker.setDefaults(datepicker.regional.tr);
+
+        return datepicker.regional.tr;
+
+    }));
+</script>
+
+<script>
+    function myFunction() {
+        debugger
+
+
+        var date1 = document.getElementById("date_ex").value;
+        var date2 = document.getElementById("date_ex1").value;
+        var text = document.getElementById("Schols").value;
+        window.location.href = '/BooksDeliveries/Dropdownreport?text=' + text + '&date1=' + date1 + '&date2=' + date2;
+
+
+        //window.location.href = "/page.html?cal=" + te + "&text2=" + text2 +
+        //    "&text3=" + text3 + "&text4=" + text4;
+
+    }
+</script>
+

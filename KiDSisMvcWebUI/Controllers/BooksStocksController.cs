@@ -114,7 +114,7 @@ namespace KiDSisMvcWebUI.Controllers
             ViewBag.ShoolListViewBag = SchoolCategoryList;
 
 
-            List<string> BookNameList = db.Books.Select(x => x.Name).Distinct().ToList();
+            List<string> BookNameList = db.SchoolClasses.Select(x => x.Class).Distinct().ToList();
 
             ViewBag.BookNameListViewBag = BookNameList;
 
@@ -146,15 +146,8 @@ namespace KiDSisMvcWebUI.Controllers
             {
                 TempData["Control"] = "1";
                 booksStock.Id = db.BooksStocks.FirstOrDefault(x => x.BookId == booksStock.BookId).Id;
-               
-
-
-
                 return RedirectToAction("Edit", new RouteValueDictionary(
                new { controller = "BooksStocks", action = "Edit", Id = booksStock.Id }));
-
-
-
             }
 
 

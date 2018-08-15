@@ -1,4 +1,4 @@
-﻿@model KiDSisMvcWebUI.Models.SchoolsCategory
+﻿@model KiDSisMvcWebUI.Models.SchoolClass
 
 @{
     ViewBag.Title = "Delete";
@@ -9,15 +9,23 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>SchoolsCategory</h4>
+    <h4>SchoolClass</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Category)
+            @Html.DisplayNameFor(model => model.Class)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Category)
+            @Html.DisplayFor(model => model.Class)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoryId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoryId)
         </dd>
 
     </dl>

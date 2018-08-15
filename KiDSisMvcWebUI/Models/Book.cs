@@ -15,16 +15,5 @@ namespace KiDSisMvcWebUI.Models
         public string BookType { get; set; }
         public int BooksCategoryId { get; set; }
         
-
-
-
-
-
-
-
-
-
-
-
     }
 }

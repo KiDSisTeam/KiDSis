@@ -173,7 +173,7 @@ namespace KiDSisMvcWebUI.Controllers
             //List<string> BookClassList = db.Books.Where(x=>x.BookType== Session["SchoolType"].ToString()).Select(x => x.Class).ToList();
             string schooltype = Session["SchoolType"].ToString();
             // List<string> BookClassList = db.Books.Select(x => x.Class).ToList();
-            List<string> BookClassList = db.Books.Where(x => x.BookType == schooltype).Select(x => x.Class).Distinct().ToList();
+            List<string> BookClassList = db.SchoolClasses.Where(x => x.Category == schooltype).Select(x => x.Class).Distinct().ToList();
 
             ViewBag.BookClassListViewBag = BookClassList;
 

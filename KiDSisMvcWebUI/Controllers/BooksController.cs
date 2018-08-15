@@ -57,6 +57,11 @@ namespace KiDSisMvcWebUI.Controllers
             }
 
 
+            List<string> BookNameList = db.Books.Select(x => x.Name).Distinct().ToList();
+
+            ViewBag.BookNameListViewBag = BookNameList;
+
+
             //List<string> SchoolList = new List<string>
             //{"ANAOKULU","İLKOKUL", "ORTAOKUL","LİSE","ÖZEL ÖĞRETİM"};
             ViewBag.ShoolListViewBag = SchoolList;
@@ -200,6 +205,32 @@ namespace KiDSisMvcWebUI.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+
+        public JsonResult GetClass(string Category)
+        {
+
+            var entityList = new List<Book>();
+            List<Book> book = db.Books.Where(x => x.BookType == Category).OrderByDescending(x => x.Class).ToList();
+
+            var Custom = book.Select(x => new { x.Class }).GroupBy(x => x.Class).ToList();
+            foreach (var item in Custom)
+            {
+                var DbControl = db.Books.FirstOrDefault(x => x.Class == item.Key);
+                var entity = new Book();
+                entity.Id = DbControl.Id;
+                entity.Class = DbControl.Class;
+                entityList.Add(entity);
+            }
+
+
+
+            //var list = book.Select(x => new { x.Class, x.Id }).Distinct().ToList();
+            return Json(entityList, JsonRequestBehavior.AllowGet);
+        }
+
+
+
 
         protected override void Dispose(bool disposing)
         {

@@ -136,6 +136,7 @@
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Css\ModalLogin.css" />
     <Content Include="Css\Ozel.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
@@ -211,6 +212,16 @@
     <Content Include="Views\BooksDeliveries\BooksDeliveriesPrint.cshtml" />
     <Content Include="Views\Shared\_LayoutReport.cshtml" />
     <Content Include="Views\BooksDeliveries\Index.cshtml" />
+    <Content Include="Views\SchoolsCategories\Create.cshtml" />
+    <Content Include="Views\SchoolsCategories\Delete.cshtml" />
+    <Content Include="Views\SchoolsCategories\Details.cshtml" />
+    <Content Include="Views\SchoolsCategories\Edit.cshtml" />
+    <Content Include="Views\SchoolsCategories\Index.cshtml" />
+    <Content Include="Views\SchoolClasses\Create.cshtml" />
+    <Content Include="Views\SchoolClasses\Delete.cshtml" />
+    <Content Include="Views\SchoolClasses\Details.cshtml" />
+    <Content Include="Views\SchoolClasses\Edit.cshtml" />
+    <Content Include="Views\SchoolClasses\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -234,6 +245,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManagerController.cs" />
     <Compile Include="Controllers\RoleAdminController.cs" />
+    <Compile Include="Controllers\SchoolCategory.cs" />
+    <Compile Include="Controllers\SchoolClassesController.cs" />
     <Compile Include="Controllers\SchoolController.cs" />
     <Compile Include="Controllers\SchoolsCategoriesController.cs" />
     <Compile Include="Controllers\UserModel.cs" />
@@ -243,6 +256,7 @@
     <Compile Include="Identity\CustomPasswordValidator.cs" />
     <Compile Include="Identity\IdentityDataContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\BooksDeliveryViewModel.cs" />
     <Compile Include="Models\booksurplus.cs" />
     <Compile Include="Models\DataContext.cs" />
     <Compile Include="Models\DataInitializer.cs" />
@@ -256,7 +270,10 @@
     <Compile Include="Models\BooksNeed.cs" />
     <Compile Include="Models\BooksStock.cs" />
     <Compile Include="Models\LookUpDto.cs" />
+    <Compile Include="Models\RedirecteViewModel.cs" />
     <Compile Include="Models\SchoolBookDeliveriesViewModel.cs" />
+    <Compile Include="Models\SchoolClass.cs" />
+    <Compile Include="Models\SchoolClassViewModel.cs" />
     <Compile Include="Models\SchoolsCategory.cs" />
     <Compile Include="Models\ShoolBooksNeedsViewModel.cs" />
     <Compile Include="Models\ShoolBooksStocksViewModel.cs" />
@@ -312,11 +329,6 @@
     <Content Include="Views\BooksStocks\Details.cshtml" />
     <Content Include="Views\BooksStocks\Edit.cshtml" />
     <Content Include="Views\BooksStocks\Index.cshtml" />
-    <Content Include="Views\SchoolsCategories\Create.cshtml" />
-    <Content Include="Views\SchoolsCategories\Delete.cshtml" />
-    <Content Include="Views\SchoolsCategories\Details.cshtml" />
-    <Content Include="Views\SchoolsCategories\Edit.cshtml" />
-    <Content Include="Views\SchoolsCategories\Index.cshtml" />
     <Content Include="Views\Users\Create.cshtml" />
     <Content Include="Views\Users\Delete.cshtml" />
     <Content Include="Views\Users\Details.cshtml" />

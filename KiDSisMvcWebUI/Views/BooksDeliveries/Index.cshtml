@@ -5,7 +5,7 @@
 }
 <ul class="list-group ">
     <li class="list-group-item bg-info" style="text-align:center">
-        <h2 style="color:white">Oluşturulan Talepler</h2>
+        <h2 style="color:white">Kitap Teslim</h2>
     </li>
 </ul>
 <form action="/BooksDeliveries/Index" method="post" id="form">
@@ -36,26 +36,36 @@
                 Okul Adı
             </label>
             @*@Html.LabelFor(model => model.BookCount, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="row">
 
-            <div class="col-md-10">
 
-                <select name="Schols" id="Schols" class="form-control">
-                    @foreach (var item in ViewBag.ShoolListViewBag)
-                    {
-                        if (ViewBag.selected != null && ViewBag.selected != string.Empty && ViewBag.selected.Trim() == item.Trim())
+                <div class="col-md-10">
+
+                    <select name="Schols" id="Schols" class="form-control">
+                        @foreach (var item in ViewBag.ShoolListViewBag)
                         {
-                            <option selected> @item</option>
+                            if (ViewBag.selected != null && ViewBag.selected != string.Empty && ViewBag.selected.Trim() == item.Trim())
+                            {
+                                <option selected> @item</option>
+                            }
+                            else
+                            {
+                                <option> @item</option>
+                            }
                         }
-                        else
-                        {
-                            <option> @item</option>
-                        }
-                    }
-                </select>
-                @*@Html.ValidationMessageFor(model => model.SchoolsCategory, "", new { @class = "text-danger" })*@
+                    </select>
+                    @*@Html.ValidationMessageFor(model => model.SchoolsCategory, "", new { @class = "text-danger" })*@
+                </div>
+                <div class="col-md-2">
+
+                    <a class="btn btn-outline-info" href="Index1" role="button">TUTANAK</a>
+                    @*<button type="button" class="btn btn-outline-info">TUTANAK</button>*@
+                </div>
             </div>
         </div>
     </p>
+
+
     @*@using (Html.BeginForm("Index", "BooksDeliveries", FormMethod.Post))
         {*@
 

@@ -126,7 +126,7 @@ namespace KiDSisMvcWebUI.Controllers
             //List<string> BookClassList = db.Books.Select(x => x.Class).ToList();
 
             //string schooltype = Session["SchoolType"].ToString();
-            List<string> BookClassList = db.Books.Where(x => x.BookType == schooltype).Select(x => x.Class).Distinct().ToList();
+            List<string> BookClassList = db.SchoolClasses.Where(x => x.Category == schooltype).Select(x => x.Class).Distinct().ToList();
             ViewBag.BookClassListViewBag = BookClassList;
 
             return View();
@@ -149,7 +149,7 @@ namespace KiDSisMvcWebUI.Controllers
                      booksurplus.UserId = Session["ManagerId"].ToString();
             booksurplus.SchoolName = Session["SchoolName"].ToString();
             booksurplus.DemandDate = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
-            booksurplus.Id = db.Booksurplus.FirstOrDefault(x => x.BookId == booksurplus.BookId).Id;
+            //booksurplus.Id = db.Booksurplus.FirstOrDefault(x => x.BookId == booksurplus.BookId).Id;
             ViewBag.KayıtHata = "";
             Booksurplus booksurplusControl = new Booksurplus();
             booksurplusControl = db.Booksurplus.FirstOrDefault(x => x.BookId == booksurplus.BookId);

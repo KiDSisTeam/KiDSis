@@ -118,7 +118,7 @@
     $(document).ready(function () {
 
         debugger
-        $.getJSON('/BooksStocks/GetClass', { Category: $('#Category').val() }, function (data) {
+        $.getJSON('/SchoolClasses/GetClass', { Category: $('#Category').val() }, function (data) {
             $.each(data, function () {
                 console.log(data);
                 debugger
@@ -185,7 +185,7 @@
         $('#Category').change(function () {
             $('#Class1 option').remove();
             debugger
-            $.getJSON('/BooksStocks/GetClass', { Category: $('#Category').val() }, function (data) {
+            $.getJSON('/SchoolClasses/GetClass', { Category: $('#Category').val() }, function (data) {
                 $.each(data, function () {
                     $('#Class1').append('<option value=' +
                         this.Class + '>' + this.Class + '</option>');

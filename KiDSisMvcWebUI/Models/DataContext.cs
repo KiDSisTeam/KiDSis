@@ -23,6 +23,7 @@ namespace KiDSisMvcWebUI.Entity
         public DbSet<SchoolsCategory> SchoolsCategorys { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Booksurplus> Booksurplus { get; set; }
-        
+
+        public System.Data.Entity.DbSet<KiDSisMvcWebUI.Models.SchoolClass> SchoolClasses { get; set; }
     }
 }

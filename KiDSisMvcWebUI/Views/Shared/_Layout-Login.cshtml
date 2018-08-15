@@ -12,8 +12,7 @@
     <link rel="stylesheet" type="text/css" href="~/Css/Ozel.css">
     @*<script src="~/Scripts/modernizr-2.6.2.js"></script>*@
     <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
-
-
+    <link href="~/Css/ModalLogin.css" rel="stylesheet" />
 
 </head>
 <body style="background-image:url(/Images/arkaplan.png)">
@@ -21,30 +20,127 @@
         <nav style="border-radius:5px;" class="navbar navbar-expand-lg navbar-dark bg-info mt-2">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12">
-                        <!-- Logo -->
-                        <a href="index-giris-yonetici.html" class="navbar-brannd"><img width="150" src="~/Images/logo.png"></a>
-                    </div>
+                    <table class="col-md-12">
+                        <tr>
+                            <td>
+
+                                <!-- Logo -->
+                                <a href="index-giris-yonetici.html" class="navbar-brannd"><img width="150" src="~/Images/logo.png"></a>
+
+                            </td>
+                            <td align="right">
+
+                                @*<button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#menuac">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div>
+                            <div class="col-md-12 collapse navbar-collapse" id="menuac">
+                                <form name="giris" action="#" method="post" class="form-inline ml-4">
+                                    <label for="kurumLabel" style="color: white;" class="mr-2">Kurum Kodu</label>
+                                    <input id="kurumLabel" type="text" maxlength="6" name="kurumkodu" required placeholder="Kurum Kodunuzu Girin" class="form-control mr-4 form-control-sm">
+                                    <label for="sifreLabel" style="color: white;" class="mr-2">Şifre</label>
+                                    <input id="sifreLabel" type="password" name="sifre" required placeholder="Şifrenizi Girin" class="form-control mr-2 form-control-sm">
+                                    <button name="girisYap" class="button btn btn-light btn-sm mr-2">Giriş Yap </button>
+                                </form>
+                            </div>
+                        </div>*@
+
+
+                            </td>
+
+
+
+                        </tr>
+
+
+
+
+
+
+
+                    </table>
+
                 </div>
-                <!-- Sağ Giriş -->
+            
 
 
 
 
-                @*<button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#menuac">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div>
-                    <div class="col-md-12 collapse navbar-collapse" id="menuac">
-                        <form name="giris" action="#" method="post" class="form-inline ml-4">
-                            <label for="kurumLabel" style="color: white;" class="mr-2">Kurum Kodu</label>
-                            <input id="kurumLabel" type="text" maxlength="6" name="kurumkodu" required placeholder="Kurum Kodunuzu Girin" class="form-control mr-4 form-control-sm">
-                            <label for="sifreLabel" style="color: white;" class="mr-2">Şifre</label>
-                            <input id="sifreLabel" type="password" name="sifre" required placeholder="Şifrenizi Girin" class="form-control mr-2 form-control-sm">
-                            <button name="girisYap" class="button btn btn-light btn-sm mr-2">Giriş Yap </button>
+
+              
+
+
+
+
+
+               
+
+                    
+
+                    @*modal login giriş ekranı
+                        <button class="btn btn-light" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Giriş</button>
+
+                    <div id="id01" class="modal">
+
+                        <form class="modal-content animate" action="/action_page.php">
+                            <div class="imgcontainer">
+                                <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+                                <img src="~/Images/logo.png" alt="Avatar" class="avatar"/>
+                            </div>
+
+                            <div class="container">
+                                <label for="uname"><b>Kullanıcı Adı</b></label>
+                                <input type="text" placeholder="Kullanıcı Adı" name="uname" required>
+
+                                <label for="psw"><b>Şifre</b></label>
+                                <input type="password" placeholder="Şifre" name="psw" required>
+
+                                <button class="btn btn-info" type="submit">Giriş</button>
+                                <label>
+                                    <input type="checkbox" checked="checked" name="remember"> Beni hatırla
+                                </label>
+                            </div>
+
+                            <div class="container" style="background-color:#f1f1f1">
+                                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn btn btn-danger">İptal</button>
+                                @*<span class="psw">Forgot <a href="#">password?</a></span>*@
+                           @* </div>
                         </form>
                     </div>
-                </div>*@
+
+                    <script>
+                        // Get the modal
+                        var modal = document.getElementById('id01');
+
+                        // When the user clicks anywhere outside of the modal, close it
+                        window.onclick = function (event) {
+                            if (event.target == modal) {
+                                modal.style.display = "none";
+                            }
+                        }
+                    </script>*@
+
+
+
+
+
+
+
+                    <!-- Sağ Giriş -->
+                    @*<button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#menuac">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div>
+                <div class="col-md-12 collapse navbar-collapse" id="menuac">
+                    <form name="giris" action="#" method="post" class="form-inline ml-4">
+                        <label for="kurumLabel" style="color: white;" class="mr-2">Kurum Kodu</label>
+                        <input id="kurumLabel" type="text" maxlength="6" name="kurumkodu" required placeholder="Kurum Kodunuzu Girin" class="form-control mr-4 form-control-sm">
+                        <label for="sifreLabel" style="color: white;" class="mr-2">Şifre</label>
+                        <input id="sifreLabel" type="password" name="sifre" required placeholder="Şifrenizi Girin" class="form-control mr-2 form-control-sm">
+                        <button name="girisYap" class="button btn btn-light btn-sm mr-2">Giriş Yap </button>
+                    </form>
+                </div>
+            </div>*@
             </div>
         </nav>
     </div>
@@ -55,7 +151,7 @@
                 <h1>KİDSİS - Kitap Dağıtım Sistemine Hoş Geldiniz</h1>
                 <p>Kitap Dağıtım Sistemi ile eksik olan kitaplarınız için talep oluşturabilir, oluşturduğunuz talepleri sistem üzerinden takip edebilirsiniz.  <br></p>
                 <hr>
-                <p>Soru görüş ve önerileriniz için lütfen <strong>0 (262) 528 9394 - 126</strong> numaralı telefondan <strong>Şef İsim SOYİSİM</strong> ile iletişime geçin.</p>
+                <p>Soru görüş ve önerileriniz için lütfen <strong>0 (262) 528 9394 - 116</strong> numaralı telefondan <strong>Şef Müşlahettin TAŞDEMİR</strong> ile iletişime geçin.</p>
             </div>
         </div>
     </div>
