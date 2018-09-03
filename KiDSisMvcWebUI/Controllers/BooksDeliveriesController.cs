@@ -240,15 +240,11 @@ namespace KiDSisMvcWebUI.Controllers
 
         }
 
-        public ActionResult Dropdownreport(string text, DateTime? date1, DateTime? date2)
+        public ActionResult Dropdownreport(string text, string date1, string date2)
         {
-
-            //model.text = text;
-            //model.Date1 = date1;
-            //model.Date2 = date2;
+            TempData["date1"] = date1;
+            TempData["date2"] = date2;
             return RedirectToAction("Index1", "BooksDeliveries", new { text = text, date1 = date1, date2 = date2 });
-            // return RedirectToAction("Index1", new RouteValueDictionary(
-            //new { controller = "BooksDeliveries", action = "Index1", model = model }));
 
         }
 
@@ -366,33 +362,41 @@ namespace KiDSisMvcWebUI.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Index1(string text, DateTime? date1, DateTime? date2, string DeliveredName, string Recipedname, bool update=false)
+        public ActionResult Index1(string text, string Schols, string date1, string date2, string DeliveredName, string Recipedname, bool update = false)
+
+
         {
-            ViewBag.KayıtHata1 = "";
-            ViewBag.KayıtHata2 = "";
-            ViewBag.SchoolName = "";
-
-            //if (TempData["Control"] != null)
+            //if (date1 != null)
             //{
-
-
-            //    if (TempData["Control"] == "1")
-            //    {
-            //        ViewBag.KayıtHata1 = " Girmiş olduğunuz kitap sayısı okulun ihtiyacından fazla olamaz!";
-
-            //    }
-            //    if (TempData["Control"] == "2")
-            //    {
-            //        ViewBag.KayıtHata2 = " Depoda bu kadar kitap yok!";
-
-            //    }
-
+            //    DateTime dt = DateTime.ParseExact(date1.ToString(), "MM.dd.yyyy hh:mm:ss tt", CultureInfo.InvariantCulture);
+            //    string s = dt.ToString("dd.M.yyyy", CultureInfo.InvariantCulture);
+            //}
+            //if (date2 != null)
+            //{
+            //    DateTime dt1 = DateTime.ParseExact(date2.ToString(), "MM.dd.yyyy hh:mm:ss tt", CultureInfo.InvariantCulture);
+            //    string s1 = dt1.ToString("dd.M.yyyy", CultureInfo.InvariantCulture);
 
             //}
+
+
+
+            if (string.IsNullOrEmpty(text))
+            {
+                text = Schols;
+            }
+
+
+            ViewBag.KayıtHata1 = "";
+            ViewBag.KayıtHata2 = "";
+            //ViewBag.SchoolName = "";
+            //date1 = TempData["date1"] != null ? (DateTime)TempData["date1"] : DateTime.Now;
+            //date2 = TempData["date2"] != null ? (DateTime)TempData["date2"] : DateTime.Now;
+            //ekrandan göndermede sıkıntı olduğu için şimdilik default değer atandı sorun çözülene kadar böyle devam edilecek
+
             ViewBag.selected = text;
             List<Book> bk = new List<Book>();
             bk = db.Books.ToList();
-            List<BooksDelivery> bkn = db.BooksDeliverys.ToList();
+            List<BooksDelivery> bkn = db.BooksDeliverys.Where(x => x.SchoolsName == text).ToList();
             List<SchoolsCategory> sc = db.SchoolsCategorys.ToList();
             List<BooksCategory> _booksCategory = db.BooksCategorys.ToList();
             List<BooksDelivery> bkstk = db.BooksDeliverys.ToList();
@@ -413,13 +417,13 @@ namespace KiDSisMvcWebUI.Controllers
                 wm.SchoolsName = item.SchoolsName;
                 wm.Deliverer = bkn.LastOrDefault(x => x.BookId == item.BookId).Deliverer;
                 wm.Recipient = bkn.LastOrDefault(x => x.BookId == item.BookId).Recipient;
-                ViewBag.SchoolName = item.SchoolsName;
-                ViewBag.TeslimEden = wm.Deliverer;
-                ViewBag.TeslimAlan = wm.Recipient;
+                //ViewBag.SchoolName = item.SchoolsName;
+                //ViewBag.TeslimEden = wm.Deliverer;
+                //ViewBag.TeslimAlan = wm.Recipient;
                 wm.Name = bk.FirstOrDefault(x => x.Id == item.BookId).Name;
                 //wm.DemandDate = item.DemandDate;
                 wm.Class = bk.FirstOrDefault(x => x.Id == item.BookId).Class;
-                
+
                 //wm.BookCategory = bk.FirstOrDefault(x => x.Id == item.BookId).BookType;
                 // stoktaki kitap sayısını bulmak için çalışıldı.
                 if ((bkstk.FirstOrDefault(x => x.BookId == item.BookId)) == null)
@@ -446,31 +450,42 @@ namespace KiDSisMvcWebUI.Controllers
             var DateFilter2 = new DateTime();
             DateFilte1 = DateTime.Now;
             DateFilter2 = DateTime.Now;
-            DateFilte1 = new DateTime(DateFilte1.Year, DateFilte1.Month, DateFilte1.Day - 1, 0, 0, 0);
-            if (date1 != null)
+
+            // Sorun olduğu için yoruma alınmıştı.
+            DateFilte1 = new DateTime(DateFilte1.Year, DateFilte1.Month, DateFilte1.Day, 0, 0, 0);
+
+
+            if (!string.IsNullOrEmpty(date1))
             {
-                DateFilte1 = (DateTime)date1;
+                string[] words = date1.Split('.');
+                DateFilte1 = new DateTime(Convert.ToInt32(words[2].Split(' ')[0]), Convert.ToInt32(words[1]), Convert.ToInt32(words[0]), 0, 0, 0);
             }
-            if (date2 != null)
+            if (!string.IsNullOrEmpty(date2))
             {
-                DateFilter2 = (DateTime)date2;
+                string[] words = date2.Split('.');
+                DateFilter2 = new DateTime(Convert.ToInt32(words[2].Split(' ')[0]), Convert.ToInt32(words[1]), Convert.ToInt32(words[0]), 0, 0, 0);
             }
 
             DateFilte1 = new DateTime(DateFilte1.Year, DateFilte1.Month, DateFilte1.Day, 0, 0, 0);
             DateFilter2 = new DateTime(DateFilter2.Year, DateFilter2.Month, DateFilter2.Day, 0, 0, 0);
+            //DateTime temp = DateTime.ParseExact("11/02/16", "dd/MM/yy", CultureInfo.InvariantCulture);
 
-
-            var BooksDeliveryList = wmlist.Where(x => x.SchoolsName.Trim() == parameters.Trim() && x.CreateDate >= DateFilte1 && x.CreateDate <= DateFilter2);
+            TempData["date1"] = DateFilte1;
+            TempData["date2"] = DateFilter2;
+            //parameters.Trim()
+            var BooksDeliveryList = wmlist.Where(x => x.SchoolsName.Trim() == text && x.CreateDate >= DateFilte1 && x.CreateDate <= DateFilter2);
 
             if (update)
             {
                 foreach (var UpdateItem in BooksDeliveryList)
                 {
                     BooksDelivery updateEntity = new BooksDelivery();
-                    var Entity = db.BooksDeliverys.FirstOrDefault(x=>x.Id==UpdateItem.Id);
+                    var Entity = db.BooksDeliverys.FirstOrDefault(x => x.Id == UpdateItem.Id);
                     Entity.Id = UpdateItem.Id;
                     Entity.Recipient = Recipedname;
                     Entity.Deliverer = DeliveredName;
+                    Entity.UpdateDate = DateTime.Now;
+                    db.Entry(Entity).State = EntityState.Modified;
                     db.SaveChanges();
                 }
 
@@ -478,7 +493,7 @@ namespace KiDSisMvcWebUI.Controllers
             //Aynı kitaptan istenirse gruplama yapılıyor
             var results = (from ssi in BooksDeliveryList
                            group ssi by new { ssi.Class, ssi.Name } into g
-                           select new { Class = g.Key.Class, Name = g.Key.Name, BookCount = g.Sum(x=>x.BookCount) }).ToList();
+                           select new { Class = g.Key.Class, Name = g.Key.Name, BookCount = g.Sum(x => x.BookCount) }).ToList();
 
             List<BooksDeliveryViewModel> wmlistresult = new List<BooksDeliveryViewModel>();
             foreach (var item in results)
@@ -491,6 +506,13 @@ namespace KiDSisMvcWebUI.Controllers
                 wmlistresult.Add(wmresult);
 
             }
+            List<BooksDelivery> ResultBookDeliveries = db.BooksDeliverys.Where(x => x.SchoolsName == text).ToList();
+            if (ResultBookDeliveries.Count() != 0 && !string.IsNullOrEmpty(text))
+            {
+                ViewBag.SchoolName = ResultBookDeliveries.Where(x => x.SchoolsName == text).OrderByDescending(x => x.UpdateDate).FirstOrDefault().SchoolsName;
+                ViewBag.TeslimEden = ResultBookDeliveries.Where(x => x.SchoolsName == text).OrderByDescending(x => x.UpdateDate).FirstOrDefault().Deliverer;
+                ViewBag.TeslimAlan = ResultBookDeliveries.Where(x => x.SchoolsName == text).OrderByDescending(x => x.UpdateDate).FirstOrDefault().Recipient;
+            }
 
             return View(wmlistresult);
             //kişinin kendi eklediği kayıtları görmesi sağlandı
@@ -498,10 +520,10 @@ namespace KiDSisMvcWebUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult DeliveryPost(string DeliveredName, string Recipedname)
+        public ActionResult DeliveryPost(string Schols, string DeliveredName, string Recipedname, string date_ex, string date_exx)
         {
-            
-            return RedirectToAction("Index1", "BooksDeliveries", new { DeliveredName = DeliveredName, Recipedname = Recipedname, update = true });
+
+            return RedirectToAction("Index1", "BooksDeliveries", new { text = Schols, date1 = date_ex, date2 = date_exx, DeliveredName = DeliveredName, Recipedname = Recipedname, update = true });
         }
 
 
