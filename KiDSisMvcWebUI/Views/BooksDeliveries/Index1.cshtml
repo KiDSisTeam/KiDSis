@@ -14,7 +14,7 @@
     <div id="Title1" style="display:none; margin:5%">
 
 
-        <h4 class="text-center">ÜCRETSİZ DERS KİTAPLARI TESLİM ETME TUTANAĞI</h4>
+        <h4 class="text-center">ÜCRETSİZ DERS KİTAPLARI TESLİM TUTANAĞI</h4>
         <br />
         <span class="pmtallocated pull-right" style="padding-right:30px">
             @DateTime.Now.ToString("dd/MM/yyyy")
@@ -231,11 +231,9 @@
                 <input type="text" required name="Recipedname" class="form-control" placeholder="Ad Soyad">
             </div>
         </div>
-
         <div class="row" id="Teslim" style="display:none">
             @*<div class="col-md-2"></div>*@
             <span id="TeslimEden" class="col-md-3">
-
                 <label>  <b>@ViewBag.TeslimEden</b> </label>
             </span>
             @*<div class="col-md-2"></div>*@
@@ -243,7 +241,6 @@
                 <label>  <b>@ViewBag.TeslimAlan</b> </label>
             </span>
         </div>
-
         <input style="display:none" type="text" id="HiddenRowNo" name="HiddenRowNo" value="@rowNo" />
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4" style="float:right !important;  margin:1% ">
             <div class="row" id="Button">
@@ -258,13 +255,10 @@
         @*@Html.ActionLink("Onayla", "Create", null, new { @class = "btn btn-success   btn-sm mt-2" })*@
     </form>
 </div>
-
 <script>
     //$(document).ready(function () { });
     function AprovwedBook() {
         debugger
-
-
         document.getElementById("FilterDiv").style.display = 'none';
         document.getElementById("Title").style.display = 'none';
         document.getElementById("Title1").style.display = 'block';
@@ -275,12 +269,7 @@
         document.getElementById("Teslim").style.display = 'inline';
         document.getElementById("TeslimAlan").style.marginLeft = "36%";
         document.getElementById("TeslimEden").style.marginLeft = "17%";
-
-
-
         window.print();
-
-
     }
 
 
@@ -298,9 +287,6 @@
         //document.getElementById("tableTeslim").style.display = 'none';
         location.reload();
     }
-
-
-
 </script>
 
 

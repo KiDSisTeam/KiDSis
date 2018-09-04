@@ -433,7 +433,9 @@ namespace KiDSisMvcWebUI.Controllers
                 }
                 else
                 {
-                    wm.BookCount = bkstk.FirstOrDefault(x => x.BookId == item.BookId).BookCount;
+//burası birden fazla kayıt gelebileceğinden dolayı liste olrak tanımlanmalı.
+                    //wm.BookCount = bkstk.FirstOrDefault(x => x.BookId == item.BookId).BookCount;
+                    wm.BookCount = bkstk.FirstOrDefault(x => x.Id == item.Id && x.CreateDate==item.CreateDate).BookCount;
 
                 }
 
@@ -467,12 +469,13 @@ namespace KiDSisMvcWebUI.Controllers
             }
 
             DateFilte1 = new DateTime(DateFilte1.Year, DateFilte1.Month, DateFilte1.Day, 0, 0, 0);
-            DateFilter2 = new DateTime(DateFilter2.Year, DateFilter2.Month, DateFilter2.Day, 0, 0, 0);
+            DateFilter2 = new DateTime(DateFilter2.Year, DateFilter2.Month, DateFilter2.Day, 23, 59, 59);
             //DateTime temp = DateTime.ParseExact("11/02/16", "dd/MM/yy", CultureInfo.InvariantCulture);
 
             TempData["date1"] = DateFilte1;
             TempData["date2"] = DateFilter2;
             //parameters.Trim()
+            //wmlist içindeki veriler hatalı geliyor.
             var BooksDeliveryList = wmlist.Where(x => x.SchoolsName.Trim() == text && x.CreateDate >= DateFilte1 && x.CreateDate <= DateFilter2);
 
             if (update)
