@@ -15,15 +15,28 @@
 
         if (TempData["Control"] == "1")
         {<div class="alert alert-danger" role="alert">
-                <i class="fa fa-exclamation-triangle" @*style="font-size: 48px;"*@></i>&nbsp;&nbsp;
-                <b>@ViewBag.KayıtHata1</b>
+                <center>
+                    <i class="fa fa-exclamation-triangle" @*style="font-size: 48px;"*@></i>&nbsp;&nbsp;
+                    <b>@ViewBag.KayıtHata1</b>
+                </center>
 
             </div>
         }
         if (TempData["Control"] == "2")
         {<div class="alert alert-danger" role="alert">
-                <i class="fa fa-exclamation-triangle" @*style="font-size: 48px;"*@></i>&nbsp;&nbsp;
-                <b>@ViewBag.KayıtHata2</b>
+                <center>
+                    <i class="fa fa-exclamation-triangle" @*style="font-size: 48px;"*@></i>&nbsp;&nbsp;
+                    <b>@ViewBag.KayıtHata2</b>
+                </center>
+
+            </div>
+        }
+        if (TempData["Control"] == "3")
+        {<div class="alert alert-success" role="alert">
+                <center>
+                    <i class="fa fa-check-circle" @*style="font-size: 48px;"*@></i>&nbsp;&nbsp;
+                    <b>@ViewBag.KayıtHata3</b>
+                </center>
 
             </div>
         }
@@ -124,6 +137,30 @@
             }
         }
     </table>
+    <div class="row" id="teslim3">
+        <div class="col-md-2"></div>
+        <div class="col-md-4">
+            <label>
+                Teslim Alan
+            </label>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-4">
+            <label>
+                Teslim Eden
+            </label>
+        </div>
+    </div>
+    <div id="soyad" class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-4">
+            <input type="text" required name="DeliveredName" class="form-control" placeholder="Ad Soyad">
+        </div>
+        <div class="col-md-2 "></div>
+        <div class="col-md-4">
+            <input type="text" required name="Recipedname" class="form-control" placeholder="Ad Soyad">
+        </div>
+    </div>
     <input style="display:none" type="text" id="HiddenRowNo" name="HiddenRowNo" value="@rowNo" />
     <div class="col-lg-1 col-md-1 col-sm-2 col-xs-4" style="float:right !important; margin-right:%5;">
         <input class="btn btn-outline-info" style="padding:3%" type="button" onclick="AprovwedBook()" name="name" value="Onayla" />
@@ -157,12 +194,11 @@
 
 
 
-    $("#Schols").change(function ()
-    {
+    $("#Schols").change(function () {
         debugger
         var text = $("#Schols option:selected").text();
         window.location.href = '/BooksDeliveries/DropdownChanged?text=' + text;
-        
+
     });
 
 </script>

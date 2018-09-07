@@ -28,6 +28,7 @@ namespace KiDSisMvcWebUI.Controllers
         {
             ViewBag.KayıtHata1 = "";
             ViewBag.KayıtHata2 = "";
+            ViewBag.KayıtHata3 = "";
 
             if (TempData["Control"] != null)
             {
@@ -41,6 +42,11 @@ namespace KiDSisMvcWebUI.Controllers
                 if (TempData["Control"] == "2")
                 {
                     ViewBag.KayıtHata2 = " Depoda bu kadar kitap yok!";
+
+                }
+                if (TempData["Control"] == "3")
+                {
+                    ViewBag.KayıtHata3 = "Kaydınız başarı ile gerçekleştirildi. Lütfen tutanak oluşturunuz.";
 
                 }
 
@@ -100,7 +106,7 @@ namespace KiDSisMvcWebUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(string list, string BookIdList, string Schols)
+        public ActionResult Index(string list, string BookIdList, string Schols, string DeliveredName, string Recipedname)
         {
             List<BooksStock> bkstk = db.BooksStocks.ToList();
             ShoolBooksNeedsViewModel wm = new ShoolBooksNeedsViewModel();
@@ -213,8 +219,10 @@ namespace KiDSisMvcWebUI.Controllers
                     delivery.UpdateDate = DateTime.Now;
                     delivery.SchoolsName = Schols;
                     delivery.BookCount = Convert.ToInt32(Count);
-                    delivery.Deliverer = "Tutanak Düzenlenmedi";
-                    delivery.Recipient = "Tutanak Düzenlenmedi";
+                    delivery.Deliverer = DeliveredName;
+                    //delivery.Deliverer = "Tutanak Düzenlenmedi";
+                    delivery.Recipient = Recipedname;
+                    //delivery.Recipient = "Tutanak Düzenlenmedi";
                     delivery.BookId = BookNeeds.BookId;
                     db.Entry(delivery).State = EntityState.Added;
                     db.SaveChanges();
@@ -224,7 +232,17 @@ namespace KiDSisMvcWebUI.Controllers
 
             }
 
+            ViewBag.KayıtHata = "";
+            if (true)
+            {
+                TempData["Control"] = "3";
+                //ViewBag.KayıtHata = " Girmiş olduğunuz kitap sayısı okulun ihtiyacından fazla olamaz!";
 
+
+                return RedirectToAction("Index", new RouteValueDictionary(
+       new { controller = "BooksDeliveries", action = "Index" }));
+
+            }
 
 
             return RedirectToAction("Index", new RouteValueDictionary(
@@ -388,6 +406,8 @@ namespace KiDSisMvcWebUI.Controllers
 
             ViewBag.KayıtHata1 = "";
             ViewBag.KayıtHata2 = "";
+            ViewBag.KayıtHata3 = "";
+
             //ViewBag.SchoolName = "";
             //date1 = TempData["date1"] != null ? (DateTime)TempData["date1"] : DateTime.Now;
             //date2 = TempData["date2"] != null ? (DateTime)TempData["date2"] : DateTime.Now;
@@ -433,9 +453,9 @@ namespace KiDSisMvcWebUI.Controllers
                 }
                 else
                 {
-//burası birden fazla kayıt gelebileceğinden dolayı liste olrak tanımlanmalı.
+                    //burası birden fazla kayıt gelebileceğinden dolayı liste olrak tanımlanmalı.
                     //wm.BookCount = bkstk.FirstOrDefault(x => x.BookId == item.BookId).BookCount;
-                    wm.BookCount = bkstk.FirstOrDefault(x => x.Id == item.Id && x.CreateDate==item.CreateDate).BookCount;
+                    wm.BookCount = bkstk.FirstOrDefault(x => x.Id == item.Id && x.CreateDate == item.CreateDate).BookCount;
 
                 }
 
