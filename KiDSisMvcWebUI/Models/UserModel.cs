@@ -29,6 +29,10 @@ namespace UserIdentity.Models
         public string Password { get; set; }
         [Required]
         public string SchoolType { get; set; }
+        public string SecondarySchool { get; set; }
+        public string PrimarySchool { get; set; }
+        public string PreSchool { get; set; }
+        public string SpecialEducation { get; set; }
 
 
     }

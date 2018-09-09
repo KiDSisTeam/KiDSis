@@ -52,7 +52,7 @@
                     @*<select class="col-md-10 form-control" style="margin-left: 1%;" id="ClassP" name="ClassP"></select>*@
 
 
-                    <select id="Class" name="Class" class="form-control">
+                    <select class="col-md-10 form-control" id="Class" name="Class" class="form-control">
                             @foreach (var item in ViewBag.BookClassListViewBag)
                             {
                                 <option> @item</option>
@@ -72,7 +72,7 @@
                 </label>
                 <div>
 
-                    <select class="col-md-10 form-control" style="margin-left: 1%;" id="NameProperty" name="Name"></select>
+                    <select class="col-md-10 form-control" @*style="margin-left: 1%;"*@ id="NameProperty" name="Name"></select>
 
                     @*<select name="Name" class="form-control">
 

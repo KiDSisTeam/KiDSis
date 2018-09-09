@@ -157,7 +157,9 @@
     <Content Include="Scripts\esm\popper-utils.js.map" />
     <Content Include="Css\SiteSass.scss" />
     <Content Include="Scripts\jquery-3.2.1.slim.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Scripts\bootstrap.min.js.map" />
     <Content Include="Scripts\bootstrap.js.map" />
     <Content Include="Scripts\bootstrap.bundle.min.js.map" />

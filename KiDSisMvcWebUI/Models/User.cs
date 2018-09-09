@@ -16,7 +16,10 @@ namespace KiDSisMvcWebUI.Models
         public string EPosta { get; set; }
         public string Role { get; set; }
         public int SchoolsCategoryId { get; set; }
-
+        public string PrimarySchool { get; set; }
+        public string PreSchool { get; set; }
+        public string SpecialEducation { get; set; }
+        public string SecondarySchool { get; set; }
 
 
 

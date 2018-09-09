@@ -84,8 +84,26 @@ namespace KiDSisMvcWebUI.Controllers
             }
 
             string schoolType = (Session["SchoolType"]).ToString();
-            return View(wmlist.Where(x => x.SchoolsCategory.ToString() == schoolType));
-            //return View(wmlist);
+
+            if (schoolType != "İLÇE MİLLİ EĞİTİM")
+            {
+                wmlist.Where(x => x.SchoolsCategory.ToString() == schoolType);
+                //List<string> BookClassList = db.SchoolClasses.Where(x => x.Category == schooltype).Select(x => x.Class).Distinct().ToList();
+                // ViewBag.BookClassListViewBag = BookClassList;
+            }
+            //else
+            //{
+            //    wmlist;
+            //    //List<string> BookClassList = db.Books.Select(x => x.Class).ToList();
+
+            //    //List<string> BookClassList = db.SchoolClasses.Where(x => x.Category == schooltype).Select(x => x.Class).Distinct().ToList();
+            //    // ViewBag.BookClassListViewBag = BookClassList;
+            //}
+
+
+
+            //return View(wmlist.Where(x => x.SchoolsCategory.ToString() == schoolType));
+            return View(wmlist);
         }
 
 

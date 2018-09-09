@@ -173,9 +173,21 @@ namespace KiDSisMvcWebUI.Controllers
             //List<string> BookClassList = db.Books.Where(x=>x.BookType== Session["SchoolType"].ToString()).Select(x => x.Class).ToList();
             string schooltype = Session["SchoolType"].ToString();
             // List<string> BookClassList = db.Books.Select(x => x.Class).ToList();
-            List<string> BookClassList = db.SchoolClasses.Where(x => x.Category == schooltype).Select(x => x.Class).Distinct().ToList();
+            if (schooltype !="İLÇE MİLLİ EĞİTİM")
+            {
+                List<string> BookClassList = db.SchoolClasses.Where(x => x.Category == schooltype).Select(x => x.Class).Distinct().ToList();
+                ViewBag.BookClassListViewBag = BookClassList;
+            }
+            else
+            {
+                List<string> BookClassList = db.Books.Select(x => x.Class).Distinct().ToList();
 
-            ViewBag.BookClassListViewBag = BookClassList;
+                //List<string> BookClassList = db.SchoolClasses.Where(x => x.Category == schooltype).Select(x => x.Class).Distinct().ToList();
+                ViewBag.BookClassListViewBag = BookClassList;
+            }
+
+
+            //ViewBag.BookClassListViewBag = BookClassList;
 
 
             //  List<string> BookNameList = db.Books.Select(x => x.Class== BookClassList).ToList();
@@ -207,13 +219,13 @@ namespace KiDSisMvcWebUI.Controllers
             //sorular.MangerId = Convert.ToInt32(Session["MangerId"]);
             ViewBag.KayıtHata = "";
             BooksNeed bookNeedControl = new BooksNeed();
-            bookNeedControl = db.BooksNeeds.FirstOrDefault(x => x.BookId == booksNeed.BookId);
+            bookNeedControl = db.BooksNeeds.FirstOrDefault(x => x.BookId == booksNeed.BookId && x.UserId== booksNeed.UserId);
             if (bookNeedControl != null)
             {
                 TempData["Control"] = "1";
 
                 return RedirectToAction("Edit", new RouteValueDictionary(
-               new { controller = "BooksNeeds", action = "Edit", Id=bookNeedControl.Id }));
+               new { controller = "BooksNeeds", action = "Edit", Id = bookNeedControl.Id }));
 
 
 
@@ -268,10 +280,10 @@ namespace KiDSisMvcWebUI.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-           
+
             BooksNeed booksNeed = db.BooksNeeds.Where(x => x.Id == id).FirstOrDefault();
             booksNeed.Name = db.Books.FirstOrDefault(x => x.Id == booksNeed.BookId).Name.ToString();
-                
+
             //.Find(id);
 
 

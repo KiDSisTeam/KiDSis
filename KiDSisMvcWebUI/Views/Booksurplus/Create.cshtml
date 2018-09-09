@@ -78,7 +78,7 @@
             @*@Html.LabelFor(model => model.BookCount, htmlAttributes: new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
 
-                <select class="col-md-10 form-control" style="margin-left: 1%;" id="NameProperty" name="Name"></select>
+                <select class=" form-control" @*style="margin-left: 1%;"*@ id="NameProperty" name="Name"></select>
                 @*<select  id="NameProperty" name="Name" class="form-control">
             @foreach (var item in ViewBag.BookNameListViewBag)
             {

@@ -12,47 +12,57 @@
 
 
         @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-group">
-            <label>Kullanıcı Adı</label>
-            @Html.TextBoxFor(i => i.UserName, new { @class = "form-control" })
-        </div>
-
-
-        <div class="form-group">
-            <label>Kurum Türü</label>
-
-            <select name="SchoolType" class="form-control">
-                @foreach (var item in ViewBag.SchoolTypeListViewBag)
         {
-            <option> @item</option>
-}
-            </select>
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                <label>Kurum Türü</label>
+
+                <select name="SchoolType" class="form-control">
+                    @foreach (var item in ViewBag.SchoolTypeListViewBag)
+                    {
+                        <option> @item</option>
+                    }
+                </select>
 
 
-            @*@Html.TextBoxFor(i => i.SchoolType, new { @class = "form-control" })*@
-        </div>
-
-
-
-        <div class="form-group">
-            <label>E-mail</label>
-            @Html.TextBoxFor(i => i.Email, new { @class = "form-control" })
-        </div>
-        <div class="form-group">
-            <label>Parola</label>
-            @Html.PasswordFor(i => i.Password, new { @class = "form-control" })
-        </div>
-
-        <button type="submit" class="btn btn-primary">Kaydet</button>
-        <br />
-        <br />
+                @*@Html.TextBoxFor(i => i.SchoolType, new { @class = "form-control" })*@
+            </div>
 
 
 
-}
+            <div class="form-group">
+                <label>Kullanıcı Adı</label>
+                @Html.TextBoxFor(i => i.UserName, new { @class = "form-control" })
+            </div>
+
+
+
+            <div class="form-group">
+                <label>E-mail</label>
+                @Html.TextBoxFor(i => i.Email, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label>Parola</label>
+                @Html.PasswordFor(i => i.Password, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label>Bünyesinde olan kurumlar</label><br />
+                <label>Ortaokul   </label>&nbsp;
+                <input type="checkbox" name="SecondarySchool" />&nbsp;
+                <label>İlkokul   </label>&nbsp;
+                <input type="checkbox" name="PrimarySchool"  />&nbsp;
+                <label>Ana Sınıfı   </label>&nbsp;
+                <input type="checkbox" name="PreSchool"  />&nbsp;
+                <label>Özel Eğitim</label>&nbsp;
+                <input type="checkbox" name="SpecialEducation"  />&nbsp;
+            </div>
+
+
+            <button type="submit" class="btn btn-primary">Kaydet</button>
+            <br />
+            <br />
+        }
 
     </div>
 

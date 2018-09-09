@@ -28,12 +28,15 @@
         <p style="padding-left:5em; @*margin:5%*@ ">
             Aşağıda isimleri ve adedi tabloda belirtilen sayıda kitap <b> Körfez İlçe Milli Eğitim Müdürlüğü </b>tarafından
         </p>
+        @{string schooltype = ViewBag.SchoolName;}
 
-        <p style="padding-left:1em; ">
+        @if (@schooltype == "Derince İlçe Milli Eğitim")
+        {
+            <p style="padding-left:1em; ">
 
-            <b>
-                @ViewBag.SchoolName
-                @*<script>
+                <b>
+                    @ViewBag.SchoolName
+                    @*<script>
 
                             $(document).ready(function () {
 
@@ -48,8 +51,34 @@
                             });
 
                     </script>*@
-            </b>'na teslim edilmiştir.
-        </p>
+                </b>'e teslim edilmiştir.
+            </p>
+
+        }
+        else
+        {
+            <p style="padding-left:1em; ">
+
+                <b>
+                    @ViewBag.SchoolName
+                    @*<script>
+
+                            $(document).ready(function () {
+
+                                <b>@ViewBag.SchoolName</b>
+                                //document.getElementById("Schols").selected.value;
+                                //document.getElementById("Schols").value;
+
+
+                                //var e = document.getElementById("Schols");
+                                //var strUser = e.options[e.selectedIndex].value;
+                                //strUser.text;
+                            });
+
+                    </script>*@
+                </b>'na teslim edilmiştir.
+            </p>
+        }
     </div>
     <form action="/BooksDeliveries/DeliveryPost" method="post" id="form">
 
@@ -70,7 +99,7 @@
 
                 </div>
             }
-           
+
 
 
         }
@@ -117,7 +146,7 @@
 
 
         @*@using (Html.BeginForm("Index", "BooksDeliveries", FormMethod.Post))
-        {*@
+            {*@
 
         <table class="table table-bordered">
             <tr style="color: white;" class="bg-info">
@@ -134,9 +163,9 @@
                     Teslim Edilen Kitap Sayısı
                 </th>
                 @*<th>Depodaki Kitap Sayısı</th>
-                <th>
-                    Teslim Edilen Adet
-                </th>*@
+                    <th>
+                        Teslim Edilen Adet
+                    </th>*@
                 @*<th>İşlemler</th>*@
             </tr>
             @{
@@ -166,21 +195,21 @@
             }
         </table>
         @*<table id="tableTeslim" class="table col-md-12" style="display:none; width:100%">
-            <tr style="border:none">
-                <td></td>
-                <td></td>
-                <td>Teslim Alan</td>
-                <td></td>
-                <td> Teslim Eden</td>
-            </tr>
-            <tr style="border:none ">
-                <td></td>
-                <td></td>
-                <td>@ViewBag.TeslimEden</td>
-                <td></td>
-                <td> @ViewBag.TeslimAlan</td>
-            </tr>
-        </table>*@
+                <tr style="border:none">
+                    <td></td>
+                    <td></td>
+                    <td>Teslim Alan</td>
+                    <td></td>
+                    <td> Teslim Eden</td>
+                </tr>
+                <tr style="border:none ">
+                    <td></td>
+                    <td></td>
+                    <td>@ViewBag.TeslimEden</td>
+                    <td></td>
+                    <td> @ViewBag.TeslimAlan</td>
+                </tr>
+            </table>*@
 
 
 
@@ -206,30 +235,30 @@
             </div>
         </div>
         @*<div class="row" id="Teslim2" style="display:none">
-            <div class="col-md-2"></div>
-            <div class="col-md-4">
-                <label>
-                    Teslim Alan: @ViewBag.TeslimEden
-                </label>
-            </div>
-            <div class="col-md-2"></div>
-            <div class="col-md-4">
-                <label>
-                    Teslim Eden: @ViewBag.TeslimAlan
-                </label>
-            </div>
-        </div>*@
+                <div class="col-md-2"></div>
+                <div class="col-md-4">
+                    <label>
+                        Teslim Alan: @ViewBag.TeslimEden
+                    </label>
+                </div>
+                <div class="col-md-2"></div>
+                <div class="col-md-4">
+                    <label>
+                        Teslim Eden: @ViewBag.TeslimAlan
+                    </label>
+                </div>
+            </div>*@
 
         @*<div class="row" id="Teslim1" style="display:none">
-            <span class="col-md-1"></span>
-            <span class="col-md-4 form-inline">
-                <label>  <b>@ViewBag.TeslimEden</b> </label>
-            </span>
-            <span class="col-md-2"></span>
-            <span class="col-md-4 form-inline">
-                <label>  <b>@ViewBag.TeslimAlan</b> </label>
-            </span>
-        </div>*@
+                <span class="col-md-1"></span>
+                <span class="col-md-4 form-inline">
+                    <label>  <b>@ViewBag.TeslimEden</b> </label>
+                </span>
+                <span class="col-md-2"></span>
+                <span class="col-md-4 form-inline">
+                    <label>  <b>@ViewBag.TeslimAlan</b> </label>
+                </span>
+            </div>*@
         <div id="soyad" class="row" style="display:none">
             <div class="col-md-1"></div>
             <div class="col-md-4">
@@ -275,10 +304,10 @@
         document.getElementById("Button").style.display = 'none';
         document.getElementById("soyad").style.display = 'none';
         document.getElementById("footerDiv").style.display = 'none';
-       // document.getElementById("Teslim").style.display = 'inline';
-       // document.getElementById("teslim3").style.display = 'inline';
-       // document.getElementById("TeslimAlan").style.marginLeft = "36%";
-       // document.getElementById("TeslimEden").style.marginLeft = "17%";
+        // document.getElementById("Teslim").style.display = 'inline';
+        // document.getElementById("teslim3").style.display = 'inline';
+        // document.getElementById("TeslimAlan").style.marginLeft = "36%";
+        // document.getElementById("TeslimEden").style.marginLeft = "17%";
         window.print();
     }
 
@@ -291,8 +320,8 @@
         document.getElementById("Text1").style.display = 'block';
         document.getElementById("soyad").style.display = 'block';
         document.getElementById("footerDiv").style.display = 'block';
-       // document.getElementById("Teslim").style.display = 'none';
-       // document.getElementById("teslim3").style.display = 'none';
+        // document.getElementById("Teslim").style.display = 'none';
+        // document.getElementById("teslim3").style.display = 'none';
 
         //document.getElementById("Teslim1").style.display = 'none';
         //document.getElementById("Teslim2").style.display = 'none';

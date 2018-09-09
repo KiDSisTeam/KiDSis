@@ -155,7 +155,10 @@ namespace KiDSisMvcWebUI.Controllers
                 user.UserName = model.UserName;
                 user.Email = model.Email;
                 user.SchoolType = model.SchoolType;
-                //user.PasswordHash = model.Password;
+                user.SecondarySchool = model.SecondarySchool;
+                user.PrimarySchool = model.PrimarySchool;
+                user.PreSchool = model.PreSchool;
+                user.SpecialEducation = model.SpecialEducation;
                 var result = userManager.Create(user, model.Password);
 
 
